@@ -6,14 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>创建maven项目 | Gnoyna的博客</title>
+  <title>完整创建一个maven项目 | Gnoyna的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="完整配置一个maven项目在之前自学java单体应用开发，包括在本学期javaSE实验中都有过配置和创建maven项目的经历，但总体来说还是有样学样，整体的概念与原理还是不甚清楚。这次javaEE的小学期有讲到如何完整配置一个maven项目，收获很多，遂以记录下来。 创建基础maven项目create new project-&gt;maven-&gt;选择JDK版本-&gt;next-&gt;设">
+  <meta name="description" content="在之前自学java单体应用开发，包括在本学期javaSE实验中都有过配置和创建maven项目的经历，但总体来说还是有样学样，整体的概念与原理还是不甚清楚。这次javaEE的小学期有讲到如何完整配置一个maven项目，收获很多，遂以记录下来。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="创建maven项目">
+<meta property="og:title" content="完整创建一个maven项目">
 <meta property="og:url" content="http://yoursite.com/2019/12/23/%E5%88%9B%E5%BB%BAmaven%E9%A1%B9%E7%9B%AE/index.html">
 <meta property="og:site_name" content="Gnoyna的博客">
-<meta property="og:description" content="完整配置一个maven项目在之前自学java单体应用开发，包括在本学期javaSE实验中都有过配置和创建maven项目的经历，但总体来说还是有样学样，整体的概念与原理还是不甚清楚。这次javaEE的小学期有讲到如何完整配置一个maven项目，收获很多，遂以记录下来。 创建基础maven项目create new project-&gt;maven-&gt;选择JDK版本-&gt;next-&gt;设">
+<meta property="og:description" content="在之前自学java单体应用开发，包括在本学期javaSE实验中都有过配置和创建maven项目的经历，但总体来说还是有样学样，整体的概念与原理还是不甚清楚。这次javaEE的小学期有讲到如何完整配置一个maven项目，收获很多，遂以记录下来。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://pic1.superbed.cn/item/5e00888776085c3289c12e48.png">
 <meta property="og:image" content="https://pic3.superbed.cn/item/5e0088a676085c3289c136b6.png">
@@ -44,8 +44,9 @@
 <meta property="og:image" content="https://s2.ax1x.com/2019/12/23/lpyM8A.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/12/23/lpyQgI.png">
 <meta property="article:published_time" content="2019-12-23T09:48:10.227Z">
-<meta property="article:modified_time" content="2019-12-23T09:45:57.953Z">
+<meta property="article:modified_time" content="2019-12-24T09:36:13.348Z">
 <meta property="article:author" content="Gnoy Na">
+<meta property="article:tag" content="学到的一些">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://pic1.superbed.cn/item/5e00888776085c3289c12e48.png">
   
@@ -88,9 +89,9 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/">学到的一些</a></li>
+				<li><a href="/tags/%E5%AD%A6%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B/">学到的一些</a></li>
 	        
-				<li><a href="/tags/">随笔</a></li>
+				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
 	        
 			</ul>
 		</nav>
@@ -101,7 +102,7 @@
     			
             
     			
-    			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">愿景</a>
     			
             
 		</nav>
@@ -110,9 +111,9 @@
 				
 					<a class="github" target="_blank" href="https://github.com/GnoyNa" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="#" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="http://q30c6s501.bkt.clouddn.com/qrcode_1577175824728.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="#" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="http://q30c6s501.bkt.clouddn.com/mmqrcode1577175812181.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="mail" target="_blank" href="mailto:Bigfacecat_y@163.com" title="mail"><i class="icon-mail"></i></a>
 		        
@@ -153,9 +154,9 @@
 					
 						<a class="github" target="_blank" href="https://github.com/GnoyNa" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="#" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="http://q30c6s501.bkt.clouddn.com/qrcode_1577175824728.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="#" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="http://q30c6s501.bkt.clouddn.com/mmqrcode1577175812181.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:Bigfacecat_y@163.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -168,9 +169,9 @@
 				
 					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/">学到的一些</a></li>
+					<li style="width: 33.333333333333336%"><a href="/tags/%E5%AD%A6%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B/">学到的一些</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/tags/">随笔</a></li>
+					<li style="width: 33.333333333333336%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
 		        
 				</ul>
 			</nav>
@@ -192,7 +193,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      创建maven项目
+      完整创建一个maven项目
     </h1>
   
 
@@ -205,7 +206,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="完整配置一个maven项目"><a href="#完整配置一个maven项目" class="headerlink" title="完整配置一个maven项目"></a>完整配置一个maven项目</h2><p>在之前自学java单体应用开发，包括在本学期javaSE实验中都有过配置和创建maven项目的经历，但总体来说还是有样学样，整体的概念与原理还是不甚清楚。这次javaEE的小学期有讲到如何完整配置一个maven项目，收获很多，遂以记录下来。</p>
+        <p>在之前自学java单体应用开发，包括在本学期javaSE实验中都有过配置和创建maven项目的经历，但总体来说还是有样学样，整体的概念与原理还是不甚清楚。这次javaEE的小学期有讲到如何完整配置一个maven项目，收获很多，遂以记录下来。</p>
+<a id="more"></a>
 <h4 id="创建基础maven项目"><a href="#创建基础maven项目" class="headerlink" title="创建基础maven项目"></a>创建基础maven项目</h4><p><code>create new project</code>-&gt;<code>maven</code>-&gt;<code>选择JDK版本</code>-&gt;<code>next</code>-&gt;<code>设置项目坐标groupid和Artifactid</code>-&gt;<code>next</code>-&gt;<code>选择项目位置</code>-&gt;<code>finish</code><br><img src="https://pic1.superbed.cn/item/5e00888776085c3289c12e48.png" alt="图1"><br><img src="https://pic3.superbed.cn/item/5e0088a676085c3289c136b6.png" alt="图2"><br><img src="https://pic1.superbed.cn/item/5e0088c276085c3289c1409e.png" alt="图3"><br><img src="https://pic1.superbed.cn/item/5e0088c276085c3289c140a1.png" alt="图4"><br><img src="https://pic1.superbed.cn/item/5e0088c276085c3289c140a3.png" alt="图5"></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这里就创建了一个基本的无模板maven项目，但对于我们来编写项目和功能，它还缺少一些东西，需要我们手动补上。</span><br></pre></td></tr></table></figure>
 
@@ -250,6 +252,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -316,7 +329,7 @@
   
   
     <a href="/2019/12/22/%E5%AE%B6%E5%92%8C%E5%B8%8C%E6%9C%9B/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">家和希望</div>
+      <div class="article-nav-title">家和希望 ——2019.12.21</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -413,7 +426,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
       
         
       
-      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">愿景</a></li>
       
         
     </ul>
@@ -432,6 +445,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">学到的一些</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -481,7 +502,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">桥都坚固，隧道都光明&lt;br&gt;&lt;br&gt;&lt;br&gt;</div>
   	  	
     	</section>
     

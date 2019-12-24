@@ -55,9 +55,9 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/">学到的一些</a></li>
+				<li><a href="/tags/%E5%AD%A6%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B/">学到的一些</a></li>
 	        
-				<li><a href="/tags/">随笔</a></li>
+				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
 	        
 			</ul>
 		</nav>
@@ -68,7 +68,7 @@
     			
             
     			
-    			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">愿景</a>
     			
             
 		</nav>
@@ -77,9 +77,9 @@
 				
 					<a class="github" target="_blank" href="https://github.com/GnoyNa" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="qq" target="_blank" href="#" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="http://q30c6s501.bkt.clouddn.com/qrcode_1577175824728.jpg" title="qq"><i class="icon-qq"></i></a>
 		        
-					<a class="weixin" target="_blank" href="#" title="weixin"><i class="icon-weixin"></i></a>
+					<a class="weixin" target="_blank" href="http://q30c6s501.bkt.clouddn.com/mmqrcode1577175812181.png" title="weixin"><i class="icon-weixin"></i></a>
 		        
 					<a class="mail" target="_blank" href="mailto:Bigfacecat_y@163.com" title="mail"><i class="icon-mail"></i></a>
 		        
@@ -120,9 +120,9 @@
 					
 						<a class="github" target="_blank" href="https://github.com/GnoyNa" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="qq" target="_blank" href="#" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="http://q30c6s501.bkt.clouddn.com/qrcode_1577175824728.jpg" title="qq"><i class="icon-qq"></i></a>
 			        
-						<a class="weixin" target="_blank" href="#" title="weixin"><i class="icon-weixin"></i></a>
+						<a class="weixin" target="_blank" href="http://q30c6s501.bkt.clouddn.com/mmqrcode1577175812181.png" title="weixin"><i class="icon-weixin"></i></a>
 			        
 						<a class="mail" target="_blank" href="mailto:Bigfacecat_y@163.com" title="mail"><i class="icon-mail"></i></a>
 			        
@@ -135,9 +135,9 @@
 				
 					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/">学到的一些</a></li>
+					<li style="width: 33.333333333333336%"><a href="/tags/%E5%AD%A6%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B/">学到的一些</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/tags/">随笔</a></li>
+					<li style="width: 33.333333333333336%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
 		        
 				</ul>
 			</nav>
@@ -161,7 +161,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/23/%E5%88%9B%E5%BB%BAmaven%E9%A1%B9%E7%9B%AE/">创建maven项目</a>
+      <a class="article-title" href="/2019/12/23/%E5%88%9B%E5%BB%BAmaven%E9%A1%B9%E7%9B%AE/">完整创建一个maven项目</a>
     </h1>
   
 
@@ -174,44 +174,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="完整配置一个maven项目"><a href="#完整配置一个maven项目" class="headerlink" title="完整配置一个maven项目"></a>完整配置一个maven项目</h2><p>在之前自学java单体应用开发，包括在本学期javaSE实验中都有过配置和创建maven项目的经历，但总体来说还是有样学样，整体的概念与原理还是不甚清楚。这次javaEE的小学期有讲到如何完整配置一个maven项目，收获很多，遂以记录下来。</p>
-<h4 id="创建基础maven项目"><a href="#创建基础maven项目" class="headerlink" title="创建基础maven项目"></a>创建基础maven项目</h4><p><code>create new project</code>-&gt;<code>maven</code>-&gt;<code>选择JDK版本</code>-&gt;<code>next</code>-&gt;<code>设置项目坐标groupid和Artifactid</code>-&gt;<code>next</code>-&gt;<code>选择项目位置</code>-&gt;<code>finish</code><br><img src="https://pic1.superbed.cn/item/5e00888776085c3289c12e48.png" alt="图1"><br><img src="https://pic3.superbed.cn/item/5e0088a676085c3289c136b6.png" alt="图2"><br><img src="https://pic1.superbed.cn/item/5e0088c276085c3289c1409e.png" alt="图3"><br><img src="https://pic1.superbed.cn/item/5e0088c276085c3289c140a1.png" alt="图4"><br><img src="https://pic1.superbed.cn/item/5e0088c276085c3289c140a3.png" alt="图5"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这里就创建了一个基本的无模板maven项目，但对于我们来编写项目和功能，它还缺少一些东西，需要我们手动补上。</span><br></pre></td></tr></table></figure>
-
-<h4 id="自己配置maven的版本"><a href="#自己配置maven的版本" class="headerlink" title="自己配置maven的版本"></a>自己配置maven的版本</h4><p>首先 <code>file</code>-&gt;<code>settings</code>-&gt;<code>搜索maven</code><br>找到页面<br><img src="https://pic1.superbed.cn/item/5e0088c276085c3289c140a5.png" alt="图6"><br>这里设置maven的版本为我们自己下载的maven版本，选择maven解压到的路径即可;<br>选择maven的配置文件<code>settings</code>为路径<code>apache-maven-3.6.2</code>-&gt;<code>conf</code>-&gt;<code>settings</code>;<br>创建仓库或选择maven仓库，我这里命名本地仓库文件夹为<code>repo</code></p>
-<h4 id="手动添加项"><a href="#手动添加项" class="headerlink" title="手动添加项"></a>手动添加项</h4><ol>
-<li>在<code>main</code>文件夹下创建文件夹<code>webapp</code></li>
-<li>在<code>webapp</code>文件夹下创建文件夹<code>WEB-INF</code><br><img src="https://pic3.superbed.cn/item/5e00891b76085c3289c15f6e.png" alt="图9"></li>
-<li>在<code>WEB-INF</code>文件夹下创建文件<code>web.xml</code>，用于描述web项目的共同属性。进行基本配置，如图：<br><img src="https://pic3.superbed.cn/item/5e00891b76085c3289c15f70.png" alt="图10"></li>
-</ol>
-<h4 id="添加web模板"><a href="#添加web模板" class="headerlink" title="添加web模板"></a>添加web模板</h4><p>点击IDEA右上角的<code>Project Structure</code>按钮，选择<code>Models</code>,添加一个<code>web</code>模板<br><img src="https://pic3.superbed.cn/item/5e00891b76085c3289c15f72.png" alt="图11"><br>改变web模板的依赖路径和核心路径<br><img src="https://pic3.superbed.cn/item/5e00891b76085c3289c15f74.png" alt="图12"><br>将web核心路径修改至我们创建好的<code>webapp</code>文件夹<br><img src="https://pic3.superbed.cn/item/5e00891b76085c3289c15f76.png" alt="图13"><br>将<code>web.xml</code>路径改变到我们自己创建的<code>web.xml</code>路径<br><img src="https://i.loli.net/2019/12/23/UgzKjnJaLos8dES.png" alt="14.png"><br>点击确定，web模板则添加完毕。<br>至此，一个基于maven的web项目就完成了，我们可以测试一下：</p>
-<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>在<code>pom.xml</code>中添加servlet相关依赖：</p>
-<ol>
-<li>在浏览器访问<code>https://mvnrepository.com/</code>进入maven公共仓库</li>
-<li>在搜索栏搜索Servlet,点击<code>javax.servlet-api</code><br><img src="https://i.loli.net/2019/12/23/Td6N87UOvY2Zwkx.png" alt="15.png"></li>
-<li>找到需要的版本号<br><img src="https://i.loli.net/2019/12/23/JFnrOuM2RY4UyDS.png" alt="16.png"></li>
-<li>复制dependency到<code>pom.xml</code><br><img src="https://i.loli.net/2019/12/23/iBTLeVUZIuKNlFz.png" alt="17.png"><br><img src="https://i.loli.net/2019/12/23/vq2X5SeLp9Jts47.png" alt="18.png"></li>
-</ol>
-<p>接下来在<code>main</code>-&gt;<code>java</code>中创建package路径<code>com.yangk.hello.maven.servlet</code><br>新建一个用于测试的Servlet，类名为<code>HelloServlet</code>：<br><img src="https://i.loli.net/2019/12/23/XM23sYlidUBHrbh.png" alt="19.png"></p>
-<p>将servlet配置到<code>web.xml</code>中：<br><img src="https://i.loli.net/2019/12/23/rgVAqOfywJLKpGD.png" alt="21.png"></p>
-<p>点击上方<code>Build</code>-&gt;<code>Build Project</code>或按<code>Ctrl</code>+<code>f9</code>构建项目：<br><img src="https://i.loli.net/2019/12/23/x5H2ZFKIAwlgWP9.png" alt="22.png"></p>
-<p>提示我们项目无错后<br>最后在webapp下创建jsp文件<code>index.jsp</code>,写入测试内容：<br><img src="https://i.loli.net/2019/12/23/7WhYDvruP9GAymo.png" alt="20.png"></p>
-<h4 id="配置tomcat"><a href="#配置tomcat" class="headerlink" title="配置tomcat"></a>配置tomcat</h4><ol>
-<li><p>打开IDEA下方<code>Terminal</code>控制台，输入<code>mvn package</code>将项目的1.0快照版打包成war包<br><img src="https://s2.ax1x.com/2019/12/23/lpyeED.png" alt="图24"><br><img src="https://i.loli.net/2019/12/23/KjecZFk8ShfPGvL.png" alt="23.png"></p>
-</li>
-<li><p>打开<code>Run</code>-&gt;<code>Edit Configurations</code>-&gt;<code>点击添加</code>-&gt;<code>选择本地的tomcat服务器</code><br><img src="https://pic1.superbed.cn/item/5e0088c276085c3289c140ad.png" alt="图7"></p>
-</li>
-<li><p>选择<code>Deployment</code>-&gt;<code>添加</code>-&gt;<code>Artifact</code><br><img src="https://s2.ax1x.com/2019/12/23/lpyn4H.png" alt="图26"><br>选择路径选项<code>exploded</code>点击确定<br><img src="https://s2.ax1x.com/2019/12/23/lpyVHO.png" alt="图27"></p>
-</li>
-<li><p><code>设置tomcat的名称</code>-&gt;<code>配置找到本地的tomcat目录</code>-&gt;<code>选择类和资源更新</code>-&gt;<code>选择jdk版本</code>-&gt;<code>设置运行端口</code><br><img src="https://s2.ax1x.com/2019/12/23/lpyKCd.png" alt="图28"><br>点击确定</p>
-</li>
-<li><p>运行tomcat<br><img src="https://s2.ax1x.com/2019/12/23/lpyM8A.png" alt="图29"></p>
-</li>
-<li><p>输出Hello Maven!，测试成功！<br><img src="https://s2.ax1x.com/2019/12/23/lpyQgI.png" alt="图30"></p>
-</li>
-</ol>
-<p>至此，一个基于maven的web项目的创建与测试便全部完成。因为本篇文章主要是记录maven项目的创建方法，没有过多的涉及到各个选项和操作的具体意义和功能，在后面有机会会对这篇文章进行补充说明，发现有错误的地方也会进行修正，以上。</p>
-
+        <p>在之前自学java单体应用开发，包括在本学期javaSE实验中都有过配置和创建maven项目的经历，但总体来说还是有样学样，整体的概念与原理还是不甚清楚。这次javaEE的小学期有讲到如何完整配置一个maven项目，收获很多，遂以记录下来。</p>
+        
       
 
       
@@ -219,6 +183,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -260,7 +235,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/22/%E5%AE%B6%E5%92%8C%E5%B8%8C%E6%9C%9B/">家和希望</a>
+      <a class="article-title" href="/2019/12/22/%E5%AE%B6%E5%92%8C%E5%B8%8C%E6%9C%9B/">家和希望 ——2019.12.21</a>
     </h1>
   
 
@@ -273,19 +248,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="家和希望-——2019-12-21"><a href="#家和希望-——2019-12-21" class="headerlink" title="家和希望 ——2019.12.21"></a>家和希望 ——2019.12.21</h1><h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><pre><code>2017年1月7日，自己在社交网站，其实也就是当时流行的qq空间写下了这篇日志。
+        <h2 id=""><a href="#" class="headerlink" title=""></a></h2><h4 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h4><pre><code>2017年1月7日，自己在社交网站，其实也就是当时流行的qq空间写下了这篇日志。
 
 2019年12月21日，在我的个人博客建好的第一天，思前想后，它应该就是最好的元素了，在这第一篇随笔之中。</code></pre><p>它本来的标题是“想到的一些”，我觉得这太符合自己三年以前写东西的风格了，拿隐晦生涩当做主旋律，掺杂一些真的情感，好像这样会更容易感染和触动不同内心的人一般。即使青涩的笔触让自己讲不好这个故事，但我不否定它，</p>
 <p>因为我喜欢这个故事</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">补课回家，公交车上看到自己买自行车的那家店还开着。昏暗的灯下 那个阿姨还弯着腰背对着街道扫着地。</span><br><span class="line"></span><br><span class="line">恍惚间，想起那次去修车，卖车的那人不在，是阿姨在守着店，热情的让我先坐下，打了电话，忙笑着 “稍等一会，马上就到。”来的很快，简单讲了下情况，便坐回了店里，他修着。</span><br><span class="line"></span><br><span class="line">“阿姨 怎么我每次来都是你守着店呢？”</span><br><span class="line"></span><br><span class="line">“唉” 我抬了抬头，火炉的光映着她的脸，那个表情，至今没法忘记。</span><br><span class="line"></span><br><span class="line">“你看到了他的手吗” 顺着声，我看了过去，他的右手好像是有些不一样，自己才发现。“我们家啊，老大生了个女儿，想要个儿子，最后还真的要到一个男孩，但谁知道，他从生下的那刻起，右手便少了半只手掌……”她停了停，我想说点什么，嘴唇开合，但还是低了低头，没说出来。</span><br><span class="line"></span><br><span class="line">“生了他以后我们俩口子把他拉扯大，吃的穿的，什么都给了他最好的。上学，他因为没有手掌，被同学嘲笑、欺负，他也不敢反抗。回到家里，对着我和他爸爸，又打又骂。”阿姨眼神停滞了一会儿，“我们能干什么，只能让他打着骂着，然后哄睡他后，两个人抱在一起哭……”</span><br><span class="line"></span><br><span class="line">“他从小就喜欢自行车，他长大后，我和他爸东拼西凑给他开了这家自行车店，也让他自己能养活自己，没想到啊他还真的做下来了。”听得出来，说这句话时，她和任何一个骄傲着描述自己孩子时的父母亦没有两样，“但他一直谈不到女朋友……女生见了他的手后都找了各种理由离开，是啊，谁会选择嫁给一个手有残疾的人。”她轻轻笑了一下，但抬头的瞬间还是看到了她眼角湿了。“恩”，我应了声，</span><br><span class="line"></span><br><span class="line">“他这么多年耍了很多女朋友，有自己找的，但更多的还是我去乡下给他找的，但都处不了几个月就拿着他的钱跑了。别人也不傻呀，在这里上班，看到周围的人都是好好的，只有他是这样，又有谁会留下。” “现在的这个已经很好了，和他也生了孩子。但我也知道，留不了别人多久，她也是看在孩子的份上，看在我儿子对她好的份上。她不用上班，我们也不敢让她上班，只用在家里带孩子，我儿子每个月赚的钱都给她，我们每个月也会给她钱，只是想留下她。我知道她也很犹豫，每次她忍不住了就会打我儿子，我儿子不敢还手，只有受着，完事了还要哄她。那扇耳光的声音，真的好大……每次我都给他说让他忍一忍，实在忍不住了，就打我，这样他也会好受些……” 阿姨说的很平和，平和到我不知道怎么样去插一句话。</span><br><span class="line"></span><br><span class="line">“只要有人愿意和他过，我们就什么都忍了，只要他不怨我们，我们就什么都做了。只要他叫我来帮他守铺子，不管多远，我总是马上就赶过来，有时守半天，有时守一天，只要他高兴。”</span><br><span class="line"></span><br><span class="line">“会有的时候觉得很累吗？” “累啊。”阿姨笑了笑，“但从生下他的那个时候起，我就知道，这是我要用一辈子去还的债……”</span><br><span class="line">很快，车修好了，他给我招了招手，是那只左手，完好的。我起身了，突然感觉离开火炉后，有一点冷，鼻头也有一点酸，我呵了呵手，深吸了口气，想说些什么，最后只说了一句“会好起来的。” 其实那个时候，我更想说的是另一句话，可没有时间了，我也该去拿我的车了。即使我心里说了。</span><br><span class="line"></span><br><span class="line">“活着的东西都是很费功夫的。”</span><br></pre></td></tr></table></figure>
-
-<p>当时的自己在这篇日志中，少有想法，可能只是想单纯的记一件事。标题是想到的一些，可能也正如故事最后我没有说出来的那句台词一样，自己应该想到一些，但没有时间再去梳理和弄清楚它了。而对现在的自己来说，自己想到的可能正如这篇随笔的标题，家和希望。</p>
-<p>家是一个很泛泛的概念，但对于阿姨来说，她想要儿子尽快成个家。遥远的是一家人其乐融融，享天伦之乐；生活近处却尽是忧人之事，不成家。</p>
-<p>对他来说，手上的残缺是天生的，不可逆。但更为痛苦的应该是爱的残缺，世上最少不了的，就是追求爱的人，但追爱，门槛不一。遗憾的是，对大多数人来说，他都是倒在第一个门槛外的那个。但生活得继续，至少，如今的他，是有家的。经历过童年时期更甚的打磨，我相信他对生，对爱的希望一定是大过许多许多人的。他在用希望，也在用自己的力量，去换得一个更长久和安定的家，自己对他的敬意远大过同情，也源于此。</p>
-<p>“活着的东西都是很费功夫的。”这一句是自己很喜欢的一部电影《海街日记》中的台词，是枝裕和好像在用他整个导演生涯去诠释他心中的爱、家庭与生活、希望与现实，但巧的是，正合我意。庭院里的一颗树也会死去，朝夕相伴的人儿也有一天会离去，但生活还得继续，尽管幸福不是永恒的，有过了便已足够去体悟和回味。</p>
-<p>关于自己喜欢的电影，自己以后肯定会特地写一写的。今天的重点，是分享一个故事，自己很喜欢的故事，尽管三年前的笔触是那么生疏，自己依然没有进行改动，原封不动的，分享至此。</p>
-<p>在日本，有一个说法叫“物哀”，意思是为外部世界的万事万物，致上最深的感受，我很喜欢这个词。而自己第一次真正体会到它，是在接过他递给我自行车把手的那个冬天。</p>
-
+        
       
 
       
@@ -293,6 +260,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -391,7 +369,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
       
         
       
-      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">愿景</a></li>
       
         
     </ul>
@@ -410,6 +388,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">学到的一些</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -459,7 +445,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">桥都坚固，隧道都光明&lt;br&gt;&lt;br&gt;&lt;br&gt;</div>
   	  	
     	</section>
     
