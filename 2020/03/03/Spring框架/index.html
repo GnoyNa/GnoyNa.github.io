@@ -16,7 +16,7 @@
 <meta property="og:description" content="用于整理一些在学习单体应用开发中涉及到Spring框架的部分知识点。">
 <meta property="og:locale" content="ch">
 <meta property="article:published_time" content="2020-03-03T13:50:24.831Z">
-<meta property="article:modified_time" content="2020-03-03T14:34:50.683Z">
+<meta property="article:modified_time" content="2020-03-24T14:51:45.367Z">
 <meta property="article:author" content="Gnoy Na">
 <meta property="article:tag" content="学到的一些">
 <meta name="twitter:card" content="summary">
@@ -236,7 +236,11 @@
 <pre><code>2.系统级业务逻辑，交叉业务逻辑
     功能独立，为诸业务提供系统级业务，如日志、安全、事务等，复用性较强
 
-Spring可用于在主业务和交叉业务中的解耦。</code></pre><p>Spring将降低耦合度的方式分为了两类，也是Spring的两大核心：<br>    1.IOC控制反转<br>        IOC使得主业务在相互调用过程中，不用再自己创建要使用的对象，而是交给Spring容器进行统一管理，自动“注入”</p>
+Spring可用于在主业务和交叉业务中的解耦。</code></pre><p>Spring将降低耦合度的方式分为了两类，也是Spring的两大核心：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.IOC控制反转</span><br><span class="line">        IOC使得主业务在相互调用过程中，不用再自己创建要使用的对象，而是交给Spring容器进行统一管理，自动“注入“</span><br></pre></td></tr></table></figure>
+
+
+
 <pre><code>2.AOP面向切面编程
     使得系统级服务得到了最大复用，且不用再由程序员手工将系统级服务“混杂”到主业务逻辑中，而是由Spring容器统一完成“织入”</code></pre>
       
