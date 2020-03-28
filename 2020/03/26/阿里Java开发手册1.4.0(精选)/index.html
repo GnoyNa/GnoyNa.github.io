@@ -16,7 +16,7 @@
 <meta property="og:description" content="开发手册中的相关约束和限定对于系统化、协同化的开发过程来说，有着极其重要的意义。自己精选并总结了阿里巴巴Java开发手册中较为重要和关键的部分，汇总于此。">
 <meta property="og:locale" content="ch">
 <meta property="article:published_time" content="2020-03-26T14:55:30.764Z">
-<meta property="article:modified_time" content="2020-03-26T15:07:49.535Z">
+<meta property="article:modified_time" content="2020-03-28T13:37:53.180Z">
 <meta property="article:author" content="Gnoy Na">
 <meta property="article:tag" content="学到的一些">
 <meta name="twitter:card" content="summary">
@@ -204,7 +204,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">677字</span>
+        <span class="post-count">1.2k字</span>
       </span>
     </span>
 
@@ -213,7 +213,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
+        <span class="post-count">4分</span>
       </span>
     </span>
 </div>
@@ -250,7 +250,62 @@
 <p>降低沟通成本。代码的字里行间流淌的是软件系统的血液，质量的提升是尽可能少踩</p>
 <p>坑，杜绝踩重复的坑，切实提升系统稳定性，码出质量。</p>
 <p>开发手册中的相关约束和限定对于系统化、协同化的开发过程来说，有着极其重要的意义。</p>
-<h4 id="正文："><a href="#正文：" class="headerlink" title="正文："></a>正文：</h4>
+<h4 id="正文："><a href="#正文：" class="headerlink" title="正文："></a>正文：</h4><h5 id="一、编程规约"><a href="#一、编程规约" class="headerlink" title="一、编程规约"></a>一、编程规约</h5><h5 id="（一）命名风格"><a href="#（一）命名风格" class="headerlink" title="（一）命名风格"></a>（一）命名风格</h5><ol>
+<li><p>类名使用 UpperCamelCase 风格，但以下情形例外：DO / BO / DTO / VO / AO / </p>
+<p>PO / UID 等。</p>
+</li>
+</ol>
+<ol start="2">
+<li><p>方法名、参数名、成员变量、局部变量都统一使用 lowerCamelCase 风格，必须遵从驼峰形式。</p>
+<p>正例： localValue / getHttpMessage() / inputUserId</p>
+</li>
+</ol>
+<ol start="3">
+<li><p>常量命名全部大写，单词间用下划线隔开，力求语义表达完整清楚，不要嫌名字长。</p>
+<p>正例：MAX_STOCK_COUNT</p>
+<p>反例：MAX_COUNT</p>
+</li>
+</ol>
+<ol start="4">
+<li><p>抽象类命名使用 Abstract 或 Base 开头；异常类命名使用 Exception 结尾；测试类</p>
+<p>命名以它要测试的类的名称开始，以 Test 结尾。 </p>
+</li>
+</ol>
+<ol start="5">
+<li>为了达到代码自解释的目标，任何自定义编程元素在命名时，使用尽量完整的单词组合来表达其意。<br>正例：在 JDK 中，表达原子更新的类名为：AtomicReferenceFieldUpdater。</li>
+</ol>
+<ol start="6">
+<li><p>如果模块、接口、类、方法使用了设计模式，在命名时需体现出具体模式。</p>
+<p>正例：public class OrderFactory;</p>
+<pre><code>public class LoginProxy;</code></pre><p>​    public class ResourceObserver;</p>
+</li>
+</ol>
+<ol start="7">
+<li><p>接口和实现类的命名有两套规则：</p>
+<p>1）【强制】对于 Service 和 DAO 类，基于 SOA 的理念，暴露出来的服务一定是接口，内部</p>
+<p>的实现类用 Impl 的后缀与接口区别。</p>
+<p>正例：CacheServiceImpl 实现 CacheService 接口。</p>
+<p>2）【推荐】如果是形容能力的接口名称，取对应的形容词为接口名（通常是–able 的形式）。</p>
+<p>正例：AbstractTranslator 实现 Translatable 接口。</p>
+</li>
+</ol>
+<ol start="8">
+<li><p>各层命名规约：</p>
+<p>A) Service/DAO 层方法命名规约</p>
+<p>1） 获取单个对象的方法用 get 做前缀。</p>
+<p>2） 获取多个对象的方法用 list 做前缀，复数形式结尾如：listObjects。 </p>
+<p>3） 获取统计值的方法用 count 做前缀。 </p>
+<p>4） 插入的方法用 save/insert 做前缀。</p>
+<p>5） 删除的方法用 remove/delete 做前缀。</p>
+<p>6） 修改的方法用 update 做前缀。</p>
+<p>B) 领域模型命名规约</p>
+<p>1） 数据对象：xxxDO，xxx 即为数据表名。</p>
+<p>2） 数据传输对象：xxxDTO，xxx 为业务领域相关的名称。</p>
+<p>3） 展示对象：xxxVO，xxx 一般为网页名称。</p>
+<p>4） POJO 是 DO/DTO/BO/VO 的统称，禁止命名成 xxxPOJO。 </p>
+</li>
+</ol>
+<h5 id="（二）常量定义"><a href="#（二）常量定义" class="headerlink" title="（二）常量定义"></a>（二）常量定义</h5>
       
 
       
@@ -362,7 +417,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#前言："><span class="toc-number">1.</span> <span class="toc-text">前言：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#正文："><span class="toc-number">2.</span> <span class="toc-text">正文：</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#前言："><span class="toc-number">1.</span> <span class="toc-text">前言：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#正文："><span class="toc-number">2.</span> <span class="toc-text">正文：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#一、编程规约"><span class="toc-number">2.1.</span> <span class="toc-text">一、编程规约</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#（一）命名风格"><span class="toc-number">2.2.</span> <span class="toc-text">（一）命名风格</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#（二）常量定义"><span class="toc-number">2.3.</span> <span class="toc-text">（二）常量定义</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
