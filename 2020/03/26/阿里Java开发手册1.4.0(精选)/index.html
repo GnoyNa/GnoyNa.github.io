@@ -16,7 +16,7 @@
 <meta property="og:description" content="开发手册中的相关约束和限定对于系统化、协同化的开发过程来说，有着极其重要的意义。自己精选并总结了阿里巴巴Java开发手册中较为重要和关键的部分，汇总于此。">
 <meta property="og:locale" content="ch">
 <meta property="article:published_time" content="2020-03-26T14:55:30.764Z">
-<meta property="article:modified_time" content="2020-04-02T12:31:06.187Z">
+<meta property="article:modified_time" content="2020-04-11T14:47:32.881Z">
 <meta property="article:author" content="Gnoy Na">
 <meta property="article:tag" content="学到的一些">
 <meta name="twitter:card" content="summary">
@@ -204,7 +204,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.8k字</span>
+        <span class="post-count">2.5k字</span>
       </span>
     </span>
 
@@ -213,7 +213,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">6分</span>
+        <span class="post-count">9分</span>
       </span>
     </span>
 </div>
@@ -318,8 +318,33 @@
 </li>
 <li><p>不同逻辑、不同语义、不同业务的代码之间插入一个空行分隔开来以提升可读性。</p>
 <h5 id="（四）OOP约束"><a href="#（四）OOP约束" class="headerlink" title="（四）OOP约束"></a>（四）OOP约束</h5></li>
-</ol>
+<li><p>所有的覆写方法，必须加@Override 注解。</p>
+</li>
+<li><p>不能使用过时的类或方法。</p>
+<p>说明：java.net.URLDecoder 中的方法 decode(String encodeStr) 这个方法已经过时，应</p>
+<p>该使用双参数 decode(String source, String encode)。接口提供方既然明确是过时接口，那么有义务同时提供新的接口；作为调用方来说，有义务去考证过时方法的新实现是什么。</p>
+</li>
+<li><p>Object 的 equals 方法容易抛空指针异常，应使用常量或确定有值的对象来调用equals。</p>
+<p>正例：”test”.equals(object);</p>
+<p>反例：object.equals(“test”);</p>
+</li>
+<li><p>所有的相同类型的包装类对象之间值的比较，全部使用 equals 方法比较。（已知在-128至127范围内的Integer类型对象会在IntegerCache.cache池中产生，但为了保证这个区间外的数据比较不出问题，统一使用equals()方法）</p>
+</li>
+<li><p>构造方法里面禁止加入任何业务逻辑，如果有初始化逻辑，请放在 init 方法中。</p>
+</li>
+<li><p>POJO 类必须写 toString 方法。使用 IDE 中的工具：source&gt; generate toString时，如果继承了另一个 POJO 类，注意在前面加一下 super.toString。说明：在方法执行抛出异常时，可以直接调用 POJO 的 toString()方法打印其属性值，便于排查问题。</p>
+</li>
+<li><p>类内方法定义的顺序依次是：公有方法或保护方法 &gt; 私有方法 &gt; getter/setter方法。</p>
+<p>说明：公有方法是类的调用者和维护者最关心的方法，首屏展示最好；保护方法虽然只是子类关心，也可能是“模板设计模式”下的核心方法；而私有方法外部一般不需要特别关心，是一个黑盒实现；因为承载的信息价值较低，所有 Service 和 DAO 的 getter/setter 方法放在类体最后。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">* final 可以声明类、成员变量、方法、以及本地变量，下列情况使用 final 关键字：</span><br><span class="line"></span><br><span class="line">  1） 不允许被继承的类，如：String 类。</span><br><span class="line"></span><br><span class="line">  2） 不允许修改引用的域对象。</span><br><span class="line"></span><br><span class="line">  3） 不允许被重写的方法，如：POJO 类的 setter 方法。</span><br><span class="line"></span><br><span class="line">  4） 不允许运行过程中重新赋值的局部变量。</span><br><span class="line"></span><br><span class="line">  5） 避免上下文重复使用一个变量，使用 final 描述可以强制重新定义一个变量，方便更好地进行重构</span><br><span class="line"></span><br><span class="line">* 类成员与方法访问控制从严：</span><br><span class="line"></span><br><span class="line">  1） 如果不允许外部直接通过 new 来创建对象，那么构造方法必须是 private。 </span><br><span class="line"></span><br><span class="line">  2） 工具类不允许有 public 或 default 构造方法。</span><br><span class="line"></span><br><span class="line">  3） 类非 static 成员变量并且与子类共享，必须是 protected。 </span><br><span class="line"></span><br><span class="line">  4） 类非 static 成员变量并且仅在本类使用，必须是 private。 </span><br><span class="line"></span><br><span class="line">  5） 类 static 成员变量如果仅在本类使用，必须是 private。 </span><br><span class="line"></span><br><span class="line">  6） 若是 static 成员变量，考虑是否为 final。 </span><br><span class="line"></span><br><span class="line">  7） 类成员方法只供类内部调用，必须是 private。 </span><br><span class="line"></span><br><span class="line">  8） 类成员方法只对继承类公开，那么限制为 protected。</span><br></pre></td></tr></table></figure>
 
+
+
+</li>
+</ol>
+<pre><code>##### （五）集合处理
+
+1. </code></pre>
       
 
       
@@ -403,8 +428,8 @@
 <nav id="article-nav">
   
   
-    <a href="/2020/03/16/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">程序设计模式（二）—抽象工厂模式</div>
+    <a href="/2020/03/03/Spring%E6%A1%86%E6%9E%B6/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java单体应用开发—Spring框架</div>
       <i class="icon-circle-right"></i>
     </a>
   
