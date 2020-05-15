@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://anyong.work">
-  <title>项目实训日志—vue-element-admin(3) | GnoyNa的博客</title>
+  <title>JavaSE语言基础（一） | GnoyNa的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="语言基础复习（Java部分） 总结归纳的语言基础复习（JavaSE部分）">
+  <meta name="description" content="语言基础复习（Java部分） 总结归纳的语言基础复习（JavaSE部分）： 抽象类与接口、重写与重载、String与StringBuffer、冒泡和选择排序、单例设计模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="项目实训日志—vue-element-admin(3)">
+<meta property="og:title" content="JavaSE语言基础（一）">
 <meta property="og:url" content="http://anyong.work/2020/05/12/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
 <meta property="og:site_name" content="GnoyNa的博客">
-<meta property="og:description" content="语言基础复习（Java部分） 总结归纳的语言基础复习（JavaSE部分）">
+<meta property="og:description" content="语言基础复习（Java部分） 总结归纳的语言基础复习（JavaSE部分）： 抽象类与接口、重写与重载、String与StringBuffer、冒泡和选择排序、单例设计模式">
 <meta property="og:locale" content="ch">
 <meta property="article:published_time" content="2020-05-12T12:59:34.589Z">
-<meta property="article:modified_time" content="2020-05-12T14:12:36.290Z">
+<meta property="article:modified_time" content="2020-05-15T14:36:35.760Z">
 <meta property="article:author" content="Gnoy Na">
 <meta property="article:tag" content="学到的一些">
 <meta name="twitter:card" content="summary">
@@ -182,7 +182,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      项目实训日志—vue-element-admin(3)
+      JavaSE语言基础（一）
     </h1>
   
 
@@ -204,7 +204,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">556字</span>
+        <span class="post-count">593字</span>
       </span>
     </span>
 
@@ -225,7 +225,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>语言基础复习（Java部分）</p>
-<p>总结归纳的语言基础复习（JavaSE部分）</p>
+<p>总结归纳的语言基础复习（JavaSE部分）：</p>
+<p>抽象类与接口、重写与重载、String与StringBuffer、冒泡和选择排序、单例设计模式</p>
 <a id="more"></a>
 
 <ul>
@@ -284,7 +285,9 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] a = &#123;<span class="number">25</span>,<span class="number">15</span>,<span class="number">42</span>,<span class="number">16</span>,<span class="number">12</span>,<span class="number">36</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> max=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> temp=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;a.length;i++)&#123;</span><br><span class="line">    max=i;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>;j&lt;a.length;j++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(a[max]&lt;a[j])&#123;</span><br><span class="line">            max=j</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(i != max)&#123;</span><br><span class="line">        temp = a[i];</span><br><span class="line">        a[i]=a[max];</span><br><span class="line">        a[max]=temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>单例设计模式</p>
-<p>- </p>
+<ul>
+<li>参考自己的博客<a href="[https://anyong.work/2020/03/02/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/](https://anyong.work/2020/03/02/程序设计模式（一）—单例模式/)">单例模式</a></li>
+</ul>
 </li>
 </ol>
 </li>
@@ -371,6 +374,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/05/15/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%8C%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          JavaSE语言基础（二）
+        
+      </div>
+    </a>
   
   
     <a href="/2020/05/02/%E8%B0%81%E8%B0%81%E7%9A%84%E5%8D%81%E5%85%AB%E5%B2%81/" id="article-nav-older" class="article-nav-link-wrap">
