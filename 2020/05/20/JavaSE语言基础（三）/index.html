@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://anyong.work">
   <title>JavaSE语言基础（二） | GnoyNa的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="语言基础复习（Java部分） 总结归纳的语言基础复习（JavaSE部分）">
+  <meta name="description" content="语言基础复习（Java部分） 总结归纳的语言基础复习（JavaSE部分） 同步、List，Set，Conllection，Conllections、sleep() 和 wait()、栈内存和堆内存、GC、内存泄漏和内存溢出">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaSE语言基础（二）">
 <meta property="og:url" content="http://anyong.work/2020/05/20/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%89%EF%BC%89/index.html">
 <meta property="og:site_name" content="GnoyNa的博客">
-<meta property="og:description" content="语言基础复习（Java部分） 总结归纳的语言基础复习（JavaSE部分）">
+<meta property="og:description" content="语言基础复习（Java部分） 总结归纳的语言基础复习（JavaSE部分） 同步、List，Set，Conllection，Conllections、sleep() 和 wait()、栈内存和堆内存、GC、内存泄漏和内存溢出">
 <meta property="og:locale" content="ch">
 <meta property="article:published_time" content="2020-05-20T12:42:39.186Z">
-<meta property="article:modified_time" content="2020-05-20T13:15:21.161Z">
+<meta property="article:modified_time" content="2020-05-20T15:40:54.829Z">
 <meta property="article:author" content="Gnoy Na">
 <meta property="article:tag" content="学到的一些">
 <meta name="twitter:card" content="summary">
@@ -204,7 +204,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">496字</span>
+        <span class="post-count">932字</span>
       </span>
     </span>
 
@@ -213,7 +213,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
+        <span class="post-count">3分</span>
       </span>
     </span>
 </div>
@@ -226,6 +226,7 @@
       
         <p>语言基础复习（Java部分）</p>
 <p>总结归纳的语言基础复习（JavaSE部分）</p>
+<p>同步、List，Set，Conllection，Conllections、sleep() 和 wait()、栈内存和堆内存、GC、内存泄漏和内存溢出</p>
 <a id="more"></a>
 
 <ol>
@@ -252,9 +253,9 @@
 <li><p>List，Set，Conllection，Conllections</p>
 <ul>
 <li>List和Set都是接口，它们都继承于接口Conllection</li>
-<li>List是有序的可重复的集合</li>
-<li>Set是无序不可重复的集合</li>
-<li>Conllections是一个封装了众多关于集合操作的静态方法工作类，构造方法是私有，不能实例化<ul>
+<li>List是<strong>有序</strong>的<strong>可重复</strong>的集合</li>
+<li>Set是<strong>无序不可重复</strong>的集合</li>
+<li>Conllections是一个封装了众多关于集合操作的静态方法工作类，构造方法是私有的，不能实例化<ul>
 <li>关于List：<ul>
 <li>List接口实现类有：ArrayList，LinkedList，Vector，其中：</li>
 <li>ArrayList和Vector是基于<strong>数组</strong>实现的集合，所以<strong>查询</strong>速度更<strong>快</strong>，但进行<strong>增删</strong>操作时会较<strong>慢</strong></li>
@@ -266,8 +267,32 @@
 </li>
 </ul>
 </li>
-<li><p>Sleep() 和 wait()的区别</p>
-<p>- </p>
+<li><p>sleep() 和 wait()的区别</p>
+<ul>
+<li>都会造成<strong>线程阻塞</strong></li>
+<li>sleep是线程类（Thread）的方法，使线程暂停执行指定时间，<strong>不会</strong>释放对象锁</li>
+<li>wait是Object类的方法，调用wait方法<strong>会</strong>导致线程放弃对象锁，只有重新发出notify方法才能进入运行态</li>
+</ul>
+</li>
+<li><p>heap（堆）和stack（栈）的区别</p>
+<ul>
+<li>java内存分为两类：栈内存和堆内存<ul>
+<li>栈内存：指程序<strong>进入一个方法时</strong>会为该方法分配一块私有的存储空间，用于存放该方法中的局部变量，方法<strong>结束</strong>时，栈内存就会<strong>释放</strong></li>
+<li>堆内存：指存放<strong>不放在当前方法栈</strong>中的数据，不会随方法结束而结束，如被<strong>final</strong>修饰的局部变量和<strong>new</strong>创建的对象。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>GC是什么？为什么要有GC？</p>
+<ul>
+<li>GC 是<strong>垃圾收集</strong>的意思（GabageCollection）,内存处理是编程人员容易出现问题的地方，忘记或者错误的内存回收会导致程序或系统的不稳定甚至崩溃，Java提供的 GC 功能可以<strong>自动监测对象是否超过作用域从而达到自动回收内存的目的</strong>，Java 语言没有提供释放已分配内存的显示操作方法。</li>
+</ul>
+</li>
+<li><p>内存泄漏和内存溢出</p>
+<ul>
+<li>内存泄漏：指应用程序在申请内存后，<strong>无法释放</strong>已经申请的内存空间（如：读取<strong>IO流</strong>后要及时关闭以及<strong>数据库</strong>的连接的释放）</li>
+<li>内存溢出：指应用程序在申请内存时，<strong>没有足够</strong>的内存空间使用（如：大批量数据要分段提交）</li>
+</ul>
 </li>
 </ol>
 
