@@ -6,16 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://anyong.work">
-  <title>GnoyNa的博客</title>
+  <title>程序设计模式（二）—抽象工厂模式 | GnoyNa的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="A blog recording my life and study">
-<meta property="og:type" content="website">
-<meta property="og:title" content="GnoyNa的博客">
-<meta property="og:url" content="http://anyong.work/index.html">
+  <meta name="description" content="创建型模式之二：抽象工厂模式的相关概念与优缺点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="程序设计模式（二）—抽象工厂模式">
+<meta property="og:url" content="http://anyong.work/2020/05/22/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/index.html">
 <meta property="og:site_name" content="GnoyNa的博客">
-<meta property="og:description" content="A blog recording my life and study">
+<meta property="og:description" content="创建型模式之二：抽象工厂模式的相关概念与优缺点">
 <meta property="og:locale" content="ch">
+<meta property="article:published_time" content="2020-05-22T13:25:49.321Z">
+<meta property="article:modified_time" content="2020-05-22T13:41:11.522Z">
 <meta property="article:author" content="Gnoy Na">
+<meta property="article:tag" content="学到的一些">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="GnoyNa的博客" type="application/atom+xml">
@@ -172,120 +175,24 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-JavaSE语言基础（四）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-程序设计模式（二）—抽象工厂模式" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/22/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E5%9B%9B%EF%BC%89/">JavaSE语言基础（三）</a>
+    <h1 class="article-title" itemprop="name">
+      程序设计模式（二）—抽象工厂模式
     </h1>
   
 
         
         
+	<!-- 不蒜子统计 -->
+	<span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+		  <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+	</span>
 
-<a href="/2020/05/22/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E5%9B%9B%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-05-22T13:48:55.480Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-22</time>
-</a>
-         <!-- 开始添加字数统计-->
-         
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">152字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
-      </span>
-    </span>
-</div>
-          
-          <!-- 添加完成 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>语言基础复习（Java部分）</p>
-<p>总结归纳的语言基础复习（JavaSE部分）</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/22/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E5%9B%9B%EF%BC%89/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-程序设计模式（二）—抽象工厂模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/22/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">程序设计模式（二）—抽象工厂模式</a>
-    </h1>
-  
-
-        
-        
 
 <a href="/2020/05/22/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
   	<time datetime="2020-05-22T13:25:49.321Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-22</time>
@@ -318,7 +225,51 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>创建型模式之二：抽象工厂模式的相关概念与优缺点</p>
-        
+<a id="more"></a>
+
+
+<ol>
+<li><p>工厂方法模式&amp;抽象工厂模式</p>
+<ul>
+<li>工厂方法模式：每个具体工厂只有一个或者一组重载的工厂方法，只能生产<strong>一种</strong>产品，可能导致系统存在大量工厂类</li>
+<li>抽象工厂模式：一个工厂可以生产<strong>一系列</strong>（一族）的产品，极大减少了工厂类的数量</li>
+</ul>
+</li>
+<li><p>模式动机</p>
+<ul>
+<li>当系统提供的具体产品不是一个简单的对象，而是多个位于<strong>不同产品等级结构、属于不同类型的具体产品</strong>时就可以使用抽象工厂模式。</li>
+</ul>
+</li>
+<li><p>定义</p>
+<ul>
+<li>提供一个创建一系列相关或者相互依赖对象的接口，而无需指定它们具体的类</li>
+</ul>
+</li>
+<li><p>结构</p>
+<ul>
+<li>抽象工厂、具体工厂、抽象产品、具体产品</li>
+</ul>
+</li>
+<li><p>开闭原则的倾斜性</p>
+<ul>
+<li>当需要增加新的产品族时，它满足开闭原则，无序对已有代码做修改</li>
+<li>当增加新的具体产品时，又会重构大量代码，违背了开闭原则</li>
+</ul>
+</li>
+<li><p>优缺点分析</p>
+<p>6.1 优点</p>
+<ul>
+<li>隔离了具体类的生成</li>
+<li>保证了客户端始终使用同一产品族中的独享</li>
+<li>增加新的产品族很方便，符合开闭原则</li>
+</ul>
+<p>6.2 缺点</p>
+<ul>
+<li>增加新的产品等级结构较为麻烦，违背了开闭原则</li>
+</ul>
+</li>
+</ol>
+
       
 
       
@@ -340,214 +291,84 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/22/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
 
       
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
         
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JavaSE语言基础（三）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/20/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%89%EF%BC%89/">JavaSE语言基础（三）</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2020/05/20/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%89%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-05-20T12:42:39.186Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-20</time>
-</a>
-         <!-- 开始添加字数统计-->
-         
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">932字</span>
-      </span>
+      </div>
     </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">3分</span>
-      </span>
-    </span>
+  </div>
 </div>
-          
-          <!-- 添加完成 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>语言基础复习（Java部分）</p>
-<p>总结归纳的语言基础复习（JavaSE部分）</p>
-<p>同步、List，Set，Conllection，Conllections、sleep() 和 wait()、栈内存和堆内存、GC、内存泄漏和内存溢出</p>
-        
-      
 
-      
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://anyong.work/2020/05/22/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" alt="微信分享二维码">
     </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/20/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%89%EF%BC%89/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-实现多线程的四种方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/18/%E5%AE%9E%E7%8E%B0%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F/">实现多线程的四种方式</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2020/05/18/%E5%AE%9E%E7%8E%B0%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2020-05-18T14:52:05.679Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-18</time>
-</a>
-         <!-- 开始添加字数统计-->
-         
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.2k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">5分</span>
-      </span>
-    </span>
 </div>
-          
-          <!-- 添加完成 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Java多线程的实现方式是Java基础的一个重点，在复习JavaSE语言基础的时候刚好看到了，但是由于记录和之前的资料不是很详细，才重新搜集和整理了多线程的几种实现方式。</p>
-        
-      
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/18/%E5%AE%9E%E7%8E%B0%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
-
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/05/22/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E5%9B%9B%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          JavaSE语言基础（三）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/20/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%89%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JavaSE语言基础（三）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -562,611 +383,32 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JavaSE语言基础（二）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/15/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%8C%EF%BC%89/">JavaSE语言基础（二）</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2020/05/15/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%8C%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-05-15T14:31:59.477Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-15</time>
-</a>
-         <!-- 开始添加字数统计-->
-         
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">652字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
-      </span>
-    </span>
-</div>
-          
-          <!-- 添加完成 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>语言基础复习（Java部分）</p>
-<p>总结归纳的语言基础复习（JavaSE部分）</p>
-<p>Throws和Throw、Final，Finally和finalize的作用、Hashtable和HashMap、线程与进程</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/15/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%8C%EF%BC%89/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
-  
-    <article id="post-JavaSE语言基础（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/12/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/">JavaSE语言基础（一）</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2020/05/12/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-05-12T12:59:34.589Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-12</time>
-</a>
-         <!-- 开始添加字数统计-->
-         
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">593字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
-      </span>
-    </span>
-</div>
-          
-          <!-- 添加完成 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>语言基础复习（Java部分）</p>
-<p>总结归纳的语言基础复习（JavaSE部分）：</p>
-<p>抽象类与接口、重写与重载、String与StringBuffer、冒泡和选择排序、单例设计模式</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/12/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-谁谁的十八岁" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/02/%E8%B0%81%E8%B0%81%E7%9A%84%E5%8D%81%E5%85%AB%E5%B2%81/">谁谁的十八岁 —2020.05.05</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2020/05/02/%E8%B0%81%E8%B0%81%E7%9A%84%E5%8D%81%E5%85%AB%E5%B2%81/" class="archive-article-date">
-  	<time datetime="2020-05-02T14:53:27.079Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-02</time>
-</a>
-         <!-- 开始添加字数统计-->
-         
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.9k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">6分</span>
-      </span>
-    </span>
-</div>
-          
-          <!-- 添加完成 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>​    “人生总要做几次梦的，也总会有几次的彻夜难眠。逃不过，就去享受。”</p>
-<p>​    不计前程，无关风月，只记录了我的十八岁。</p>
-<p>​    我也祝福每一个青年的十八岁。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/02/%E8%B0%81%E8%B0%81%E7%9A%84%E5%8D%81%E5%85%AB%E5%B2%81/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-阿里Java开发手册1.4.0(精选)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/26/%E9%98%BF%E9%87%8CJava%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C1.4.0(%E7%B2%BE%E9%80%89)/">阿里Java开发手册1.4.0(精选)</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2020/03/26/%E9%98%BF%E9%87%8CJava%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C1.4.0(%E7%B2%BE%E9%80%89)/" class="archive-article-date">
-  	<time datetime="2020-03-26T14:55:30.764Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-26</time>
-</a>
-         <!-- 开始添加字数统计-->
-         
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">2.5k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">9分</span>
-      </span>
-    </span>
-</div>
-          
-          <!-- 添加完成 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>开发手册中的相关约束和限定对于系统化、协同化的开发过程来说，有着极其重要的意义。自己精选并总结了阿里巴巴Java开发手册中较为重要和关键的部分，汇总于此。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/26/%E9%98%BF%E9%87%8CJava%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C1.4.0(%E7%B2%BE%E9%80%89)/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Spring框架" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/03/Spring%E6%A1%86%E6%9E%B6/">Java单体应用开发—Spring框架</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2020/03/03/Spring%E6%A1%86%E6%9E%B6/" class="archive-article-date">
-  	<time datetime="2020-03-03T13:50:24.831Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-03</time>
-</a>
-         <!-- 开始添加字数统计-->
-         
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">573字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
-      </span>
-    </span>
-</div>
-          
-          <!-- 添加完成 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>用于整理一些在学习单体应用开发中涉及到Spring框架的部分知识点。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/03/Spring%E6%A1%86%E6%9E%B6/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-渐进增强与优雅降级" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/03/%E6%B8%90%E8%BF%9B%E5%A2%9E%E5%BC%BA%E4%B8%8E%E4%BC%98%E9%9B%85%E9%99%8D%E7%BA%A7/">渐进增强与优雅降级—2020.03.03</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2020/03/03/%E6%B8%90%E8%BF%9B%E5%A2%9E%E5%BC%BA%E4%B8%8E%E4%BC%98%E9%9B%85%E9%99%8D%E7%BA%A7/" class="archive-article-date">
-  	<time datetime="2020-03-03T02:55:58.357Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-03</time>
-</a>
-         <!-- 开始添加字数统计-->
-         
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">265字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
-      </span>
-    </span>
-</div>
-          
-          <!-- 添加完成 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在之前的前端知识学习和移动应用开发的课上，都听老师说过关于前端的渐进增强和优雅降级的概念，于是去搜索并自己总结了一下</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/03/%E6%B8%90%E8%BF%9B%E5%A2%9E%E5%BC%BA%E4%B8%8E%E4%BC%98%E9%9B%85%E9%99%8D%E7%BA%A7/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -1201,8 +443,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
