@@ -6,16 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://anyong.work">
-  <title>GnoyNa的博客</title>
+  <title>创建型设计模式（四）—原型模式 | GnoyNa的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="A blog recording my life and study">
-<meta property="og:type" content="website">
-<meta property="og:title" content="GnoyNa的博客">
-<meta property="og:url" content="http://anyong.work/page/3/index.html">
+  <meta name="description" content="创建型模式之四：原型模式的相关概念与优缺点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="创建型设计模式（四）—原型模式">
+<meta property="og:url" content="http://anyong.work/2020/05/27/%E5%88%9B%E5%BB%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%88%E5%9B%9B%EF%BC%89%E2%80%94%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/index.html">
 <meta property="og:site_name" content="GnoyNa的博客">
-<meta property="og:description" content="A blog recording my life and study">
+<meta property="og:description" content="创建型模式之四：原型模式的相关概念与优缺点">
 <meta property="og:locale" content="ch">
+<meta property="article:published_time" content="2020-05-27T14:36:03.877Z">
+<meta property="article:modified_time" content="2020-05-30T04:52:58.511Z">
 <meta property="article:author" content="Gnoy Na">
+<meta property="article:tag" content="学到的一些">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="GnoyNa的博客" type="application/atom+xml">
@@ -172,24 +175,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-项目实训日志—vue-element-admin(3)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-创建型设计模式（四）—原型模式" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/19/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%AE%AD%E6%97%A5%E5%BF%97%E2%80%94vue-element-admin(3)/">项目实训日志—vue-element-admin(3)</a>
+    <h1 class="article-title" itemprop="name">
+      创建型设计模式（四）—原型模式
     </h1>
   
 
         
         
+	<!-- 不蒜子统计 -->
+	<span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+		  <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+	</span>
 
-<a href="/2020/02/19/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%AE%AD%E6%97%A5%E5%BF%97%E2%80%94vue-element-admin(3)/" class="archive-article-date">
-  	<time datetime="2020-02-19T14:36:18.031Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-19</time>
+
+<a href="/2020/05/27/%E5%88%9B%E5%BB%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%88%E5%9B%9B%EF%BC%89%E2%80%94%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2020-05-27T14:36:03.877Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-27</time>
 </a>
          <!-- 开始添加字数统计-->
          
@@ -198,203 +204,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.7k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">8分</span>
-      </span>
-    </span>
-</div>
-          
-          <!-- 添加完成 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="实训日志（三）—登录及验证"><a href="#实训日志（三）—登录及验证" class="headerlink" title="实训日志（三）—登录及验证"></a>实训日志（三）—登录及验证</h2><p>在完成了前面的配置和数据库内容后，我们就可以通过框架先上手写一个管理员admin的登录功能，让它能在本地运行。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/19/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%AE%AD%E6%97%A5%E5%BF%97%E2%80%94vue-element-admin(3)/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-项目实训日志—vue-element-admin(2)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/19/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%AE%AD%E6%97%A5%E5%BF%97%E2%80%94vue-element-admin(2)/">项目实训日志—vue-element-admin(2)</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2020/02/19/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%AE%AD%E6%97%A5%E5%BF%97%E2%80%94vue-element-admin(2)/" class="archive-article-date">
-  	<time datetime="2020-02-19T14:36:18.030Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-19</time>
-</a>
-         <!-- 开始添加字数统计-->
-         
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">6.7k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">38分</span>
-      </span>
-    </span>
-</div>
-          
-          <!-- 添加完成 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="实训日志（二）—环境及配置"><a href="#实训日志（二）—环境及配置" class="headerlink" title="实训日志（二）—环境及配置"></a>实训日志（二）—环境及配置</h2><p>用了两天的时间完整看了老师的项目视频，基本的原理还是三层架构的代码、得到页面请求返回实例对象，对其进行数据库验证，实现跳转，完成基本的权限登录功能。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/19/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%AE%AD%E6%97%A5%E5%BF%97%E2%80%94vue-element-admin(2)/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-解决GitHub访问速度缓慢的方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/19/%E8%A7%A3%E5%86%B3GitHub%E8%AE%BF%E9%97%AE%E9%80%9F%E5%BA%A6%E7%BC%93%E6%85%A2%E7%9A%84%E6%96%B9%E6%B3%95/">解决Github访问速度缓慢的方法</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2020/02/19/%E8%A7%A3%E5%86%B3GitHub%E8%AE%BF%E9%97%AE%E9%80%9F%E5%BA%A6%E7%BC%93%E6%85%A2%E7%9A%84%E6%96%B9%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2020-02-19T14:36:18.028Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-19</time>
-</a>
-         <!-- 开始添加字数统计-->
-         
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">257字</span>
+        <span class="post-count">369字</span>
       </span>
     </span>
 
@@ -414,8 +224,59 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>之前注册Github的时候发现国内的ip访问github实在是太慢，面对令人抓狂的访问速度，自己查询了无数种方法，但最后只有一种方法真正有效并解决了这个问题。</p>
-        
+        <p>创建型模式之四：原型模式的相关概念与优缺点</p>
+<a id="more"></a>
+
+<ol>
+<li><p>定义</p>
+<p><strong>原型模式</strong>：使用原型实例指定待创建对象的类型，并且通过复制这个原型来创建新的对象（类似于复制于克隆自身）</p>
+</li>
+<li><p>结构</p>
+<ul>
+<li>抽象原型类</li>
+<li>具体原型类</li>
+<li>客户类</li>
+</ul>
+</li>
+<li><p>实现</p>
+<ul>
+<li>浅克隆<ul>
+<li>当原型对象被复制时，只复制它本身和其中包含的值类型的成员变量，而引用类型的<strong>成员变量并没有复制</strong></li>
+</ul>
+</li>
+<li>深克隆<ul>
+<li>除了对象本身被复制外，对象所包含的<strong>所有成员变量也将被复制</strong></li>
+</ul>
+</li>
+<li>方法与接口<ul>
+<li>Java语言中的<strong>clone()</strong>方法和<strong>Cloneable()</strong>接口</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>原型管理器</p>
+<p><strong>原型管理器</strong>将多个原型对象存储在一个集合中供客户端使用，它是一个专门<strong>负责克隆对象的工厂</strong>，其中<strong>定义了一个集合用于存储原型对象</strong></p>
+</li>
+<li><p>优缺点分析</p>
+<ul>
+<li>优点<ul>
+<li><strong>简化</strong>对象的<strong>创建过程</strong>，提高新实例的创建效率</li>
+<li><strong>扩展性</strong>较好</li>
+<li>深克隆可以<strong>保存对象的状态</strong></li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>需要给每一个类配备一个克隆方法</li>
+<li><strong>违背了开闭原则</strong>，<strong>改造复杂</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>总结</p>
+<p>总之，原型方法类似克隆，当我们在<strong>创建</strong>一个<strong>新的对象</strong>所需要的<strong>成本较大</strong>，而对象的<strong>状态变化很小</strong>时，可以使用原型模式来创建对象！</p>
+</li>
+</ol>
+
       
 
       
@@ -437,212 +298,84 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/19/%E8%A7%A3%E5%86%B3GitHub%E8%AE%BF%E9%97%AE%E9%80%9F%E5%BA%A6%E7%BC%93%E6%85%A2%E7%9A%84%E6%96%B9%E6%B3%95/">展开全文 >></a>
-        </p>
-      
 
       
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
         
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-时间不似海" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/19/%E6%97%B6%E9%97%B4%E4%B8%8D%E4%BC%BC%E6%B5%B7/">时间不似海 —2020.01.08</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2020/02/19/%E6%97%B6%E9%97%B4%E4%B8%8D%E4%BC%BC%E6%B5%B7/" class="archive-article-date">
-  	<time datetime="2020-02-19T14:36:18.025Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-19</time>
-</a>
-         <!-- 开始添加字数统计-->
-         
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">761字</span>
-      </span>
+      </div>
     </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
-      </span>
-    </span>
+  </div>
 </div>
-          
-          <!-- 添加完成 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>“我们都不擅长抒情，唯任零星和细碎把时光越嚼越烂。瞳孔里住着相同的东西，那是料峭春风都吹不散的。总放任自己回头，好像回头，任何东西都还在。”</p>
-        
-      
 
-      
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://anyong.work/2020/05/27/%E5%88%9B%E5%BB%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%88%E5%9B%9B%EF%BC%89%E2%80%94%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/" alt="微信分享二维码">
     </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/19/%E6%97%B6%E9%97%B4%E4%B8%8D%E4%BC%BC%E6%B5%B7/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-项目实训日志—vue-element-admin(5)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/07/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%AE%AD%E6%97%A5%E5%BF%97%E2%80%94vue-element-admin(5)/">项目实训日志—vue-element-admin(5)</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2020/01/07/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%AE%AD%E6%97%A5%E5%BF%97%E2%80%94vue-element-admin(5)/" class="archive-article-date">
-  	<time datetime="2020-01-07T08:50:14.617Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-07</time>
-</a>
-         <!-- 开始添加字数统计-->
-         
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.7k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">9分</span>
-      </span>
-    </span>
 </div>
-          
-          <!-- 添加完成 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="实训日志（五）—会员登录"><a href="#实训日志（五）—会员登录" class="headerlink" title="实训日志（五）—会员登录"></a>实训日志（五）—会员登录</h2><p>因为实训的时间比较紧张，最后在结束时都没有完成会员登录的功能，而且没有对应会员登录功能的接口信息，但为了项目更加完整，自己还是添加了会员登录和会员信息提取的代码，只要有了接口和接口方法就能实现，算是一个dlc吧。</p>
-        
-      
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/07/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%AE%AD%E6%97%A5%E5%BF%97%E2%80%94vue-element-admin(5)/">展开全文 >></a>
-        </p>
-      
-
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/05/28/%E5%88%9B%E5%BB%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%88%E4%BA%94%EF%BC%89%E2%80%94%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          创建型设计模式（五）—建造者模式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/26/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%94%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JavaSE语言基础（五）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -657,315 +390,32 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-爱和梦想" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/24/%E7%88%B1%E5%92%8C%E6%A2%A6%E6%83%B3/">爱和梦想 ——2019.12.24</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2019/12/24/%E7%88%B1%E5%92%8C%E6%A2%A6%E6%83%B3/" class="archive-article-date">
-  	<time datetime="2019-12-24T15:09:04.517Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-24</time>
-</a>
-         <!-- 开始添加字数统计-->
-         
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">893字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">3分</span>
-      </span>
-    </span>
-</div>
-          
-          <!-- 添加完成 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>十一点，寝室日常熄灯，肚子饿极，向室友威胁索要泡面一包，边吃着边想到了一个故事，本记录于2015年2月21日。  </p>
-<p>故事发生于2013年，自己正苦恼初中英语单词与自己那小小的大脑完全不成比例的时候，补习班讲台上那个男人，用调侃的口吻，叙述了这个故事</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/24/%E7%88%B1%E5%92%8C%E6%A2%A6%E6%83%B3/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
-  
-    <article id="post-创建maven项目" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/23/%E5%88%9B%E5%BB%BAmaven%E9%A1%B9%E7%9B%AE/">完整创建一个maven项目</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2019/12/23/%E5%88%9B%E5%BB%BAmaven%E9%A1%B9%E7%9B%AE/" class="archive-article-date">
-  	<time datetime="2019-12-23T09:48:10.227Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-23</time>
-</a>
-         <!-- 开始添加字数统计-->
-         
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">779字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
-      </span>
-    </span>
-</div>
-          
-          <!-- 添加完成 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在之前自学java单体应用开发，包括在本学期javaSE实验中都有过配置和创建maven项目的经历，但总体来说还是有样学样，整体的概念与原理还是不甚清楚。这次javaEE的小学期有讲到如何完整配置一个maven项目，收获很多，遂以记录下来。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/23/%E5%88%9B%E5%BB%BAmaven%E9%A1%B9%E7%9B%AE/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-家和希望" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/22/%E5%AE%B6%E5%92%8C%E5%B8%8C%E6%9C%9B/">家和希望 ——2019.12.21</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2019/12/22/%E5%AE%B6%E5%92%8C%E5%B8%8C%E6%9C%9B/" class="archive-article-date">
-  	<time datetime="2019-12-21T16:56:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-22</time>
-</a>
-         <!-- 开始添加字数统计-->
-         
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.8k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">6分</span>
-      </span>
-    </span>
-</div>
-          
-          <!-- 添加完成 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id=""><a href="#" class="headerlink" title=""></a></h2><h4 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h4><pre><code>2017年1月7日，自己在社交网站，其实也就是当时流行的qq空间写下了这篇日志。
-
-2019年12月21日，在我的个人博客建好的第一天，思前想后，它应该就是最好的元素了，在这第一篇随笔之中。</code></pre><p>它本来的标题是“想到的一些”，我觉得这太符合自己三年以前写东西的风格了，拿隐晦生涩当做主旋律，掺杂一些真的情感，好像这样会更容易感染和触动不同内心的人一般。即使青涩的笔触让自己讲不好这个故事，但我不否定它，</p>
-<p>因为我喜欢这个故事</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/22/%E5%AE%B6%E5%92%8C%E5%B8%8C%E6%9C%9B/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -1000,8 +450,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
