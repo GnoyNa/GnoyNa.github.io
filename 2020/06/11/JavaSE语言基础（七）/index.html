@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://anyong.work">
-  <title>JavaSE语言基础（六） | GnoyNa的博客</title>
+  <title>JavaSE语言基础（七） | GnoyNa的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="语言基础复习（Java部分） 总结归纳的语言基础复习（JavaSE部分）：">
+  <meta name="description" content="语言基础复习（Java部分） 总结归纳的语言基础复习（JavaSE部分）： 迭代器、String 类型转化Number、StaticNestedClass 和 InnerClass、静态变量和实例变量、GC、Java中实现多态、实现线程同步、int 和Integer、Session 和 Cookie  由此，Java基础部分的总结和复习告一段落。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaSE语言基础（六）">
+<meta property="og:title" content="JavaSE语言基础（七）">
 <meta property="og:url" content="http://anyong.work/2020/06/11/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%83%EF%BC%89/index.html">
 <meta property="og:site_name" content="GnoyNa的博客">
-<meta property="og:description" content="语言基础复习（Java部分） 总结归纳的语言基础复习（JavaSE部分）：">
+<meta property="og:description" content="语言基础复习（Java部分） 总结归纳的语言基础复习（JavaSE部分）： 迭代器、String 类型转化Number、StaticNestedClass 和 InnerClass、静态变量和实例变量、GC、Java中实现多态、实现线程同步、int 和Integer、Session 和 Cookie  由此，Java基础部分的总结和复习告一段落。">
 <meta property="og:locale" content="ch">
 <meta property="article:published_time" content="2020-06-11T13:51:28.097Z">
-<meta property="article:modified_time" content="2020-06-11T15:07:32.735Z">
+<meta property="article:modified_time" content="2020-06-16T13:47:31.665Z">
 <meta property="article:author" content="Gnoy Na">
 <meta property="article:tag" content="学到的一些">
 <meta name="twitter:card" content="summary">
@@ -182,7 +182,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      JavaSE语言基础（六）
+      JavaSE语言基础（七）
     </h1>
   
 
@@ -204,7 +204,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">60字</span>
+        <span class="post-count">957字</span>
       </span>
     </span>
 
@@ -213,7 +213,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
+        <span class="post-count">3分</span>
       </span>
     </span>
 </div>
@@ -226,11 +226,92 @@
       
         <p>语言基础复习（Java部分）</p>
 <p>总结归纳的语言基础复习（JavaSE部分）：</p>
+<p>迭代器、String 类型转化Number、StaticNestedClass 和 InnerClass、静态变量和实例变量、GC、Java中实现多态、实现线程同步、int 和Integer、Session 和 Cookie </p>
+<p>由此，Java基础部分的总结和复习告一段落。</p>
 <a id="more"></a>
 
 <ol>
-<li>什么是迭代器（Iterator）<ul>
-<li>Iterator提供了一个统一遍历操作集合元素的统一接口，Conllection接口实现Iterable接口，每个</li>
+<li><p>什么是迭代器（Iterator）</p>
+<ul>
+<li><p>Iterator提供了一个统一遍历操作集合元素的统一接口，Conllection接口实现Iterable接口，每个集合都通过实现Iterable接口中iterator()方法返回Iterator接口的实例，然后对集合的元素进行迭代操作，有一点值得注意的是：<strong>在迭代元素的时候不能通过集合的方法删除元素</strong>，否则会抛出ConcurrentModificationException异常.但是可以Iterator接口中的remove()方法进行删除。</p>
+<blockquote>
+<p>Iterable接口</p>
+<blockquote>
+<p>Iteratoriterator();</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>Iterator接口</p>
+<blockquote>
+<p>booleanhasNext();<br>Enext();<br>voidremove();</p>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>如何将 String 类型转化成 Number 类型？</p>
+<p>Integer类的valueOf方法可以将String转成Number。代码：</p>
+<blockquote>
+<p>StringnumString=“1000″;</p>
+<p><strong>intid</strong>=Integer.valueOf(numString).intValue();</p>
+</blockquote>
+</li>
+<li><p>StaticNestedClass 和 InnerClass 的不同？</p>
+<ul>
+<li><p>StaticNestedClass 是被声明为静态（static）的内部类，它可以不依赖于</p>
+<p>外部类实例被实例化。而通常的内部类需要在外部类实例化后才能实例化。</p>
+</li>
+</ul>
+</li>
+<li><p>静态变量和实例变量的区别</p>
+<ul>
+<li><p>静态变量也称为类变量，归全类共有，它不依赖于某个对象，<strong>可通过类名直接访问</strong></p>
+</li>
+<li><p>而实例变量必须依存于某一实例，<strong>只能通过对象才能访问到它</strong></p>
+</li>
+</ul>
+</li>
+<li><p>垃圾回收器（GC）</p>
+<p>对于 GC 来说，当程序员创建对象时，GC 就开始监控这个对象的地址、大小以及使用情况。通常，GC 采用<strong>有向图</strong>的方式记录和<strong>管理堆</strong>(heap)中的所有对象。通过这种方式确定哪些对象是”可达的”，哪些对象是”不可达的”。当 GC 确定一些对象为”不可达”时，GC 就有责任回收这些内存空间。</p>
+<ul>
+<li>程序员可以手动执行 System.gc()，通知 GC 运行，但是 Java 语言规范并不保证 GC 一定会执行。</li>
+</ul>
+</li>
+<li><p>Java中实现多态的机制</p>
+<p>方法的覆盖：Overriding和重载 ：Overloading是Java多态性的不同表现 </p>
+<ul>
+<li>覆盖Overriding是父类与子类之间多态性的一种表现</li>
+<li>重载 Overloading是一个类中多态性的一种表现</li>
+</ul>
+</li>
+<li><p>实现线程同步的方法</p>
+<ul>
+<li>wait()：使一个线程处于<strong>等待状态</strong>，并且释放所持有的对象的 lock</li>
+<li>sleep():使一个正在运行的线程处于<strong>睡眠状态</strong>，是一个静态方法，调用此方法要捕捉InterruptedException 异常</li>
+<li>notify():<strong>唤醒一个处于等待状态的线程</strong>，注意的是在调用此方法的时候，并不能确切的唤醒某一个等待状态的线程，而是由 <strong>JVM 确定</strong>唤醒哪个线程，而且不是按优先级</li>
+<li>notityAll():<strong>唤醒所有处入等待状态的线程</strong>，注意并不是给所有唤醒线程一个对象的锁，而是让它们竞争。</li>
+</ul>
+</li>
+<li><p>int 和Integer有什么区别</p>
+<p>Java 是一个近乎纯洁的<strong>面向对象</strong>编程语言，但是为了编程的方便还是引入了基本数据类</p>
+<p>型，为了能够<strong>将这些基本数据类型当成对象操作</strong>，Java 为每一个基本数据类型都引入了对应的<strong>包装类型</strong>（wrapperclass），int 的包装类就是 Integer，从 Java5 开始引入了<strong>自动装箱/拆箱机制</strong>，使得二者<strong>可以相互转换</strong>。</p>
+</li>
+<li><p>Session 和 Cookie 的区别</p>
+<ul>
+<li>Session：<ul>
+<li>在<strong>服务器</strong>端保存用户信息</li>
+<li>数据类型为<strong>Object</strong>类型</li>
+<li>随会话结束而<strong>自动销毁</strong></li>
+<li>保存重要的用户信息</li>
+</ul>
+</li>
+<li>Cookie<ul>
+<li>在<strong>客户端</strong>保存用户信息</li>
+<li>数据类型为<strong>String</strong></li>
+<li>可<strong>长期保存</strong></li>
+<li>保存不重要的用户信息（<strong>明文</strong>）</li>
+</ul>
+</li>
 </ul>
 </li>
 </ol>
