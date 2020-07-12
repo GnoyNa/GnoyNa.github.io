@@ -6,16 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://anyong.work">
-  <title>Archives | GnoyNa的博客</title>
+  <title>Docker的概念与安装 | GnoyNa的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="A blog recording my life and study">
-<meta property="og:type" content="website">
-<meta property="og:title" content="GnoyNa的博客">
-<meta property="og:url" content="http://anyong.work/archives/index.html">
+  <meta name="description" content="​    从Docker使用Go语言进行开发实现，基于Linux内核的cgroup，namespace以及AUFS类的Union FS等技术，对进程进行封装隔离，属于操作系统层面的虚拟化技术，由于隔离的进程独立于宿主和其它的隔离的进程，因此也称其为容器化引擎。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker的概念与安装">
+<meta property="og:url" content="http://anyong.work/2020/07/12/Docker%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%AE%89%E8%A3%85/index.html">
 <meta property="og:site_name" content="GnoyNa的博客">
-<meta property="og:description" content="A blog recording my life and study">
+<meta property="og:description" content="​    从Docker使用Go语言进行开发实现，基于Linux内核的cgroup，namespace以及AUFS类的Union FS等技术，对进程进行封装隔离，属于操作系统层面的虚拟化技术，由于隔离的进程独立于宿主和其它的隔离的进程，因此也称其为容器化引擎。">
 <meta property="og:locale" content="ch">
+<meta property="article:published_time" content="2020-07-12T13:36:47.549Z">
+<meta property="article:modified_time" content="2020-07-12T14:54:33.775Z">
 <meta property="article:author" content="Gnoy Na">
+<meta property="article:tag" content="学到的一些">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="GnoyNa的博客" type="application/atom+xml">
@@ -172,38 +175,107 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Docker的概念与安装" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Docker的概念与安装
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
+
+        
+        
+	<!-- 不蒜子统计 -->
+	<span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+		  <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
 
 <a href="/2020/07/12/Docker%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%AE%89%E8%A3%85/" class="archive-article-date">
   	<time datetime="2020-07-12T13:36:47.549Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-12</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/12/Docker%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%AE%89%E8%A3%85/">Docker的概念与安装</a>
-    </h1>
-  
+         <!-- 开始添加字数统计-->
+         
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">359字</span>
+      </span>
+    </span>
 
-        <div class="article-info info-on-right">
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">1分</span>
+      </span>
+    </span>
+</div>
           
+          <!-- 添加完成 -->
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>​    从Docker使用Go语言进行开发实现，基于Linux内核的cgroup，namespace以及AUFS类的Union FS等技术，对进程进行封装隔离，属于<strong>操作系统层面的虚拟化技术</strong>，由于隔离的进程独立于宿主和其它的隔离的进程，因此也称其为<strong>容器化引擎</strong>。</p>
+<a id="more"></a>
+
+<ol>
+<li><p>差别</p>
+<p>​    和传统的虚拟化技术，如VMware这种虚拟机的虚拟化技术对比，Docker在各个进程的容器内，省去了各个进程所需的虚拟操作系统Guest OS，<strong>不需要硬件虚拟和完整操作系统等额外的开销</strong>，使用容器Container的概念简化实现了新型虚拟化技术。</p>
+</li>
+<li><p>优势</p>
+<ul>
+<li>更高效的利用系统资源</li>
+<li>更快速的启动时间</li>
+<li>一致的运行环境</li>
+<li>持续的交付与部署</li>
+<li>更轻松的迁移</li>
+<li>更轻松的维护和扩展</li>
+</ul>
+</li>
+<li><p>安装</p>
+<ol>
+<li><p>安装依赖：apt-get -y install apt-transport-https ca-certificates curl software-properties-common</p>
+</li>
+<li><p>安装GPG证书：curl -fsSL <a href="http://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg" target="_blank" rel="noopener">http://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg</a> | sudo apt-key add -</p>
+</li>
+<li><p>新增数据源：add-apt-repository “deb [arch=amd64] <a href="http://mirrors.aliyun.com/docker-ce/linux/ubuntu" target="_blank" rel="noopener">http://mirrors.aliyun.com/docker-ce/linux/ubuntu</a> $(lsb_release -cs) stable”</p>
+</li>
+<li><p>更新并安装Docker CE：apt-get update &amp;&amp; apt-get install -y docker-ce</p>
+</li>
+<li><p>查看Docker版本：docker version</p>
+</li>
+<li><p>在docker配置文件下创建daemon.json ：root@ubuntu:/etc/docker# touch daemon.json</p>
+</li>
+<li><p>写入内容： vi daemon.json</p>
+</li>
+</ol>
+<hr>
+<p>  ｛</p>
+<p>   ​          <a href="https://k929dlkg.mirror.aliyuncs.com（阿里云容器镜像加速器地址）" target="_blank" rel="noopener">https://k929dlkg.mirror.aliyuncs.com（阿里云容器镜像加速器地址）</a></p>
+<p>   ｝</p>
+<hr>
+</li>
+</ol>
+<ol start="8">
+<li>重启Docker：systemctl restart docker</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -215,382 +287,118 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://anyong.work/2020/07/12/Docker%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%AE%89%E8%A3%85/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
 
-<a href="/2020/07/11/Linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4(%E4%BA%8C)/" class="archive-article-date">
-  	<time datetime="2020-07-11T09:21:04.989Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-11</time>
-</a>
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2020/07/11/Linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4(%E4%BA%8C)/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux基本命令(二)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/11/Linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4(%E4%BA%8C)/">Linux基本命令(二)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
+        
+    </div>
+</aside>
 
-<a href="/2020/07/10/Linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4(%E4%B8%80)/" class="archive-article-date">
-  	<time datetime="2020-07-10T09:12:24.730Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/10/Linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4(%E4%B8%80)/">Linux基本命令(一)</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/07/03/ERP%E7%B3%BB%E7%BB%9F%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-  	<time datetime="2020-07-03T11:46:27.795Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/03/ERP%E7%B3%BB%E7%BB%9F%E8%AF%A6%E8%A7%A3/">ERP系统详解</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/06/23/HashMap%E6%89%80%E5%BC%95%E5%8F%91%E7%9A%84%E4%B8%80%E4%BA%9B%E9%9B%86%E5%90%88%E9%97%AE%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2020-06-23T14:01:20.340Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/23/HashMap%E6%89%80%E5%BC%95%E5%8F%91%E7%9A%84%E4%B8%80%E4%BA%9B%E9%9B%86%E5%90%88%E9%97%AE%E9%A2%98/">HashMap所引发的一些集合问题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/06/23/Mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-06-23T13:31:28.155Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/23/Mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/">Mysql数据库基础（一）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/06/17/SpringMVC%E7%9A%84%E6%80%9D%E6%83%B3/" class="archive-article-date">
-  	<time datetime="2020-06-17T12:28:22.683Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/17/SpringMVC%E7%9A%84%E6%80%9D%E6%83%B3/">SpringMVC的思想</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/06/11/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%83%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-06-11T13:51:28.097Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/11/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%83%EF%BC%89/">JavaSE语言基础（七）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/06/01/%E7%BB%93%E6%9E%84%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E2%80%94%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2020-06-01T14:07:58.553Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/01/%E7%BB%93%E6%9E%84%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E2%80%94%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F/">结构型设计模式—外观模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/05/30/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E5%85%AD%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-05-30T04:54:23.532Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/30/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E5%85%AD%EF%BC%89/">JavaSE语言基础（六）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><a class="extend next" rel="next" href="/archives/page/2/">Next &amp;raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -626,8 +434,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
