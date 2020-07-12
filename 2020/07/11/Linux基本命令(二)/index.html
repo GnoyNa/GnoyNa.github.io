@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://anyong.work">
   <title>Linux基本命令(二) | GnoyNa的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="常用的Linux系统命令的学习： Vim编辑器、用户与组管理、文件权限管理">
+  <meta name="description" content="常用的Linux系统命令的学习： Vim编辑器、用户与组管理、文件权限管理、LVM磁盘扩容">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux基本命令(二)">
 <meta property="og:url" content="http://anyong.work/2020/07/11/Linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4(%E4%BA%8C)/index.html">
 <meta property="og:site_name" content="GnoyNa的博客">
-<meta property="og:description" content="常用的Linux系统命令的学习： Vim编辑器、用户与组管理、文件权限管理">
+<meta property="og:description" content="常用的Linux系统命令的学习： Vim编辑器、用户与组管理、文件权限管理、LVM磁盘扩容">
 <meta property="og:locale" content="ch">
 <meta property="article:published_time" content="2020-07-11T09:21:04.989Z">
-<meta property="article:modified_time" content="2020-07-11T12:59:31.238Z">
+<meta property="article:modified_time" content="2020-07-12T13:25:42.976Z">
 <meta property="article:author" content="Gnoy Na">
 <meta property="article:tag" content="学到的一些">
 <meta name="twitter:card" content="summary">
@@ -204,7 +204,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">301字</span>
+        <span class="post-count">551字</span>
       </span>
     </span>
 
@@ -213,7 +213,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
+        <span class="post-count">2分</span>
       </span>
     </span>
 </div>
@@ -225,11 +225,12 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>常用的Linux系统命令的学习：</p>
-<p>Vim编辑器、用户与组管理、文件权限管理</p>
+<p>Vim编辑器、用户与组管理、文件权限管理、LVM磁盘扩容</p>
 <a id="more"></a>
 
 <ol>
-<li>Vim编辑器<ul>
+<li><p>Vim编辑器</p>
+<ul>
 <li>运行模式：<ul>
 <li>编辑模式：vi 1.txt，打开文本编辑器，等待命令</li>
 <li>插入模式：输入i，插入文本信息</li>
@@ -246,14 +247,16 @@
 </li>
 </ul>
 </li>
-<li>用户与组管理<ul>
+<li><p>用户与组管理</p>
+<ul>
 <li>su ：切换账号 </li>
 <li>sudo：获取管理员权限</li>
 <li>useradd 用户名：增加用户</li>
 <li>usermod ：修改用户</li>
 </ul>
 </li>
-<li>文件权限管理<ul>
+<li><p>文件权限管理</p>
+<ul>
 <li>文件权限：共十位： （rwx：r可读；w可写；x可执行）<ul>
 <li>第一位：<ul>
 <li>d：代表是目录</li>
@@ -271,11 +274,60 @@
 <li>数字设定法：<strong>0无权限 ；1可执行；2可写；4可读</strong></li>
 </ul>
 </li>
-<li>软件包管理<ul>
+<li><p>软件包管理</p>
+<ul>
 <li>apt-get update：更新数据源</li>
 <li>apt-get install ：安装软件</li>
 <li>apt-get remove ：卸载软件</li>
 <li>apt-get autoremove：自动清理</li>
+</ul>
+</li>
+<li><p>LVM磁盘扩容</p>
+<ul>
+<li><p>卷组</p>
+<p>由若干个逻辑卷组成，每一个逻辑卷代表一定大小，卷组表示若干个逻辑卷的总大小，进行卷组的扩容时，对其进行逻辑卷的增加即可。</p>
+</li>
+<li><p>查看挂载点</p>
+<ul>
+<li>df -h ：查看挂载点</li>
+<li>lvdisplay ：显示当前的逻辑卷 </li>
+<li>vgdisplay ：显示当前的卷组</li>
+<li>pvdisplay ： 显示当前物理卷</li>
+</ul>
+</li>
+<li><p>开始LVM扩容</p>
+<ul>
+<li><p>在虚拟机中添加一块硬盘</p>
+</li>
+<li><p>fdisk -l ：查看fdisk</p>
+</li>
+<li><p>fdisk -l | grep ‘/dev’ ：查看所有存储设备</p>
+</li>
+<li><p>fdisk /dev/sdb ：创建 sdb分区</p>
+</li>
+<li><p>执行命令n ：新建分区</p>
+</li>
+<li><p>执行命令w ：写入磁盘</p>
+</li>
+<li><p>mkfs -t ext4 /dev/sdb1 ：格式化&amp;分区</p>
+</li>
+<li><p>pvcreate /dev/sdb1 ：创建物理卷</p>
+</li>
+<li><p>pvscan ： 查看卷组</p>
+</li>
+<li><p>vgdisplay ： 查看vg</p>
+</li>
+<li><p>vgextend ubuntu-vg /dev/sdb1 ：扩容到vg</p>
+</li>
+<li><p>lvextend -L +10G /dev/unbuntu-vg/ubuntu-lv ：按大小扩容到逻辑卷</p>
+<p><strong>or</strong> ：lvextend -L +100%FREE /dev/ubuntu-vg/ubuntu-lv ：按百分比扩容</p>
+</li>
+<li><p>resize2fs  /dev/ubuntu-vg/ubuntu-lv ：刷新分区</p>
+</li>
+<li><p>lvdisplay ：验证是否成功</p>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ol>
