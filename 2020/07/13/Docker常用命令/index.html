@@ -16,7 +16,7 @@
 <meta property="og:description" content="整理了一些Docker的常用命令，便于之后的学习和使用">
 <meta property="og:locale" content="ch">
 <meta property="article:published_time" content="2020-07-13T07:35:15.010Z">
-<meta property="article:modified_time" content="2020-07-13T07:48:47.064Z">
+<meta property="article:modified_time" content="2020-07-13T07:51:57.609Z">
 <meta property="article:author" content="Gnoy Na">
 <meta property="article:tag" content="学到的一些">
 <meta name="twitter:card" content="summary">
@@ -231,39 +231,53 @@
 <li><p>基础操作</p>
 <ul>
 <li><p>docker version ：查看版本</p>
+<hr>
 </li>
 <li><p>docker images ： 产看镜像信息列表</p>
+<hr>
 </li>
 <li><p>docker ps -a ： 查看运行中的所有容器</p>
+<hr>
 </li>
 <li><p>docker ps -l：查看最近运行的容器</p>
+<hr>
 </li>
 <li><p>docker pull ：拉取指定镜像</p>
 </li>
+</ul>
+<hr>
+<ul>
 <li><p>docker run -p 8080:8080 -t |d |i –privileged ：后台启动docker，并指定宿主机端口和docker映射端口(–privileged为指定容器拥有访问主机所有设备的权限)</p>
 <ul>
 <li>如：docker run -p 8080:8080 –name tomcat -d tomcat ：后台启动tomcat</li>
 </ul>
+<hr>
 </li>
 <li><p>sudo docker exec -it 容器ID /bin/bash ：进入指定容器的交互模式，Ctrl+p+q退出交互，Ctrl+d退出并停止容器</p>
+<hr>
 </li>
 <li><p>docker rm 容器ID ：删除容器</p>
+<hr>
 </li>
 <li><p>docker rmi 镜像ID ：删除镜像</p>
+<hr>
 </li>
 <li><p>docker build -t image-name docker-file-location ：从Docker文件构建Docker镜像</p>
+<hr>
 </li>
 <li><p>docker run -d image-name ：后台运行Docker镜像(不指定端口)</p>
+<hr>
 </li>
 <li><p>docker stop 容器ID ：停止运行容器</p>
+<hr>
 </li>
 <li><p>docker rm $(docker ps -a -q) ： 删除所有容器</p>
+<hr>
 </li>
 <li><p>docker volume ls ： 查看所有数据卷</p>
 </li>
 </ul>
 </li>
-<li></li>
 </ol>
 
       
