@@ -6,16 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://anyong.work">
-  <title>GnoyNa的博客</title>
+  <title>持续集成与交付实战笔记 | GnoyNa的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="A blog recording my life and study">
-<meta property="og:type" content="website">
-<meta property="og:title" content="GnoyNa的博客">
-<meta property="og:url" content="http://anyong.work/index.html">
+  <meta name="description" content="学习了一周的Linux+Docker来实现微服务架构的web项目的建立到部署，同时运用到了DockerCompose来简化Docker的使用，以及GitLab实现项目的本地的代码托管以及协同化开发，Nexus实现Maven仓库管理，Harbor作为Docker镜像私服。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="持续集成与交付实战笔记">
+<meta property="og:url" content="http://anyong.work/2020/07/15/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%E4%B8%8E%E4%BA%A4%E4%BB%98%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="GnoyNa的博客">
-<meta property="og:description" content="A blog recording my life and study">
+<meta property="og:description" content="学习了一周的Linux+Docker来实现微服务架构的web项目的建立到部署，同时运用到了DockerCompose来简化Docker的使用，以及GitLab实现项目的本地的代码托管以及协同化开发，Nexus实现Maven仓库管理，Harbor作为Docker镜像私服。">
 <meta property="og:locale" content="ch">
+<meta property="article:published_time" content="2020-07-15T14:22:27.392Z">
+<meta property="article:modified_time" content="2020-07-15T16:26:18.295Z">
 <meta property="article:author" content="Gnoy Na">
+<meta property="article:tag" content="学到的一些">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="GnoyNa的博客" type="application/atom+xml">
@@ -172,21 +175,24 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-持续集成与交付实战笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-持续集成与交付实战笔记" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/15/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%E4%B8%8E%E4%BA%A4%E4%BB%98%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0/">持续集成与交付实战笔记</a>
+    <h1 class="article-title" itemprop="name">
+      持续集成与交付实战笔记
     </h1>
   
 
         
         
+	<!-- 不蒜子统计 -->
+	<span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+		  <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
 
 <a href="/2020/07/15/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%E4%B8%8E%E4%BA%A4%E4%BB%98%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0/" class="archive-article-date">
   	<time datetime="2020-07-15T14:22:27.392Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-15</time>
@@ -219,7 +225,96 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>学习了一周的Linux+Docker来实现微服务架构的web项目的建立到部署，同时运用到了DockerCompose来简化Docker的使用，以及GitLab实现项目的本地的代码托管以及协同化开发，Nexus实现Maven仓库管理，Harbor作为Docker镜像私服。</p>
-        
+<a id="more"></a>
+
+<ul>
+<li><p>一次构建，到处运行</p>
+<p>持续集成和交付的最终目的就是实现我们项目的一次构建，到处运行。而对于现在我掌握到的知识，已经能够在本地服务器实现这一点，接下来就是在云服务器上进行操作了，这次先进行本地的操作流程。</p>
+<ol>
+<li><p>上传代码到GitLab</p>
+<p>使用Git进行代码提交，将本地代码打包上传至GitLab中。同时，我们采用SSH的密钥传输保证过程安全</p>
+<ul>
+<li>生成SSH KEY<ol>
+<li>打开本地cmd</li>
+<li>输入：ssh-keygen -t rsa -C “<a href="mailto:Bigfacecat_y@163.com">Bigfacecat_y@163.com</a>“</li>
+<li>通过路径”C: users/Administrator/.ssh”，找到id_rsa.pub文件</li>
+<li>复制文件内容</li>
+</ol>
+</li>
+<li>添加到GitLab<ol>
+<li>GitLab中找到SSH密钥</li>
+<li>复制密钥到Key</li>
+<li>标题命名为：“我的个人笔记本”，用于区分不同的开发设备</li>
+<li>注意，在设置SSH密钥前，在gitlab目录下的docker-compose.yml配置中必须设置了ssh的port端口</li>
+</ol>
+</li>
+<li>git操作<ol>
+<li>git clone 或者 git pull 将GitLab上的项目代码拉取下来</li>
+<li>对项目进行改动</li>
+<li>在项目目录启动git bash</li>
+<li>git status查看项目改动情况</li>
+<li>git add . 将所有文件添加进入项目中</li>
+<li>git commit -m “说明” 将文件提交到本地仓库</li>
+<li>git push 项目地址 将代码提交到gitlab</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>打包</p>
+<ul>
+<li><p>从gitlab拉取代码带本地</p>
+</li>
+<li><p>将代码部分打包</p>
+</li>
+<li><p>在Ubuntu的/usr/local/docker目录下创建新的项目目录myshop</p>
+</li>
+<li><p>在myshop目录中创建Dockerfile，为项目定制镜像</p>
+<p>Dockerfile内容：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//开启tomcat服务器</span></span><br><span class="line">FROM tomcat</span><br><span class="line"><span class="comment">//删除ROOT目录下原有的文件</span></span><br><span class="line">RUN rm -fr /usr/local/tomcat/webapps/ROOT<span class="comment">/*</span></span><br><span class="line"><span class="comment">//复制项目到ROOT目录</span></span><br><span class="line"><span class="comment">COPY webapp.zip /usr/local/tomcat/webapps/ROOT</span></span><br><span class="line"><span class="comment">//指定工作目录</span></span><br><span class="line"><span class="comment">WORKDIR /usr/local/tomcat/webapps/ROOT</span></span><br><span class="line"><span class="comment">//解压并移除项目压缩包</span></span><br><span class="line"><span class="comment">RUN unzip webapp.zip \</span></span><br><span class="line"><span class="comment">    &amp;&amp; rm -fr webapp.zip</span></span><br><span class="line"><span class="comment">//指定工作目录</span></span><br><span class="line"><span class="comment">WORKDIR /usr/local/tomcat</span></span><br><span class="line"><span class="comment">//开启端口</span></span><br><span class="line"><span class="comment">EXPOSE 8080</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>docker images 查看是否成功创建项目镜像</p>
+</li>
+<li><p>创建docker-compose.yml来启动项目</p>
+<p>docker-compose.yml内容：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">version: <span class="string">'3.1'</span></span><br><span class="line">services:</span><br><span class="line">  myshop-admin:</span><br><span class="line">    image: myshop-admin</span><br><span class="line">    comtainer_name: myshop-admin</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="number">8080</span>:<span class="number">8080</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>启动mysql服务</p>
+<ul>
+<li>在Deployment主机上开启数据库服务</li>
+</ul>
+</li>
+<li><p>开启项目容器</p>
+<ul>
+<li>在项目目录下执行docker-compose up -d 启动项目容器</li>
+</ul>
+</li>
+<li><p>上传私服</p>
+<ul>
+<li>标记：docker tag myshop-admin 主机地址/myshop/admin</li>
+<li>查看：docker images</li>
+<li>上传：docker push 主机地址/myshop/admin </li>
+<li>Harbor私服上传成功</li>
+</ul>
+</li>
+<li><p>在Deployment服务器拉取Harbor中的镜像</p>
+<ul>
+<li>登录： docker login  主机地址/myshop/admin -u username -p passwd</li>
+<li>拉取： docker pull 主机地址/myshop/admin</li>
+<li>查看： docker images</li>
+<li>创建目录： cd /usr/local/docker/  &amp;&amp;  mkdir myshop</li>
+<li>创建docker-compose.yml</li>
+<li>启动： docker-compose up -d</li>
+</ul>
+</li>
+<li><p>总结</p>
+<p>总体实现了一次构建，到处运行。即持续集成与持续交付，同时实现在两个服务器中同时实现项目。</p>
+</li>
+</ol>
+</li>
+</ul>
+
       
 
       
@@ -241,212 +336,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/15/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%E4%B8%8E%E4%BA%A4%E4%BB%98%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0/">展开全文 >></a>
-        </p>
-      
 
       
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
         
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Docker常用命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/13/Docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Docker常用命令</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2020/07/13/Docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="archive-article-date">
-  	<time datetime="2020-07-13T07:35:15.010Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-13</time>
-</a>
-         <!-- 开始添加字数统计-->
-         
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">256字</span>
-      </span>
+      </div>
     </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
-      </span>
-    </span>
+  </div>
 </div>
-          
-          <!-- 添加完成 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>整理了一些Docker的常用命令，便于之后的学习和使用</p>
-        
-      
 
-      
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://anyong.work/2020/07/15/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%E4%B8%8E%E4%BA%A4%E4%BB%98%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
     </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/13/Docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Docker的概念与安装" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/12/Docker%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%AE%89%E8%A3%85/">Docker的概念与安装</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2020/07/12/Docker%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%AE%89%E8%A3%85/" class="archive-article-date">
-  	<time datetime="2020-07-12T13:36:47.549Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-12</time>
-</a>
-         <!-- 开始添加字数统计-->
-         
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">359字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
-      </span>
-    </span>
 </div>
-          
-          <!-- 添加完成 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>从Docker使用Go语言进行开发实现，基于Linux内核的cgroup，namespace以及AUFS类的Union FS等技术，对进程进行封装隔离，属于<strong>操作系统层面的虚拟化技术</strong>，由于隔离的进程独立于宿主和其它的隔离的进程，因此也称其为<strong>容器化引擎</strong></p>
-        
-      
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/12/Docker%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%AE%89%E8%A3%85/">展开全文 >></a>
-        </p>
-      
-
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2020/07/13/Docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Docker常用命令</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -461,710 +419,32 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Linux基本命令(二)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/11/Linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4(%E4%BA%8C)/">Linux基本命令(二)</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2020/07/11/Linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4(%E4%BA%8C)/" class="archive-article-date">
-  	<time datetime="2020-07-11T09:21:04.989Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-11</time>
-</a>
-         <!-- 开始添加字数统计-->
-         
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">551字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
-      </span>
-    </span>
-</div>
-          
-          <!-- 添加完成 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>常用的Linux系统命令的学习：</p>
-<p>Vim编辑器、用户与组管理、文件权限管理、LVM磁盘扩容</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/11/Linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4(%E4%BA%8C)/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
-  
-    <article id="post-Linux基本命令(一)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/10/Linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4(%E4%B8%80)/">Linux基本命令(一)</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2020/07/10/Linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4(%E4%B8%80)/" class="archive-article-date">
-  	<time datetime="2020-07-10T09:12:24.730Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-10</time>
-</a>
-         <!-- 开始添加字数统计-->
-         
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">641字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
-      </span>
-    </span>
-</div>
-          
-          <!-- 添加完成 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>常用的Linux系统命令的学习：</p>
-<p>目录管理、解压缩 、系统管理</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/10/Linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4(%E4%B8%80)/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-ERP系统详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/03/ERP%E7%B3%BB%E7%BB%9F%E8%AF%A6%E8%A7%A3/">ERP系统详解</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2020/07/03/ERP%E7%B3%BB%E7%BB%9F%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-  	<time datetime="2020-07-03T11:46:27.795Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-03</time>
-</a>
-         <!-- 开始添加字数统计-->
-         
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">610字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
-      </span>
-    </span>
-</div>
-          
-          <!-- 添加完成 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>从用友开始的关于ERP系统的一些知识的补充，便于自己更加容易理解其模式和开发。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/03/ERP%E7%B3%BB%E7%BB%9F%E8%AF%A6%E8%A7%A3/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-HashMap所引发的一些集合问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/23/HashMap%E6%89%80%E5%BC%95%E5%8F%91%E7%9A%84%E4%B8%80%E4%BA%9B%E9%9B%86%E5%90%88%E9%97%AE%E9%A2%98/">HashMap所引发的一些集合问题</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2020/06/23/HashMap%E6%89%80%E5%BC%95%E5%8F%91%E7%9A%84%E4%B8%80%E4%BA%9B%E9%9B%86%E5%90%88%E9%97%AE%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2020-06-23T14:01:20.340Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-23</time>
-</a>
-         <!-- 开始添加字数统计-->
-         
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">659字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
-      </span>
-    </span>
-</div>
-          
-          <!-- 添加完成 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>看到之前有做Java集合方面的一些知识的复习和总结，但都不是很全面，这次做了一次统一的总结性的复习。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/23/HashMap%E6%89%80%E5%BC%95%E5%8F%91%E7%9A%84%E4%B8%80%E4%BA%9B%E9%9B%86%E5%90%88%E9%97%AE%E9%A2%98/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Mysql数据库基础（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/23/Mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/">Mysql数据库基础（一）</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2020/06/23/Mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-06-23T13:31:28.155Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-23</time>
-</a>
-         <!-- 开始添加字数统计-->
-         
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">488字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
-      </span>
-    </span>
-</div>
-          
-          <!-- 添加完成 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Mysql数据库基础复习</p>
-<p>总结归纳的数据库基础复习：</p>
-<p>分页、join与left join、where和having、数据库三范式、事务、触发器</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/23/Mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-SpringMVC的思想" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/17/SpringMVC%E7%9A%84%E6%80%9D%E6%83%B3/">SpringMVC的思想</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2020/06/17/SpringMVC%E7%9A%84%E6%80%9D%E6%83%B3/" class="archive-article-date">
-  	<time datetime="2020-06-17T12:28:22.683Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-17</time>
-</a>
-         <!-- 开始添加字数统计-->
-         
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">333字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
-      </span>
-    </span>
-</div>
-          
-          <!-- 添加完成 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Spring MVC同时也叫Spring Web MVC，属于展示层的框架。Spring MVC是Spring框架的一部分。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/17/SpringMVC%E7%9A%84%E6%80%9D%E6%83%B3/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JavaSE语言基础（七）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/11/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%83%EF%BC%89/">JavaSE语言基础（七）</a>
-    </h1>
-  
-
-        
-        
-
-<a href="/2020/06/11/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%83%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-06-11T13:51:28.097Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-11</time>
-</a>
-         <!-- 开始添加字数统计-->
-         
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">957字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">3分</span>
-      </span>
-    </span>
-</div>
-          
-          <!-- 添加完成 -->
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>语言基础复习（Java部分）</p>
-<p>总结归纳的语言基础复习（JavaSE部分）：</p>
-<p>迭代器、String 类型转化Number、StaticNestedClass 和 InnerClass、静态变量和实例变量、GC、Java中实现多态、实现线程同步、int 和Integer、Session 和 Cookie </p>
-<p>由此，Java基础部分的总结和复习告一段落。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/11/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%83%EF%BC%89/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -1199,8 +479,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
