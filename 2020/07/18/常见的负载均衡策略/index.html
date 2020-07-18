@@ -16,7 +16,7 @@
 <meta property="og:description" content="最近学习微服务时了解到Nacos不仅可以实现服务注册与发现、Nacos Config实现分布式配置中心、以及对多环境的配置。同时它自带的Feign对负载均衡也有解决方案，同时想具体了解一下负载均衡的概念与策略。">
 <meta property="og:locale" content="ch">
 <meta property="article:published_time" content="2020-07-18T13:36:10.380Z">
-<meta property="article:modified_time" content="2020-07-18T14:17:03.027Z">
+<meta property="article:modified_time" content="2020-07-18T14:35:21.660Z">
 <meta property="article:author" content="Gnoy Na">
 <meta property="article:tag" content="学到的一些">
 <meta name="twitter:card" content="summary">
@@ -204,7 +204,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">101字</span>
+        <span class="post-count">785字</span>
       </span>
     </span>
 
@@ -213,7 +213,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
+        <span class="post-count">2分</span>
       </span>
     </span>
 </div>
@@ -227,10 +227,42 @@
         <p>最近学习微服务时了解到Nacos不仅可以实现服务注册与发现、Nacos Config实现分布式配置中心、以及对多环境的配置。同时它自带的Feign对负载均衡也有解决方案，同时想具体了解一下负载均衡的概念与策略。</p>
 <a id="more"></a>
 
-<p>1 轮循</p>
-<p>2 加权轮循</p>
-<p>3 最少连接数</p>
-<p>4 源IP哈希</p>
+
+
+<ol>
+<li><p>负载均衡</p>
+<p>负载均衡是指，将请求分发到多台应用服务器，以此来分散服务器压力的一种架构方式，他是以<strong>集群的方式</strong>存在，提高一个项目的并发处理能力。并且当某个节点挂掉的时候，可以自动更换节点，并且不再将请求分配到此节点。</p>
+</li>
+<li><p>实现方式</p>
+<ul>
+<li><p>重定向</p>
+<p>最基础的负载均衡实现，通过将请求全部发送到前置机，由前置机通过算法得出要分配给哪台应用服务器，然后响应给客户端，由客户端重定向到应用服务器的一种方式。效率较低。</p>
+</li>
+<li><p>反向代理</p>
+<p>通过在前置机使用反向代理的方式，将请求分发到应用服务器，客户端无需再请求一次，实现方式通常有两种，一种是用交换机实现，还有一种是用Nginx类的软件实现。该种实现方式对前置机的要求很高，且不需要再次重定向，从而提升了效率。</p>
+</li>
+<li><p>数据链路返回</p>
+<p>通过给应用服务器设置虚拟IP，然后通过修改mac地址的方式，将请求分发出去，而应用服务器收到请求后，可以直接响应给客户端，而不需要经过前置机。这种方式效率最高。</p>
+</li>
+</ul>
+</li>
+<li><p>策略与算法</p>
+<ol>
+<li><p>轮循</p>
+<p>将请求按顺序轮流地分配到后端服务器上，它<strong>均衡</strong>地对待后端的每一台服务器，而不关心服务器实际的连接数和当前的系统负载。</p>
+</li>
+<li><p>加权轮循</p>
+<p>给配置高、负载低的机器配置更高的权重，让其处理更多的请求；而配置低、负载高的机器，给其分配较低的权重，降低其系统负载，加权轮询能很好地处理这一问题，并将请求顺序且按照权重分配到后端。</p>
+</li>
+<li><p>最少连接数</p>
+<p>根据后端服务器当前的连接情况，<strong>动态</strong>地选取其中当前时刻<strong>连接数最少</strong>的一台服务器来处理当前的请求，尽可能地提高后端服务的利用效率，将负责合理地分流到每一台服务器。</p>
+</li>
+<li><p>源地址IP</p>
+<p>根据获取客户端的IP地址，通过哈希函数计算得到的一个数值，用该数值对服务器列表的大小进行取模运算，得到的结果便是客服端要访问服务器的序号。采用源地址哈希法进行负载均衡，<strong>同一IP地址的客户端</strong>，当后端服务器列表不变时，它<strong>每次都会映射到同一台后端服务器进行访问</strong>。</p>
+</li>
+</ol>
+</li>
+</ol>
 
       
 
