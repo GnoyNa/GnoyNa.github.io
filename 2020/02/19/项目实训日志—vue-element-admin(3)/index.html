@@ -402,25 +402,20 @@
 
 
   
-       <div id="gitalk-container"></div>
-       <div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div> 
-
+  <div id="gitalk-container" style="padding: 0px 30px 0px 46px;"></div> 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
 <script type="text/javascript">
-
-if(true){
-	var gitalk = new Gitalk({
-  	clientID: '7747c4707986fe8c07e8',
-  	clientSecret: '39632b43f162659845e0893408aa2d4ad140b92f',
-  	repo: 'GnoyNa.github.io',
-  	owner: 'GnoyNa',
-  	admin: ['[&#39;GnoyNa.github.io&#39;,&#39;GnoyNa.github.io&#39;]'],
-  	id: 'Wed Feb 19 2020 22:36:18 GMT+0800',
-  	distractionFreeMode: 'true'
-})
-gitalk.render('gitalk-container') 
-}
+var gitalk = new Gitalk({
+        clientID:  '7747c4707986fe8c07e8', 
+        clientSecret: '39632b43f162659845e0893408aa2d4ad140b92f',
+        id: window.location.pathname,
+        repo: 'GnoyNa.github.io', 
+        owner: 'GnoyNa', 
+        admin: 'GnoyNa', 
+        distractionFreeMode: 'true',
+     })
+gitalk.render('gitalk-container')
 </script>
   
 
