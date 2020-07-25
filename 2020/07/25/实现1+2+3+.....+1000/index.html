@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://anyong.work">
-  <title>创建型设计模式（三）—工厂方法模式 | GnoyNa的博客</title>
+  <title>实现1+2+3+.....+1000 | GnoyNa的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="简单工厂模式设计的接口不符合开闭原则，创建不同对象时必须修改工厂类，所以我们通常会引入工厂方法模式">
+  <meta name="description" content="理解了一道自己看到的算法题的多处理方式，觉得很有意思。处理方式涉及了多线程和Stream.parallel并发流相关的知识。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="创建型设计模式（三）—工厂方法模式">
-<meta property="og:url" content="http://anyong.work/2020/05/23/%E5%88%9B%E5%BB%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:title" content="实现1+2+3+.....+1000">
+<meta property="og:url" content="http://anyong.work/2020/07/25/%E5%AE%9E%E7%8E%B01+2+3+.....+1000/index.html">
 <meta property="og:site_name" content="GnoyNa的博客">
-<meta property="og:description" content="简单工厂模式设计的接口不符合开闭原则，创建不同对象时必须修改工厂类，所以我们通常会引入工厂方法模式">
+<meta property="og:description" content="理解了一道自己看到的算法题的多处理方式，觉得很有意思。处理方式涉及了多线程和Stream.parallel并发流相关的知识。">
 <meta property="og:locale" content="ch">
-<meta property="article:published_time" content="2020-05-23T14:38:03.827Z">
-<meta property="article:modified_time" content="2020-07-23T11:57:49.641Z">
+<meta property="article:published_time" content="2020-07-25T11:49:45.331Z">
+<meta property="article:modified_time" content="2020-07-25T12:18:57.662Z">
 <meta property="article:author" content="Gnoy Na">
-<meta property="article:tag" content="设计模式">
+<meta property="article:tag" content="学到的一些">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="GnoyNa的博客" type="application/atom+xml">
@@ -175,14 +176,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-创建型设计模式（三）—工厂方法模式" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-实现1+2+3+.....+1000" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      创建型设计模式（三）—工厂方法模式
+      实现1+2+3+.....+1000
     </h1>
   
 
@@ -194,8 +195,8 @@
 	</span>
 
 
-<a href="/2020/05/23/%E5%88%9B%E5%BB%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2020-05-23T14:38:03.827Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-23</time>
+<a href="/2020/07/25/%E5%AE%9E%E7%8E%B01+2+3+.....+1000/" class="archive-article-date">
+  	<time datetime="2020-07-25T11:49:45.331Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-25</time>
 </a>
          <!-- 开始添加字数统计-->
          
@@ -204,7 +205,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">481字</span>
+        <span class="post-count">480字</span>
       </span>
     </span>
 
@@ -213,7 +214,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
+        <span class="post-count">2分</span>
       </span>
     </span>
 </div>
@@ -224,61 +225,41 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li>简单工厂模式设计的接口不符合开闭原则，创建不同对象时必须修改工厂类，所以我们通常会引入工厂方法模式</li>
-</ul>
+        <p>理解了一道自己看到的算法题的多处理方式，觉得很有意思。处理方式涉及了多线程和Stream.parallel并发流相关的知识。</p>
 <a id="more"></a>
 
-<ol>
-<li><p>特点</p>
 <ul>
-<li>不在提供一个按钮工厂类来统一负责所有产品的创建，而是将具体按钮的创建过程交给<strong>专门的工厂子类</strong>去完成</li>
-<li>对于每一个新的按钮，只需要提供符合它类型的具体工厂子类就可以创建它的实例，不需要修改工厂类，<strong>符合了开闭原则</strong></li>
-</ul>
-</li>
-<li><p>定义</p>
+<li><p>使用多线程实现 1 + 2 + 3 + ….. + 1000 ？</p>
 <ul>
-<li>定义一个用于创建对象的<strong>接口</strong>，但是让子类决定将哪一个类实例化。工厂方法模式让一个类的<strong>实例化延迟</strong>到其<strong>子类</strong></li>
-<li>工厂父类负责定义创建产品对象的<strong>公共接口</strong>，而工厂子类则负责生成<strong>具体的产品</strong>对象</li>
-</ul>
+<li><p>思路</p>
+<p>任务拆分，将1000个数分成10份来实现多线程处理，提高效率，可以用到线程池。</p>
 </li>
-<li><p>结构</p>
-<ul>
-<li>抽象工厂、具体工厂、抽象产品、具体产品</li>
-</ul>
-</li>
-<li><p>实现</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Factory</span> </span>&#123;<span class="comment">//抽象工厂</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Product <span class="title">factoryMethod</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li><p>简单的多线程实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        AtomicInteger sum = <span class="keyword">new</span> AtomicInteger();</span><br><span class="line">        List&lt;Thread&gt; threadList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">final</span> <span class="keyword">int</span> cur = i;</span><br><span class="line"></span><br><span class="line">            Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123; <span class="comment">//实现Runnable接口执行一次100个数的相加</span></span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> j = cur * <span class="number">100</span> + <span class="number">1</span>; j &lt;= cur * <span class="number">100</span> + <span class="number">100</span>; j++) &#123;</span><br><span class="line">                        sum.addAndGet(j);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">            thread.start();</span><br><span class="line">            threadList.add(thread);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (Thread thread : threadList) &#123;</span><br><span class="line">            thread.join();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        System.out.println(sum.get());</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteFactory</span> <span class="keyword">implements</span> <span class="title">Factory</span> </span>&#123;<span class="comment">//具体工厂</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Product <span class="title">factoryMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ConcreteProduct();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Factory factory;</span><br><span class="line">factory = <span class="keyword">new</span> ConcreteFactory(); <span class="comment">//可通过配置文件和反射机制实现</span></span><br><span class="line">Product product;</span><br><span class="line">product = factory.factoryMethod();<span class="comment">//实现</span></span><br></pre></td></tr></table></figure>
+
 </li>
-<li><p>Java反射机制</p>
+</ul>
+</li>
+</ul>
 <ul>
-<li><p>Java反射(Java Reflection)是指在<strong>程序运行时获取已知名称的类或已有对象的相关信息的一种机制</strong>，包括类的方法、属性、父类等信息，还包括<strong>实例的创建和实例类型的判断</strong>等</p>
+<li><p>线程池处理</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        AtomicInteger sum = <span class="keyword">new</span> AtomicInteger(); <span class="comment">// 创建并发原子类</span></span><br><span class="line">        ExecutorService pool = Executors.newCachedThreadPool(); <span class="comment">// 创建一个新的线程池</span></span><br><span class="line">        <span class="keyword">final</span> CountDownLatch latch = <span class="keyword">new</span> CountDownLatch(<span class="number">10</span>); <span class="comment">// 计数器，实现同步操作</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">final</span> <span class="keyword">int</span> cur = i;</span><br><span class="line"></span><br><span class="line">            pool.execute(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> j = cur * <span class="number">100</span> + <span class="number">1</span>; j &lt;= cur * <span class="number">100</span> + <span class="number">100</span>; j++) &#123;</span><br><span class="line">                        sum.addAndGet(j);</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    latch.countDown();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        latch.await();</span><br><span class="line">        System.out.println(sum.get());</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>通过类名生成实例对象并将其返回：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Class c=Class.forName(“java.lang.String<span class="string">");</span></span><br><span class="line"><span class="string">Object obj=c.newInstance();</span></span><br><span class="line"><span class="string">return obj;</span></span><br></pre></td></tr></table></figure>
+<li><p>Callable接口实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ExecutionException, InterruptedException </span>&#123;</span><br><span class="line">        ExecutorService pool = Executors.newCachedThreadPool(); <span class="comment">// 创建线程池</span></span><br><span class="line">        List&lt;Future&lt;Integer&gt;&gt; futureList = <span class="keyword">new</span> ArrayList&lt;&gt;(); <span class="comment">// 以Future构造器创建一个List</span></span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">final</span> <span class="keyword">int</span> cur = i;</span><br><span class="line"></span><br><span class="line">            futureList.add(pool.submit(<span class="keyword">new</span> Callable&lt;Integer&gt;() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> Integer <span class="title">call</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    <span class="keyword">int</span> segSum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> j = cur * <span class="number">100</span> + <span class="number">1</span>; j &lt;= cur * <span class="number">100</span> + <span class="number">100</span>; j++) &#123;</span><br><span class="line">                        segSum += j;</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">return</span> segSum;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            sum += futureList.get(i).get();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        System.out.println(sum);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
+<li><p>扩展：并行流实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(IntStream.range(<span class="number">0</span>, <span class="number">10</span>)</span><br><span class="line">                .boxed()</span><br><span class="line">                .parallel()</span><br><span class="line">                .mapToInt(i -&gt; IntStream.rangeClosed(i * <span class="number">100</span> + <span class="number">1</span>, i * <span class="number">100</span> + <span class="number">100</span>).sum())</span><br><span class="line">                .sum());</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>优缺点分析</p>
-<ul>
-<li>优点<ul>
-<li>向客户隐藏了哪种具体产品类将被实例化</li>
-<li>让工厂<strong>自主确定</strong>创建何种产品对象</li>
-<li>完全<strong>符合开闭原则</strong></li>
-</ul>
-</li>
-<li>缺点<ul>
-<li><strong>类的个数</strong>将成对<strong>增加</strong></li>
-<li><strong>增加</strong>了系统的<strong>抽象性</strong>和理解难度</li>
-</ul>
+<li><p>最简版</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">       System.out.println(IntStream.rangeClosed(<span class="number">0</span>, <span class="number">1000</span>)</span><br><span class="line">               .parallel()</span><br><span class="line">               .sum());</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
 </li>
 </ul>
-</li>
-</ol>
 
       
 
@@ -292,7 +273,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
       		
 		</ul>
@@ -348,7 +333,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://anyong.work/2020/05/23/%E5%88%9B%E5%BB%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%88%E4%B8%89%EF%BC%89%E2%80%94%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://anyong.work/2020/07/25/%E5%AE%9E%E7%8E%B01+2+3+.....+1000/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -362,18 +347,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/05/26/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%94%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          JavaSE语言基础（五）
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/05/23/%E5%85%B3%E4%BA%8EPost%E8%AF%B7%E6%B1%82%E5%B8%A6%E6%9D%A5%E7%9A%84Option/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">关于Post请求带来的Option</div>
+    <a href="/2020/07/24/%E4%B8%8E%E6%83%85%E6%9C%89%E5%85%B3%E7%9A%84%E9%82%A3%E4%BA%9B/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">与情有关的那些</div>
       <i class="icon-circle-right"></i>
     </a>
   
