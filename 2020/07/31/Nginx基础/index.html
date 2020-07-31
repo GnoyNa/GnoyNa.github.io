@@ -6,16 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://anyong.work">
-  <title>Archives: 2020 | GnoyNa的博客</title>
+  <title>Nginx基础 | GnoyNa的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="A blog recording my life and study">
-<meta property="og:type" content="website">
-<meta property="og:title" content="GnoyNa的博客">
-<meta property="og:url" content="http://anyong.work/archives/2020/page/4/index.html">
+  <meta name="description" content="Nginx是一款高性能的HTTP服务器&#x2F;反向代理服务器及电子邮件代理服务器，官方测试Nginx能够支撑5万并发链接，并且CPU、内存消耗却非常低，运行非常稳定。要实现自己的微服务解决方案，Nginx算是一门必修课。 主要学习了Nginx的基础概念与它的虚拟主机、反向代理和负载均衡的功能。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx基础">
+<meta property="og:url" content="http://anyong.work/2020/07/31/Nginx%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="GnoyNa的博客">
-<meta property="og:description" content="A blog recording my life and study">
+<meta property="og:description" content="Nginx是一款高性能的HTTP服务器&#x2F;反向代理服务器及电子邮件代理服务器，官方测试Nginx能够支撑5万并发链接，并且CPU、内存消耗却非常低，运行非常稳定。要实现自己的微服务解决方案，Nginx算是一门必修课。 主要学习了Nginx的基础概念与它的虚拟主机、反向代理和负载均衡的功能。">
 <meta property="og:locale" content="ch">
+<meta property="article:published_time" content="2020-07-31T03:41:54.612Z">
+<meta property="article:modified_time" content="2020-07-31T06:08:10.326Z">
 <meta property="article:author" content="Gnoy Na">
+<meta property="article:tag" content="微服务">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="GnoyNa的博客" type="application/atom+xml">
@@ -172,425 +175,247 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Nginx基础" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Nginx基础
+    </h1>
+  
+
+        
+        
+	<!-- 不蒜子统计 -->
+	<span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+		  <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+
+<a href="/2020/07/31/Nginx%E5%9F%BA%E7%A1%80/" class="archive-article-date">
+  	<time datetime="2020-07-31T03:41:54.612Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-31</time>
+</a>
+         <!-- 开始添加字数统计-->
+         
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">3分</span>
+      </span>
+    </span>
+</div>
+          
+          <!-- 添加完成 -->
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Nginx是一款高性能的HTTP服务器/反向代理服务器及电子邮件代理服务器，官方测试Nginx能够支撑5万并发链接，并且CPU、内存消耗却非常低，运行非常稳定。要实现自己的微服务解决方案，Nginx算是一门必修课。</p>
+<p>主要学习了Nginx的基础概念与它的虚拟主机、反向代理和负载均衡的功能。</p>
+<a id="more"></a>
+
+<ol>
+<li><p>Nginx的应用场景</p>
+<ul>
+<li>HTTP服务器：Nginx可以独立提供HTTP，可以做网页静态服务器。</li>
+<li>虚拟主机：可以实现在一台服务器中虚拟出多个网站。</li>
+<li><strong>反向代理</strong>、<strong>负载均衡</strong>：当网站的访问量打到一定程度后，单台服务器不能满足用户的请求时，需要用多台服务器集群可以使用Nginx做反向代理。并且多台服务器可以平均分担负载，不会因为某台服务器负载高宕机而某台服务器闲置的情况。</li>
+</ul>
+</li>
+<li><p>虚拟主机</p>
+<p>虚拟主机时一种特殊的软硬件技术，可以将网络上的每一台计算机分成多个虚拟主机，每个虚拟主机可以独立对外提供www服务，这样就可以<strong>实现一台主机对外提供多个web服务，每个虚拟主机之间是相互独立，互不影响的</strong>。</p>
+<p>Nginx支持三种类型的虚拟主机配置：</p>
+<ul>
+<li>基于IP</li>
+<li>基于域名</li>
+<li>基于端口</li>
+</ul>
+</li>
+<li><p>反向代理</p>
+<ul>
+<li><p>什么是代理服务器</p>
+<p>代理服务器，客户机在发送请求时，不会直接发送给目的主机，而是<strong>先发送给代理服务器</strong>，代理服务器<strong>接收客户机请求</strong>之后，再向主机发出，并<strong>接收目的主机返回的数据</strong>，<strong>存放在代理服务器的硬盘中</strong> ，再<strong>发送给客户机</strong>。</p>
+</li>
+<li><p>为什么要使用代理服务器</p>
+<ul>
+<li>提高访问速度：因为目的主机的返回数据都存放在代理服务器的硬盘中，所以下一次访问时，会直接从代理服务器的硬盘中读取，起到了缓存的作用，从而提高请求速度。</li>
+<li>防火墙：帮助目的主机过滤不安全信息。</li>
+<li>通过代理服务器访问不能访问的目标站点：在客户机访问受限时，通过代理服务器可以访问目标站点，比如国内访问外网。</li>
+</ul>
+</li>
+<li><p>代理服务器类型</p>
+<ul>
+<li><p>正向代理</p>
+<p>架设在客户机与目标主机之间，只代理内部网络对Intrenet的请求。客户机必须要指定代理服务器，将本来要发送到web服务器中的请求发到代理服务器中。</p>
+</li>
+<li><p>反向代理</p>
+<p>反向代理服务器<strong>架设在服务器端</strong>，通过<strong>缓冲</strong>经常被请求的页面来<strong>缓解服务器的工作量</strong>，将客户机请求转发给内部网络上的目标服务器，并将从服务器上得到的结果返回给Internet上请求连接的客户端，<strong>此时的代理服务器与目标主机一起对外表现为一个服务器</strong>。</p>
+</li>
+<li><p>反向代理的应用</p>
+</li>
+</ul>
+<p>大型web网站都会用到反向代理，除了可以<strong>防止外网对内网服务器的恶性攻击</strong>，缓存以<strong>减少服务器的压力</strong>和<strong>访问安全控制</strong>之外，还可以进行<strong>负载均衡</strong>，将用户请求分发给多个服务器。</p>
+<p>一般的web项目中，都会使用Nginx为Tomcat配置反向代理的功能，先使用DockerCompose启动Tomcat容器，再在nginx的conf配置文件中配置该tomcat服务器的server，并在虚拟主机中设置对客户机请求的代理转发。</p>
+<ul>
+<li>nginx实现负载均衡</li>
+</ul>
+<p>在nginx的配置文件中upstream模块用于完成构造请求和解析响应等工作。在配置server中可以 使用weight关键字设置权重，实现负载均衡。或是ip_hash(源ip哈希)，fair(第三方)，支持多种方式。</p>
+</li>
+</ul>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/03/26/%E9%98%BF%E9%87%8CJava%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C1.4.0(%E7%B2%BE%E9%80%89)/" class="archive-article-date">
-  	<time datetime="2020-03-26T14:55:30.764Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/26/%E9%98%BF%E9%87%8CJava%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C1.4.0(%E7%B2%BE%E9%80%89)/">阿里Java开发手册1.4.0(精选)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">微服务</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://anyong.work/2020/07/31/Nginx%E5%9F%BA%E7%A1%80/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
 
-<a href="/2020/03/03/Java%E5%8D%95%E4%BD%93%E5%BA%94%E7%94%A8%E2%80%94Spring%E6%A1%86%E6%9E%B6/" class="archive-article-date">
-  	<time datetime="2020-03-03T13:50:24.831Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-03</time>
-</a>
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2020/07/30/%E4%BA%91%E8%AE%A1%E7%AE%97%E7%9A%84%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">云计算的服务模式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/03/Java%E5%8D%95%E4%BD%93%E5%BA%94%E7%94%A8%E2%80%94Spring%E6%A1%86%E6%9E%B6/">Java单体应用—Spring框架</a>
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/03/03/%E6%B8%90%E8%BF%9B%E5%A2%9E%E5%BC%BA%E4%B8%8E%E4%BC%98%E9%9B%85%E9%99%8D%E7%BA%A7/" class="archive-article-date">
-  	<time datetime="2020-03-03T02:55:58.357Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/03/%E6%B8%90%E8%BF%9B%E5%A2%9E%E5%BC%BA%E4%B8%8E%E4%BC%98%E9%9B%85%E9%99%8D%E7%BA%A7/">渐进增强与优雅降级—2020.03.03</a>
-    </h1>
+  <div id="gitalk-container" style="padding: 0px 30px 0px 46px;"></div> 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="/./md5.min.js"></script>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+        clientID:  '7747c4707986fe8c07e8', 
+        clientSecret: '39632b43f162659845e0893408aa2d4ad140b92f',
+        repo: 'blog-comment', 
+        owner: 'GnoyNa', 
+        admin: 'GnoyNa', 
+		id: md5(location.hash),
+        distractionFreeMode: 'true',
+     })
+gitalk.render('gitalk-container')
+</script>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/03/02/%E5%88%9B%E5%BB%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2020-03-02T06:32:43.380Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/02/%E5%88%9B%E5%BB%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">创建型设计模式（一）—单例模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/02/27/%E4%B8%80%E5%A4%A9%E7%9A%84%E7%96%AB%E6%83%B3/" class="archive-article-date">
-  	<time datetime="2020-02-27T09:07:24.437Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/27/%E4%B8%80%E5%A4%A9%E7%9A%84%E7%96%AB%E6%83%B3/">一天的疫想 —2020.02.27</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/02/19/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%AE%AD%E6%97%A5%E5%BF%97%E2%80%94vue-element-admin/" class="archive-article-date">
-  	<time datetime="2020-02-19T14:36:18.036Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/19/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%AE%AD%E6%97%A5%E5%BF%97%E2%80%94vue-element-admin/">项目实训日志—vue-element-admin(1)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/02/19/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%AE%AD%E6%97%A5%E5%BF%97%E2%80%94vue-element-admin(4)/" class="archive-article-date">
-  	<time datetime="2020-02-19T14:36:18.033Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/19/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%AE%AD%E6%97%A5%E5%BF%97%E2%80%94vue-element-admin(4)/">项目实训日志—vue-element-admin(4)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/02/19/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%AE%AD%E6%97%A5%E5%BF%97%E2%80%94vue-element-admin(3)/" class="archive-article-date">
-  	<time datetime="2020-02-19T14:36:18.031Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/19/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%AE%AD%E6%97%A5%E5%BF%97%E2%80%94vue-element-admin(3)/">项目实训日志—vue-element-admin(3)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/02/19/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%AE%AD%E6%97%A5%E5%BF%97%E2%80%94vue-element-admin(2)/" class="archive-article-date">
-  	<time datetime="2020-02-19T14:36:18.030Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/19/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%AE%AD%E6%97%A5%E5%BF%97%E2%80%94vue-element-admin(2)/">项目实训日志—vue-element-admin(2)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/02/19/%E8%A7%A3%E5%86%B3GitHub%E8%AE%BF%E9%97%AE%E9%80%9F%E5%BA%A6%E7%BC%93%E6%85%A2%E7%9A%84%E6%96%B9%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2020-02-19T14:36:18.028Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/02/19/%E8%A7%A3%E5%86%B3GitHub%E8%AE%BF%E9%97%AE%E9%80%9F%E5%BA%A6%E7%BC%93%E6%85%A2%E7%9A%84%E6%96%B9%E6%B3%95/">解决Github访问速度缓慢的方法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2020/page/3/">« Prev</a><a class="page-number" href="/archives/2020/">1</a><a class="page-number" href="/archives/2020/page/2/">2</a><a class="page-number" href="/archives/2020/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/2020/page/5/">5</a><a class="extend next" rel="next" href="/archives/2020/page/5/">Next »</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -626,8 +451,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
