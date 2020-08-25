@@ -16,7 +16,7 @@
 <meta property="og:description" content="最近从Spring框架复习到了JDK的动态代理，从而了解了一些关于代理模式的知识，总结一下最近学到的关于代理模式的一些内容">
 <meta property="og:locale" content="ch">
 <meta property="article:published_time" content="2020-07-31T09:00:02.087Z">
-<meta property="article:modified_time" content="2020-07-31T09:02:58.414Z">
+<meta property="article:modified_time" content="2020-08-25T01:57:07.202Z">
 <meta property="article:author" content="Gnoy Na">
 <meta property="article:tag" content="设计模式">
 <meta name="twitter:card" content="summary">
@@ -204,7 +204,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">51字</span>
+        <span class="post-count">875字</span>
       </span>
     </span>
 
@@ -213,7 +213,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
+        <span class="post-count">3分</span>
       </span>
     </span>
 </div>
@@ -227,6 +227,63 @@
         <p>最近从Spring框架复习到了JDK的动态代理，从而了解了一些关于代理模式的知识，总结一下最近学到的关于代理模式的一些内容</p>
 <a id="more"></a> 
 
+<p>与代购商品类似，代购商品是由顾客向代购网站提交请求，再由代购网站去代购商品 。代理模式的代理方式也是客户端先找到代理对象，再由代理对象去处理真实对象。</p>
+<ol>
+<li><p>定义</p>
+<ul>
+<li>引入一个新的<strong>代理对象</strong></li>
+<li>代理对象再客户端对象和目标对象之间起到<strong>中介</strong>的作用</li>
+<li>去掉客户不能看到的内容和服务或者增添客户需要的额外的新服务</li>
+</ul>
+</li>
+<li><p>结构</p>
+<ul>
+<li>Subject(抽象主题角色)</li>
+<li>Proxy(代理主题角色)</li>
+<li>RealSubject(真实主题角色)</li>
+</ul>
+</li>
+<li><p>实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 抽象主题类</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Subject</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">request</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//真实主题类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RealSubject</span> <span class="keyword">extends</span> <span class="title">Subject</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">request</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="comment">//业务方法具体实现代码</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//调用</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Proxy</span> <span class="keyword">extends</span> <span class="title">Subject</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> RealSubject realSubject = <span class="keyword">new</span> RealSubject();  <span class="comment">//维持一个对真实主题对象的引用 </span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">preRequest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        …...</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">request</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        preRequest(); </span><br><span class="line">        realSubject.request();  <span class="comment">//调用真实主题对象的方法</span></span><br><span class="line">        postRequest();</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postRequest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ……</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用代理类能够实现对真实主题类的<strong>权限控制</strong>和<strong>引用计数</strong></li>
+</ul>
+</li>
+<li><p>动机(远程代理)</p>
+<ul>
+<li>客户端程序可以访问在远程主机上的对象，基于远程主机更好的性能，可以对请求进行快速响应</li>
+<li>可以将网络细节隐藏起来</li>
+<li>远程代理对象承担了大部分的网络通信工作，并负责对远程业务方法的调用</li>
+</ul>
+</li>
+<li><p>动机(虚拟代理)</p>
+<ul>
+<li>对于部分占用系统资源较多的或是加载时间较长的对象，可以对这些独享提供一个虚拟代理</li>
+<li>虚拟代理可以作为真实对象的替身，将用户请求转发给真实对象</li>
+<li>提高系统性能</li>
+</ul>
+</li>
+<li><p>Java动态代理</p>
+<ul>
+<li>动态代理可以让系统在运行时<strong>根据实际需要</strong>来<strong>动态创建代理类</strong>，让同<strong>一个代理类</strong>能够<strong>代理多个不同的真实主题类</strong>而且可以代理不同的方法</li>
+<li>Java语言提供了对动态代理的支持，Java语言实现动态代理时需要用到位于java.lang.reflect包中的一些类</li>
+</ul>
+<p>动态代理类需要在运行时指定所代理真实主题类的接口，客户端在调用动态代理对象的方法时，<strong>调用请求会将请求自动转发给InvocationHandler对象的invoke()方法</strong> ,由invoke()来实现对请求的统一处理。其中，<strong>InvocationHandler接口是代理处理程序类的实现接口</strong>，是代理实例的调用处理者的公共父类。<strong>invoke()方法通常用于处理对代理类实例的方法调用并返回相应的结果，包含三个参数</strong>，分别是代理类实例proxy，需要代理的方法method，代理方法的参数数组args。</p>
+</li>
+<li><p>代理模式的优缺点</p>
+<p>优点：</p>
+<ul>
+<li>协调使用者和被使用者，降低了系统耦合度</li>
+<li>增加和更换代理类时无需修改源代码，符合开闭原则，带来了良好的灵活性和可扩展性</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>有些类型的代理模式可能会导致请求处理速度变慢</li>
+<li>部分代理模式的实现过程较为复杂</li>
+</ul>
+</li>
+</ol>
 
       
 
