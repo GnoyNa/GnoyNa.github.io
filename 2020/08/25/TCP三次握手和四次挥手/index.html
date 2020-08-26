@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://anyong.work">
-  <title>渐进增强与优雅降级—2020.03.03 | GnoyNa的博客</title>
+  <title>TCP三次握手和四次挥手 | GnoyNa的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在之前的前端知识学习和移动应用开发的课上，都听老师说过关于前端的渐进增强和优雅降级的概念，于是去搜索并自己总结了一下">
+  <meta name="description" content="关于计算机网络，自己在学校学的时候就是似懂非懂的，因为总觉得网络知识对比其它知识，更加的晦涩难懂，但无论怎样，TCP协议的三次握手与四次挥手也是在计算机网络方面必须掌握的基础知识，这次做一个比较全面的复习。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="渐进增强与优雅降级—2020.03.03">
-<meta property="og:url" content="http://anyong.work/2020/03/03/%E6%B8%90%E8%BF%9B%E5%A2%9E%E5%BC%BA%E4%B8%8E%E4%BC%98%E9%9B%85%E9%99%8D%E7%BA%A7/index.html">
+<meta property="og:title" content="TCP三次握手和四次挥手">
+<meta property="og:url" content="http://anyong.work/2020/08/25/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/index.html">
 <meta property="og:site_name" content="GnoyNa的博客">
-<meta property="og:description" content="在之前的前端知识学习和移动应用开发的课上，都听老师说过关于前端的渐进增强和优雅降级的概念，于是去搜索并自己总结了一下">
+<meta property="og:description" content="关于计算机网络，自己在学校学的时候就是似懂非懂的，因为总觉得网络知识对比其它知识，更加的晦涩难懂，但无论怎样，TCP协议的三次握手与四次挥手也是在计算机网络方面必须掌握的基础知识，这次做一个比较全面的复习。">
 <meta property="og:locale" content="ch">
-<meta property="article:published_time" content="2020-03-03T02:55:58.357Z">
-<meta property="article:modified_time" content="2020-07-23T11:58:39.805Z">
+<meta property="article:published_time" content="2020-08-25T03:43:23.967Z">
+<meta property="article:modified_time" content="2020-08-26T08:20:37.929Z">
 <meta property="article:author" content="Gnoy Na">
-<meta property="article:tag" content="前端">
+<meta property="article:tag" content="学到的一些">
+<meta property="article:tag" content="计算机网络">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="GnoyNa的博客" type="application/atom+xml">
@@ -175,14 +176,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-渐进增强与优雅降级" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-TCP三次握手和四次挥手" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      渐进增强与优雅降级—2020.03.03
+      TCP三次握手和四次挥手
     </h1>
   
 
@@ -194,8 +195,8 @@
 	</span>
 
 
-<a href="/2020/03/03/%E6%B8%90%E8%BF%9B%E5%A2%9E%E5%BC%BA%E4%B8%8E%E4%BC%98%E9%9B%85%E9%99%8D%E7%BA%A7/" class="archive-article-date">
-  	<time datetime="2020-03-03T02:55:58.357Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-03</time>
+<a href="/2020/08/25/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/" class="archive-article-date">
+  	<time datetime="2020-08-25T03:43:23.967Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-25</time>
 </a>
          <!-- 开始添加字数统计-->
          
@@ -204,7 +205,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">264字</span>
+        <span class="post-count">94字</span>
       </span>
     </span>
 
@@ -224,20 +225,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在之前的前端知识学习和移动应用开发的课上，都听老师说过关于前端的渐进增强和优雅降级的概念，于是去搜索并自己总结了一下</p>
+        <p>关于计算机网络，自己在学校学的时候就是似懂非懂的，因为总觉得网络知识对比其它知识，更加的晦涩难懂，但无论怎样，TCP协议的三次握手与四次挥手也是在计算机网络方面必须掌握的基础知识，这次做一个比较全面的复习。</p>
 <a id="more"></a>
-
-
-
-
-<p>什么是渐进增强、优雅降级？</p>
-<p>　　渐进增强 progressive enhancement：针对低版本浏览器进行构建页面，保证最基本的功能，然后再针对高级浏览器进行效果、交互等改进和追加功能达到更好的用户体验。</p>
-<p>　　优雅降级 graceful degradation：一开始就构建完整的功能，然后再针对低版本浏览器进行兼容。　</p>
-<p>区别：</p>
-<p>　　优雅降级是从复杂的现状开始，并试图减少用户体验的供给，</p>
-<p>　　而渐进增强则是从一个非常基础的，能够起作用的版本开始，并不断扩充，以适应未来环境的需要。</p>
-<p>　　降级（功能衰减）意味着往回看；而渐进增强则意味着朝前看，同时保证其根基处于安全地带。</p>
-
       
 
       
@@ -250,7 +239,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机网络</a>
         		</li>
       		
 		</ul>
@@ -306,7 +299,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://anyong.work/2020/03/03/%E6%B8%90%E8%BF%9B%E5%A2%9E%E5%BC%BA%E4%B8%8E%E4%BC%98%E9%9B%85%E9%99%8D%E7%BA%A7/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://anyong.work/2020/08/25/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -320,18 +313,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/03/03/Java%E5%8D%95%E4%BD%93%E5%BA%94%E7%94%A8%E2%80%94Spring%E6%A1%86%E6%9E%B6/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/08/26/%E5%B8%B8%E8%A7%81%E7%9A%84Mysql%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Java单体应用—Spring框架
+          常见的Mysql优化方案
         
       </div>
     </a>
   
   
-    <a href="/2020/03/02/%E5%88%9B%E5%BB%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">创建型设计模式（一）—单例模式</div>
+    <a href="/2020/08/24/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%8D%81%E4%BA%8C%E8%A6%81%E7%B4%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">微服务十二要素</div>
       <i class="icon-circle-right"></i>
     </a>
   

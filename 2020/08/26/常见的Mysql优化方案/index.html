@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://anyong.work">
-  <title>渐进增强与优雅降级—2020.03.03 | GnoyNa的博客</title>
+  <title>常见的Mysql优化方案 | GnoyNa的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在之前的前端知识学习和移动应用开发的课上，都听老师说过关于前端的渐进增强和优雅降级的概念，于是去搜索并自己总结了一下">
+  <meta name="description" content="在Mysql数据库中，处理表数据的同时，常常要考虑到性能的问题，之前做功能的时候就有过要优化数据库查询的场景，于是查找和总结了一部分开发中经常用到的数据库优化方案。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="渐进增强与优雅降级—2020.03.03">
-<meta property="og:url" content="http://anyong.work/2020/03/03/%E6%B8%90%E8%BF%9B%E5%A2%9E%E5%BC%BA%E4%B8%8E%E4%BC%98%E9%9B%85%E9%99%8D%E7%BA%A7/index.html">
+<meta property="og:title" content="常见的Mysql优化方案">
+<meta property="og:url" content="http://anyong.work/2020/08/26/%E5%B8%B8%E8%A7%81%E7%9A%84Mysql%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/index.html">
 <meta property="og:site_name" content="GnoyNa的博客">
-<meta property="og:description" content="在之前的前端知识学习和移动应用开发的课上，都听老师说过关于前端的渐进增强和优雅降级的概念，于是去搜索并自己总结了一下">
+<meta property="og:description" content="在Mysql数据库中，处理表数据的同时，常常要考虑到性能的问题，之前做功能的时候就有过要优化数据库查询的场景，于是查找和总结了一部分开发中经常用到的数据库优化方案。">
 <meta property="og:locale" content="ch">
-<meta property="article:published_time" content="2020-03-03T02:55:58.357Z">
-<meta property="article:modified_time" content="2020-07-23T11:58:39.805Z">
+<meta property="article:published_time" content="2020-08-26T08:21:08.547Z">
+<meta property="article:modified_time" content="2020-08-26T09:08:16.226Z">
 <meta property="article:author" content="Gnoy Na">
-<meta property="article:tag" content="前端">
+<meta property="article:tag" content="学到的一些">
+<meta property="article:tag" content="数据库">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="GnoyNa的博客" type="application/atom+xml">
@@ -175,14 +176,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-渐进增强与优雅降级" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-常见的Mysql优化方案" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      渐进增强与优雅降级—2020.03.03
+      常见的Mysql优化方案
     </h1>
   
 
@@ -194,8 +195,8 @@
 	</span>
 
 
-<a href="/2020/03/03/%E6%B8%90%E8%BF%9B%E5%A2%9E%E5%BC%BA%E4%B8%8E%E4%BC%98%E9%9B%85%E9%99%8D%E7%BA%A7/" class="archive-article-date">
-  	<time datetime="2020-03-03T02:55:58.357Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-03</time>
+<a href="/2020/08/26/%E5%B8%B8%E8%A7%81%E7%9A%84Mysql%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/" class="archive-article-date">
+  	<time datetime="2020-08-26T08:21:08.547Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-26</time>
 </a>
          <!-- 开始添加字数统计-->
          
@@ -204,7 +205,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">264字</span>
+        <span class="post-count">847字</span>
       </span>
     </span>
 
@@ -213,7 +214,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
+        <span class="post-count">3分</span>
       </span>
     </span>
 </div>
@@ -224,19 +225,68 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在之前的前端知识学习和移动应用开发的课上，都听老师说过关于前端的渐进增强和优雅降级的概念，于是去搜索并自己总结了一下</p>
+        <p>在Mysql数据库中，处理表数据的同时，常常要考虑到性能的问题，之前做功能的时候就有过要优化数据库查询的场景，于是查找和总结了一部分开发中经常用到的数据库优化方案。</p>
 <a id="more"></a>
 
+<ol>
+<li><p>数据库存储引擎</p>
+<p>存储引擎在Mysql的逻辑架构中位于第三层，负责Mysql中的数据的存储和提取。Mysql存储引擎有很多，不同的存储引擎保存数据和索引的方式是不同的。常见的就是<strong>InnoDB</strong>和<strong>MyISAM</strong>两种存储引擎。</p>
+<p>在Mysql5.5之前，Mysql默认的存储引擎是MyISAM。其特点是：</p>
+<ul>
+<li><p>MyISAM采用的是索引与数据分离的形式，将数据保存在三个文件中.frm(表定义) .MYD(表数据) .MYI(表索引)，<strong>不支持事务</strong>，<strong>不支持行锁</strong>。</p>
+</li>
+<li><p>在读取时对表加上共享锁，在写入是对表加上排他锁。由于是对整张表加锁，相比InnoDB，在<strong>并发写入时效率很低</strong>。</p>
+</li>
+</ul>
+<p>在新版本的Mysql中，InnoDB引擎由于其<strong>对事务参照完整性</strong>，以及<strong>更高的并发性</strong>等优点开始逐步取代Myisam引擎，其特点是：</p>
+<ul>
+<li>使用InnoDB时，会将数据表分为.frm 和 idb两个文件进行存储</li>
+<li><strong>支持事务</strong>，<strong>支持行锁</strong></li>
+<li>InnoDB采用<strong>MVCC(多版本并发控制)</strong>来支持高并发</li>
+<li>InnoDB表是基于聚簇索引建立的，<strong>聚簇索引对主键的查询有很高的性能</strong></li>
+</ul>
+<p>对比与选择：</p>
+<ol>
+<li>有事务操作：选择InnoDB</li>
+<li>存储并发修改：选择InnoDB</li>
+<li>追求快速查询，数据修改较少：选择MyISAM</li>
+</ol>
+<hr>
+<ol>
+<li><h4 id="大批量插入数据优化"><a href="#大批量插入数据优化" class="headerlink" title="大批量插入数据优化"></a><strong>大批量插入数据优化</strong></h4><p>（1）对于MylSAM存储引擎的表，可以使用DISABLE KEYS 和 ENABLE KEYS 来打开或者关闭MylSAM表非唯一索引的更新</p>
+<p>（2）对InnoDB引擎：</p>
+<ul>
+<li>将导入的数据<strong>按照主键的顺序去保存</strong>，因为InnoDB的存储是按照逐渐顺序的，如果提前排序好能够省去很多时间</li>
+<li>导入数据前执行SET UNIQUE_CHECKS=0，<strong>关闭唯一性校验</strong>，在导入完成后再设置为1</li>
+<li>导入前设置SET AUTOCOMMIT=0，<strong>关闭自动提交</strong>，导入后结束再设置为1</li>
+</ul>
+</li>
+<li><h4 id="INSERT的优化"><a href="#INSERT的优化" class="headerlink" title="INSERT的优化"></a><strong>INSERT的优化</strong></h4><p>（1）尽量使用多个值表的INSERT语句：</p>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">insert into user values(1,&#39;test&#39;,replace(uuid(),&#39;-&#39;,&#39;&#39;));</span><br><span class="line">insert into user values(2,&#39;test&#39;,replace(uuid(),&#39;-&#39;,&#39;&#39;));</span><br><span class="line">insert into user values(3,&#39;test&#39;,replace(uuid(),&#39;-&#39;,&#39;&#39;));</span><br></pre></td></tr></table></figure>
 
+<p>优化为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">insert into user values</span><br><span class="line">(4,&#39;test&#39;,replace(uuid(),&#39;-&#39;,&#39;&#39;)),</span><br><span class="line">(5,&#39;test&#39;,replace(uuid(),&#39;-&#39;,&#39;&#39;)),</span><br><span class="line">(6,&#39;test&#39;,replace(uuid(),&#39;-&#39;,&#39;&#39;)),</span><br></pre></td></tr></table></figure>
 
+<p>（2）将索引文件和数据文件放在不同的磁盘</p>
+<p>（3）在MylSAM存储引擎中进行批量插入时，可以增加bluk_insert_buffer_size变量值提供速度</p>
+<p>（4）当从一个文本文件装载一个表时，使用LOAD DATA INFILE</p>
+</li>
+<li><h4 id="GROUP-BY的优化"><a href="#GROUP-BY的优化" class="headerlink" title="GROUP BY的优化"></a><strong>GROUP BY的优化</strong></h4><p>（1）当我们对查询到的结果是否已排序不在乎时，可以在group by语句后使用<strong>ORDER BY NULL</strong>来实现优化的目的</p>
+</li>
+<li><h4 id="ORDER-BY的优化"><a href="#ORDER-BY的优化" class="headerlink" title="ORDER BY的优化"></a>ORDER BY的优化</h4><p>（1）复合索引中，保证都是升序或都是降序，或是WHERE条件和ORDER BY中的字段一致</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT*FROM user WHERE key_part1&#x3D;1 ORDER BY key_part1 DESC, key_part2 DESC;</span><br></pre></td></tr></table></figure>
 
-<p>什么是渐进增强、优雅降级？</p>
-<p>　　渐进增强 progressive enhancement：针对低版本浏览器进行构建页面，保证最基本的功能，然后再针对高级浏览器进行效果、交互等改进和追加功能达到更好的用户体验。</p>
-<p>　　优雅降级 graceful degradation：一开始就构建完整的功能，然后再针对低版本浏览器进行兼容。　</p>
-<p>区别：</p>
-<p>　　优雅降级是从复杂的现状开始，并试图减少用户体验的供给，</p>
-<p>　　而渐进增强则是从一个非常基础的，能够起作用的版本开始，并不断扩充，以适应未来环境的需要。</p>
-<p>　　降级（功能衰减）意味着往回看；而渐进增强则意味着朝前看，同时保证其根基处于安全地带。</p>
+<p>（2）保证索引顺序和ORDER BY的顺序相同</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT*FROM user ORDER BY key_part1, key_part2;</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="OR的优化"><a href="#OR的优化" class="headerlink" title="OR的优化"></a>OR的优化</h4></li>
+</ol>
+</li>
+</ol>
+<ol start="6">
+<li></li>
+</ol>
 
       
 
@@ -250,7 +300,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
         		</li>
       		
 		</ul>
@@ -306,7 +360,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://anyong.work/2020/03/03/%E6%B8%90%E8%BF%9B%E5%A2%9E%E5%BC%BA%E4%B8%8E%E4%BC%98%E9%9B%85%E9%99%8D%E7%BA%A7/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://anyong.work/2020/08/26/%E5%B8%B8%E8%A7%81%E7%9A%84Mysql%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -320,18 +374,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/03/03/Java%E5%8D%95%E4%BD%93%E5%BA%94%E7%94%A8%E2%80%94Spring%E6%A1%86%E6%9E%B6/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Java单体应用—Spring框架
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/03/02/%E5%88%9B%E5%BB%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">创建型设计模式（一）—单例模式</div>
+    <a href="/2020/08/25/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">TCP三次握手和四次挥手</div>
       <i class="icon-circle-right"></i>
     </a>
   
