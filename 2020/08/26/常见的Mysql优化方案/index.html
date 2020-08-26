@@ -16,7 +16,7 @@
 <meta property="og:description" content="在Mysql数据库中，处理表数据的同时，常常要考虑到性能的问题，之前做功能的时候就有过要优化数据库查询的场景，于是查找和总结了一部分开发中经常用到的数据库优化方案。">
 <meta property="og:locale" content="ch">
 <meta property="article:published_time" content="2020-08-26T08:21:08.547Z">
-<meta property="article:modified_time" content="2020-08-26T09:08:16.226Z">
+<meta property="article:modified_time" content="2020-08-26T09:15:36.818Z">
 <meta property="article:author" content="Gnoy Na">
 <meta property="article:tag" content="学到的一些">
 <meta property="article:tag" content="数据库">
@@ -228,8 +228,7 @@
         <p>在Mysql数据库中，处理表数据的同时，常常要考虑到性能的问题，之前做功能的时候就有过要优化数据库查询的场景，于是查找和总结了一部分开发中经常用到的数据库优化方案。</p>
 <a id="more"></a>
 
-<ol>
-<li><p>数据库存储引擎</p>
+<p>数据库存储引擎</p>
 <p>存储引擎在Mysql的逻辑架构中位于第三层，负责Mysql中的数据的存储和提取。Mysql存储引擎有很多，不同的存储引擎保存数据和索引的方式是不同的。常见的就是<strong>InnoDB</strong>和<strong>MyISAM</strong>两种存储引擎。</p>
 <p>在Mysql5.5之前，Mysql默认的存储引擎是MyISAM。其特点是：</p>
 <ul>
@@ -281,8 +280,6 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT*FROM user ORDER BY key_part1, key_part2;</span><br></pre></td></tr></table></figure>
 </li>
 <li><h4 id="OR的优化"><a href="#OR的优化" class="headerlink" title="OR的优化"></a>OR的优化</h4></li>
-</ol>
-</li>
 </ol>
 <ol start="6">
 <li></li>
