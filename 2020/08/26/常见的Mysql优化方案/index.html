@@ -16,7 +16,7 @@
 <meta property="og:description" content="在Mysql数据库中，处理表数据的同时，常常要考虑到性能的问题，之前做功能的时候就有过要优化数据库查询的场景，于是查找和总结了一部分开发中经常用到的数据库优化方案。">
 <meta property="og:locale" content="ch">
 <meta property="article:published_time" content="2020-08-26T08:21:08.547Z">
-<meta property="article:modified_time" content="2020-08-26T09:19:24.584Z">
+<meta property="article:modified_time" content="2020-08-27T01:07:50.895Z">
 <meta property="article:author" content="Gnoy Na">
 <meta property="article:tag" content="学到的一些">
 <meta property="article:tag" content="数据库">
@@ -205,7 +205,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">851字</span>
+        <span class="post-count">852字</span>
       </span>
     </span>
 
@@ -231,16 +231,14 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">tips：数据库存储引擎</span><br><span class="line"></span><br><span class="line">存储引擎在Mysql的逻辑架构中位于第三层，负责Mysql中的数据的存储和提取。Mysql存储引擎有很多，不同的存储引擎保存数据和索引的方式是不同的。常见的就是**InnoDB**和**MyISAM**两种存储引擎。</span><br><span class="line"></span><br><span class="line">在Mysql5.5之前，Mysql默认的存储引擎是MyISAM。其特点是：</span><br><span class="line"></span><br><span class="line">- MyISAM采用的是索引与数据分离的形式，将数据保存在三个文件中.frm(表定义) .MYD(表数据) .MYI(表索引)，**不支持事务**，**不支持行锁**。</span><br><span class="line"></span><br><span class="line">- 在读取时对表加上共享锁，在写入是对表加上排他锁。由于是对整张表加锁，相比InnoDB，在**并发写入时效率很低**。</span><br><span class="line"></span><br><span class="line">在新版本的Mysql中，InnoDB引擎由于其**对事务参照完整性**，以及**更高的并发性**等优点开始逐步取代Myisam引擎，其特点是：</span><br><span class="line"></span><br><span class="line">- 使用InnoDB时，会将数据表分为.frm 和 idb两个文件进行存储</span><br><span class="line">- **支持事务**，**支持行锁**</span><br><span class="line">- InnoDB采用**MVCC(多版本并发控制)**来支持高并发</span><br><span class="line">- InnoDB表是基于聚簇索引建立的，**聚簇索引对主键的查询有很高的性能**</span><br><span class="line"></span><br><span class="line">对比与选择：</span><br><span class="line"></span><br><span class="line">1. 有事务操作：选择InnoDB</span><br><span class="line">2. 存储并发修改：选择InnoDB</span><br><span class="line">3. 追求快速查询，数据修改较少：选择MyISAM</span><br></pre></td></tr></table></figure>
 
 <hr>
-<ol>
-<li><h4 id="大批量插入数据优化"><a href="#大批量插入数据优化" class="headerlink" title="大批量插入数据优化"></a><strong>大批量插入数据优化</strong></h4><p>（1）对于MylSAM存储引擎的表，可以使用DISABLE KEYS 和 ENABLE KEYS 来打开或者关闭MylSAM表非唯一索引的更新</p>
+<h4 id="大批量插入数据优化"><a href="#大批量插入数据优化" class="headerlink" title="大批量插入数据优化"></a>大批量插入数据优化</h4><p>（1）对于MylSAM存储引擎的表，可以使用DISABLE KEYS 和 ENABLE KEYS 来打开或者关闭MylSAM表非唯一索引的更新</p>
 <p>（2）对InnoDB引擎：</p>
 <ul>
 <li>将导入的数据<strong>按照主键的顺序去保存</strong>，因为InnoDB的存储是按照逐渐顺序的，如果提前排序好能够省去很多时间</li>
 <li>导入数据前执行SET UNIQUE_CHECKS=0，<strong>关闭唯一性校验</strong>，在导入完成后再设置为1</li>
 <li>导入前设置SET AUTOCOMMIT=0，<strong>关闭自动提交</strong>，导入后结束再设置为1</li>
 </ul>
-</li>
-<li><h4 id="INSERT的优化"><a href="#INSERT的优化" class="headerlink" title="INSERT的优化"></a><strong>INSERT的优化</strong></h4><p>（1）尽量使用多个值表的INSERT语句：</p>
+<h4 id="INSERT的优化"><a href="#INSERT的优化" class="headerlink" title="INSERT的优化"></a>INSERT的优化</h4><p>（1）尽量使用多个值表的INSERT语句：</p>
 <p>例如：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">insert into user values(1,&#39;test&#39;,replace(uuid(),&#39;-&#39;,&#39;&#39;));</span><br><span class="line">insert into user values(2,&#39;test&#39;,replace(uuid(),&#39;-&#39;,&#39;&#39;));</span><br><span class="line">insert into user values(3,&#39;test&#39;,replace(uuid(),&#39;-&#39;,&#39;&#39;));</span><br></pre></td></tr></table></figure>
 
@@ -250,20 +248,14 @@
 <p>（2）将索引文件和数据文件放在不同的磁盘</p>
 <p>（3）在MylSAM存储引擎中进行批量插入时，可以增加bluk_insert_buffer_size变量值提供速度</p>
 <p>（4）当从一个文本文件装载一个表时，使用LOAD DATA INFILE</p>
-</li>
-<li><h4 id="GROUP-BY的优化"><a href="#GROUP-BY的优化" class="headerlink" title="GROUP BY的优化"></a><strong>GROUP BY的优化</strong></h4><p>（1）当我们对查询到的结果是否已排序不在乎时，可以在group by语句后使用<strong>ORDER BY NULL</strong>来实现优化的目的</p>
-</li>
-<li><h4 id="ORDER-BY的优化"><a href="#ORDER-BY的优化" class="headerlink" title="ORDER BY的优化"></a>ORDER BY的优化</h4><p>（1）复合索引中，保证都是升序或都是降序，或是WHERE条件和ORDER BY中的字段一致</p>
+<h4 id="GROUP-BY的优化"><a href="#GROUP-BY的优化" class="headerlink" title="GROUP BY的优化"></a>GROUP BY的优化</h4><p>（1）当我们对查询到的结果是否已排序不在乎时，可以在group by语句后使用<strong>ORDER BY NULL</strong>来实现优化的目的</p>
+<h4 id="ORDER-BY的优化"><a href="#ORDER-BY的优化" class="headerlink" title="ORDER BY的优化"></a>ORDER BY的优化</h4><p>（1）复合索引中，保证都是升序或都是降序，或是WHERE条件和ORDER BY中的字段一致</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT*FROM user WHERE key_part1&#x3D;1 ORDER BY key_part1 DESC, key_part2 DESC;</span><br></pre></td></tr></table></figure>
 
 <p>（2）保证索引顺序和ORDER BY的顺序相同</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT*FROM user ORDER BY key_part1, key_part2;</span><br></pre></td></tr></table></figure>
-</li>
-<li><h4 id="OR的优化"><a href="#OR的优化" class="headerlink" title="OR的优化"></a>OR的优化</h4></li>
-</ol>
-<ol start="6">
-<li></li>
-</ol>
+
+<h4 id="OR的优化"><a href="#OR的优化" class="headerlink" title="OR的优化"></a>OR的优化</h4><p>（1）</p>
 
       
 
