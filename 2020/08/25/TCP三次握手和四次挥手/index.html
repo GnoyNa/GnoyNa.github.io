@@ -16,7 +16,7 @@
 <meta property="og:description" content="关于计算机网络，自己在学校学的时候就是似懂非懂的，因为总觉得网络知识对比其它知识，更加的晦涩难懂，但无论怎样，TCP协议的三次握手与四次挥手也是在计算机网络方面必须掌握的基础知识，这次做一个比较全面的复习。">
 <meta property="og:locale" content="ch">
 <meta property="article:published_time" content="2020-08-25T03:43:23.967Z">
-<meta property="article:modified_time" content="2020-08-26T08:20:37.929Z">
+<meta property="article:modified_time" content="2020-08-31T01:54:51.827Z">
 <meta property="article:author" content="Gnoy Na">
 <meta property="article:tag" content="学到的一些">
 <meta property="article:tag" content="计算机网络">
@@ -205,7 +205,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">94字</span>
+        <span class="post-count">354字</span>
       </span>
     </span>
 
@@ -227,6 +227,23 @@
       
         <p>关于计算机网络，自己在学校学的时候就是似懂非懂的，因为总觉得网络知识对比其它知识，更加的晦涩难懂，但无论怎样，TCP协议的三次握手与四次挥手也是在计算机网络方面必须掌握的基础知识，这次做一个比较全面的复习。</p>
 <a id="more"></a>
+
+<ol>
+<li>三个重要标识<ul>
+<li>ACK：表示验证字段</li>
+<li>SYN：位数置1时，表示建立TCP连接</li>
+<li>FIN：位数置1时，表示断开TCP连接</li>
+</ul>
+</li>
+<li>三次握手的过程<ol>
+<li>客户端—发送建立TCP连接的请求报文，其中包含seq序列号，SYN字段置1，表示建立TCP连接—服务端（SYN=1,seq=x，x为客户端随机生成数值）</li>
+<li>服务端—回复客户端的请求，包含seq序列号，SYN字段置1，同时产生ACK字段，ACK字段为客户端发送的seq序列号加1，以便于客户端收到信息时，知晓自己的TCP连接建立请求已经得到了验证，同时能够让服务端确认是和谁建立了连接—客户端（SYN=1,ACK=x+1,seq=y,y为服务端随机生成数值）</li>
+<li>客户端—收到验证请求后，使自身的seq序列号加1，并且回复ACK的服务端验证，将服务端seq加1进行回复—服务端（SYN=1，ACK=y+1，seq=x+1）</li>
+</ol>
+</li>
+<li></li>
+</ol>
+
       
 
       
