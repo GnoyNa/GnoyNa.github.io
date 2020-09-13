@@ -16,7 +16,7 @@
 <meta property="og:description" content="关于计算机网络，自己在学校学的时候就是似懂非懂的，因为总觉得网络知识对比其它知识，更加的晦涩难懂，但无论怎样，TCP协议的三次握手与四次挥手也是在计算机网络方面必须掌握的基础知识，这次做一个比较全面的复习。">
 <meta property="og:locale" content="ch">
 <meta property="article:published_time" content="2020-08-25T03:43:23.967Z">
-<meta property="article:modified_time" content="2020-08-31T02:30:49.992Z">
+<meta property="article:modified_time" content="2020-09-13T13:38:49.244Z">
 <meta property="article:author" content="Gnoy Na">
 <meta property="article:tag" content="学到的一些">
 <meta property="article:tag" content="计算机网络">
@@ -205,7 +205,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">354字</span>
+        <span class="post-count">607字</span>
       </span>
     </span>
 
@@ -214,7 +214,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
+        <span class="post-count">2分</span>
       </span>
     </span>
 </div>
@@ -240,6 +240,11 @@
 <li>客户端——收到验证请求后，使自身的seq序列号加1，并且回复ACK的服务端验证，将服务端seq加1进行回复——服务端（<strong>SYN=1，ACK=y+1，seq=x+1</strong>）</li>
 </ol>
 <hr>
+<h4 id="四次挥手的过程"><a href="#四次挥手的过程" class="headerlink" title="四次挥手的过程"></a>四次挥手的过程</h4><ol>
+<li>客户端——发送断开TCP连接请求的报文，其中报文中包含随机生成的seq序列号，并且还将报文中的FIN字段置为1，表示要断开TCP连接。——服务端（FIN=1，seq=x，x为客户端随机生成）</li>
+<li>服务端——回复客户端发送的请求断开TCP连接的报文，包含随机生成的seq序列号，同时在客户端发送过来的seq序列号x的基础上加一产生ACK字段进行回复，以便客户端收到信息时，知晓自己的TCP断开连接请求已经得到验证——客户端（ACK=x+1，seq=z，z为服务端随机生成）</li>
+<li>服务端——在进行回复之后，服务端会再次确认断开连接前，所有的传输数据是否已经传输完毕，一旦确认数据传输完毕后，就会将 回复报文中的FIN字段置1，并且产生随机seq序列号</li>
+</ol>
 
       
 
