@@ -16,7 +16,7 @@
 <meta property="og:description" content="最近在实习工作里关于数据库操作做的比较多，在不同的场景也会用到不同的数据库函数，这次先总结一下这几个函数的作用，便于之后的工作和学习。它们分别是datepart()、timediff()、case when 和 count(*) … group by">
 <meta property="og:locale" content="ch">
 <meta property="article:published_time" content="2020-09-13T13:39:26.064Z">
-<meta property="article:modified_time" content="2020-09-13T13:45:37.390Z">
+<meta property="article:modified_time" content="2020-09-14T08:47:23.182Z">
 <meta property="article:author" content="Gnoy Na">
 <meta property="article:tag" content="学到的一些">
 <meta property="article:tag" content="数据库">
@@ -205,7 +205,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">76字</span>
+        <span class="post-count">620字</span>
       </span>
     </span>
 
@@ -214,7 +214,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
+        <span class="post-count">2分</span>
       </span>
     </span>
 </div>
@@ -228,6 +228,97 @@
         <p>最近在实习工作里关于数据库操作做的比较多，在不同的场景也会用到不同的数据库函数，这次先总结一下这几个函数的作用，便于之后的工作和学习。它们分别是datepart()、timediff()、case when 和 count(*) … group by</p>
 <a id="more"></a>
 
+<h5 id="DATEPART-："><a href="#DATEPART-：" class="headerlink" title="DATEPART()："></a>DATEPART()：</h5><p>​    DATEPART()函数用于返回日期、时间的<strong>单独部分</strong>，比如只取年份、月份、日期、小时、分钟等等</p>
+<ul>
+<li><p>语法格式</p>
+<p>DATEPART(datepart参数,date表达式)</p>
+<p>其中datepart可以下列值：</p>
+<table>
+<thead>
+<tr>
+<th align="center">datepart</th>
+<th align="center">缩写</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">年</td>
+<td align="center">yy</td>
+</tr>
+<tr>
+<td align="center">季度</td>
+<td align="center">qq,q</td>
+</tr>
+<tr>
+<td align="center">月</td>
+<td align="center">mm,m</td>
+</tr>
+<tr>
+<td align="center">周</td>
+<td align="center">wk,ww</td>
+</tr>
+<tr>
+<td align="center">日</td>
+<td align="center">dd,d</td>
+</tr>
+<tr>
+<td align="center">星期</td>
+<td align="center">dw,w</td>
+</tr>
+<tr>
+<td align="center">小时</td>
+<td align="center">hh</td>
+</tr>
+<tr>
+<td align="center">分钟</td>
+<td align="center">mi,n</td>
+</tr>
+<tr>
+<td align="center">秒</td>
+<td align="center">ss,s</td>
+</tr>
+</tbody></table>
+<p>date表达式可以是：now()获取当前时间；curdate()获取当前日期；curtime()获取当前时间；date_add() 给日期添加指定的时间间隔；date_sub() 从日期减去指定的时间间隔；datediff() 返回两个日期之间的天数……</p>
+</li>
+</ul>
+<h5 id="TIMEDIFF-DATEDIFF-："><a href="#TIMEDIFF-DATEDIFF-：" class="headerlink" title="TIMEDIFF() / DATEDIFF()："></a>TIMEDIFF() / DATEDIFF()：</h5><p>​    TIMEDIFF() / DATEDIFF()分别用于<strong>返回两个时间和两个日期相差的时间和日期</strong></p>
+<ul>
+<li><p>语法格式</p>
+<p>TIMEDIFF(DATE1,DATE2) / DATEDIFF(DATE1,DATE2) </p>
+</li>
+<li><p>适用场景</p>
+<p>这两个函数在设计表格中有开始时间和结束时间的情况下计算持续时间或者天数时经常会用到。</p>
+</li>
+</ul>
+<h5 id="CASE-WHEN："><a href="#CASE-WHEN：" class="headerlink" title="CASE WHEN："></a>CASE WHEN：</h5><p>​    CASE WHEN类似于代码中的if else，可以将一个已知属性按照某种方式进行分组、分析</p>
+<ul>
+<li><p>语法格式</p>
+<ul>
+<li><p>简单Case：</p>
+<p>CASE [属性名] WHEN [value1] THEN [result1] WHEN [value2] THEN [result2] … ELSE [default] END</p>
+<p>例如：</p>
+<p>CASE ‘profession’ WHEN ‘1’ THEN ‘学生’ WHEN ‘2’ THEN ‘老师’ ELSE ‘其他’ END;</p>
+</li>
+<li><p>搜索Case：</p>
+<p>CASE WHEN [expr1] THEN [result1] WHEN [expr2] THEN [result2] … ELSE [default] END（其中，expr为判断表达式）</p>
+<p>例如：</p>
+<p>CASE WHEN ‘profession’ = ‘1’ THEN ‘学生’ WHEN ‘profession’ =‘2’ THEN ‘老师’ ELSE ‘其他’ END;</p>
+</li>
+</ul>
+</li>
+<li><p>区别</p>
+<p>简单Case仅用于对一个属性进行处理，<strong>无法进行判断</strong>；而搜索Case可以是表达式，所以<strong>可以判断</strong>，还可以通过AND<strong>连接多个表达式</strong>。</p>
+</li>
+</ul>
+<h5 id="COUNT-…-GROUP-BY："><a href="#COUNT-…-GROUP-BY：" class="headerlink" title="COUNT(*) … GROUP BY："></a>COUNT(*) … GROUP BY：</h5><p>​    这是一个简单的查询符合条件的数据列的总个数的函数组合，本来是很基础的，但自己还因为它卡了很久的一个功能，所以记录一下。</p>
+<ul>
+<li><p>语法格式</p>
+<p>SELECT COUNT(*) FROM [表名] GROUP BY [value1],[value2],[value3] </p>
+<p>例如：</p>
+<p>SELECT COUNT(*) FROM user GROUP BY sex,age</p>
+<p>查找每一个性别和年龄的组合，以及出现的次数。</p>
+</li>
+</ul>
+<p>tips：count(*) … group by 还可以配合having函数进行查询后筛选，但不能够使用where了，因为where不能和聚合函数同时出现。</p>
 
       
 
