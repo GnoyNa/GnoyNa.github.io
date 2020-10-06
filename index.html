@@ -219,16 +219,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>记录一次npm install的报错。</p>
-<p>​    之前在运行spc系统的前端项目的时候，不管怎么样使用npm install指令，都会报错，出现（npm ERR! A complete log of this run can be found in: npm ERR!）的问题，一直安装不上，同时会提示升级npm。</p>
-<p>​    然后自己按照要求使用npm i npm 升级npm，依旧报错，经过查资料和尝试，最后解决了问题，具体方法如下：</p>
-<ul>
-<li>执行 npm install npm@latest -g升级到最新版本</li>
-<li>删除本地node_modules 依赖包</li>
-<li>执行 npm cache clean –force 清理缓存</li>
-<li>npm install</li>
-</ul>
-<p>后来感觉这个问题应该是自己在很久没有使用npm的情况下，直接install的话会有npm版本不一致或是在第一次install的时候没有安装完整的问题。</p>
-
+        
       
 
       
