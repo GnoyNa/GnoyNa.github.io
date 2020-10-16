@@ -16,7 +16,7 @@
 <meta property="og:description" content="关于计算机网络，自己在学校学的时候就是似懂非懂的，因为总觉得网络知识对比其它知识，更加的晦涩难懂，但无论怎样，TCP协议的三次握手与四次挥手也是在计算机网络方面必须掌握的基础知识，这次做一个比较全面的复习。">
 <meta property="og:locale" content="ch">
 <meta property="article:published_time" content="2020-08-25T03:43:23.967Z">
-<meta property="article:modified_time" content="2020-09-13T13:38:49.244Z">
+<meta property="article:modified_time" content="2020-10-16T08:42:36.290Z">
 <meta property="article:author" content="Gnoy Na">
 <meta property="article:tag" content="学到的一些">
 <meta property="article:tag" content="计算机网络">
@@ -205,7 +205,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">607字</span>
+        <span class="post-count">1.2k字</span>
       </span>
     </span>
 
@@ -214,7 +214,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
+        <span class="post-count">4分</span>
       </span>
     </span>
 </div>
@@ -229,22 +229,26 @@
 <a id="more"></a>
 
 <h4 id="三个重要标识"><a href="#三个重要标识" class="headerlink" title="三个重要标识"></a>三个重要标识</h4><ul>
-<li>ACK：表示验证字段</li>
+<li>ACK：表示验证确认字段</li>
 <li>SYN：位数置1时，表示建立TCP连接</li>
 <li>FIN：位数置1时，表示断开TCP连接</li>
 </ul>
 <hr>
 <h4 id="三次握手的过程"><a href="#三次握手的过程" class="headerlink" title="三次握手的过程"></a>三次握手的过程</h4><ol>
-<li>客户端——发送建立TCP连接的请求报文，其中包含seq序列号，SYN字段置1，表示建立TCP连接——服务端（<strong>SYN=1,seq=x</strong>，x为客户端随机生成数值）</li>
-<li>服务端——回复客户端的请求，包含seq序列号，SYN字段置1，同时产生ACK字段，ACK字段为客户端发送的seq序列号加1，以便于客户端收到信息时，知晓自己的TCP连接建立请求已经得到了验证，同时能够让服务端确认是和谁建立了连接——客户端（<strong>SYN=1,ACK=x+1,seq=y</strong>,y为服务端随机生成数值）</li>
-<li>客户端——收到验证请求后，使自身的seq序列号加1，并且回复ACK的服务端验证，将服务端seq加1进行回复——服务端（<strong>SYN=1，ACK=y+1，seq=x+1</strong>）</li>
+<li>客户端——发送建立TCP连接的请求报文，其中包含seq序列号，SYN字段置1，表示建立TCP连接，同时客户端进入<strong>同步已发送</strong>状态——服务端（<strong>SYN=1,seq=x</strong>，x为客户端随机生成数值）</li>
+<li>服务端——如果同意建立连接，则回复客户端的请求，发送确认报文，包含seq序列号，SYN字段和ACK字段都置1，同时产生ack确认号，确认号为客户端发送的seq序列号加1，同时服务端进入<strong>同步收到</strong>状态。以便于客户端收到信息时，知晓自己的TCP连接建立请求已经得到了验证，同时能够让服务端确认是和谁建立了连接——客户端（<strong>SYN=1,ACK=1,seq=y,ack=x+1</strong>,y为服务端随机生成数值）</li>
+<li>客户端——收到验证请求后，确认报文中将ACK置1，使自身的seq序列号再加1，并且回复服务端的ack确认号，将服务端发送的ack加1进行回复，同时客户端自身进入<strong>已建立连接</strong>状态，服务端收到该报文后也进入<strong>已建立连接</strong>状态——服务端（<strong>ACK=1，seq=x+1,ack=y+1</strong>）</li>
 </ol>
 <hr>
 <h4 id="四次挥手的过程"><a href="#四次挥手的过程" class="headerlink" title="四次挥手的过程"></a>四次挥手的过程</h4><ol>
-<li>客户端——发送断开TCP连接请求的报文，其中报文中包含随机生成的seq序列号，并且还将报文中的FIN字段置为1，表示要断开TCP连接。——服务端（FIN=1，seq=x，x为客户端随机生成）</li>
-<li>服务端——回复客户端发送的请求断开TCP连接的报文，包含随机生成的seq序列号，同时在客户端发送过来的seq序列号x的基础上加一产生ACK字段进行回复，以便客户端收到信息时，知晓自己的TCP断开连接请求已经得到验证——客户端（ACK=x+1，seq=z，z为服务端随机生成）</li>
-<li>服务端——在进行回复之后，服务端会再次确认断开连接前，所有的传输数据是否已经传输完毕，一旦确认数据传输完毕后，就会将 回复报文中的FIN字段置1，并且产生随机seq序列号</li>
+<li>客户端——发送断开TCP连接请求的报文，其中报文中包含随机生成的seq序列号，并且还将报文中的FIN字段置为1，表示要断开TCP连接。客户端进入<strong>终止等待1阶段</strong>——服务端（<strong>FIN=1，seq=u</strong>，u为已传送数据的最后一个字节的序号加1）</li>
+<li>服务端——回复客户端发送的请求断开TCP连接的报文，包含生成的seq序列号，同时在客户端发送过来的seq序列号u的基础上加一产生ack确认字段进行回复，以便客户端收到信息时，知晓自己的TCP断开连接请求已经得到验证，同时服务端进入<strong>关闭等待</strong>状态，客户端收到该段报文后，进入<strong>终止等待2阶段</strong>——客户端（<strong>ACK=1,,ack=u+1，seq=v</strong>）</li>
+<li>服务端——在进行回复之后，服务端会再次确认断开连接前，所有的传输数据是否已经传输完毕，一旦确认数据传输完毕后，就会再次向客户端发出连接释放报文，报文中的FIN字段置1，并且产生随机seq序列号w，并重复发送上次发送过的确认号，这时，服务器端进入<strong>最后确认状态</strong>，等待客户端确认——客户端（<strong>FIN=1,ACK=1,seq=w,ack=u+1</strong>）</li>
+<li>客户端——收到连接释放报文后，必须对次发出确认，则ACK置1，确认号ack为服务端序列号seq+1，而自己的序列号和服务端确认号相等，然后进入到<strong>时间等待</strong>状态，此时TCP连接还没有被释放掉，必须经过时间等待计时器设置的时间之后，进入<strong>关闭连接</strong>状态——服务端（<strong>ACK=1,seq=u+1,ack=w+1</strong>）</li>
 </ol>
+<hr>
+<h4 id="为什么要三次握手而不是两次？"><a href="#为什么要三次握手而不是两次？" class="headerlink" title="为什么要三次握手而不是两次？"></a>为什么要三次握手而不是两次？</h4><pre><code>1. 主要是为了防止已失效的客户端连接请求报文段突然又传送到了服务端，因而产生错误。
+ 2. 第一次握手和第二次握手使客户端确认了双方都为发送接收正常，但服务端只确认了自己的发送接收正常，需要第三次握手来确认客户端是发送接收正常的。</code></pre><h4 id="为什么建立连接是三次握手，而关闭则是四次挥手？"><a href="#为什么建立连接是三次握手，而关闭则是四次挥手？" class="headerlink" title="为什么建立连接是三次握手，而关闭则是四次挥手？"></a>为什么建立连接是三次握手，而关闭则是四次挥手？</h4><p>​    这是因为服务端在等待请求状态下，收到建立连接请求的SYN报文后，把ACK和SYN放在一个报文里发送给客户端，而在关闭连接的时候，当收到对方的FIN报文时，仅仅表示对方不再发送数据了，但是还可以接收数据。在服务端也未必全部数据都发送到了客户端，所以可以立即关闭连接也可以再发送一些数据后关闭，然后再发送FIN报文给对方表示同一关闭连接，因此，会分开发送ACK和FIN字段。</p>
 
       
 
