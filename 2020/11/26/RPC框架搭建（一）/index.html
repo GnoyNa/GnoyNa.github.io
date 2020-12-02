@@ -6,16 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://anyong.work">
-  <title>Archives: 2020 | GnoyNa的博客</title>
+  <title>RPC框架搭建（一） | GnoyNa的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="A blog recording my life and study">
-<meta property="og:type" content="website">
-<meta property="og:title" content="GnoyNa的博客">
-<meta property="og:url" content="http://anyong.work/archives/2020/page/4/index.html">
+  <meta name="description" content="最近在补充项目经验的时候，突然想要设计一个自己真正能够做到的小项目，也算是在实践中学习，最后在各方面的考量之后完成了这个项目，一个小型RPC框架的基本实现，后续会不断的对这个项目进行优化和改动。 ​    项目完整地址：https:&#x2F;&#x2F;github.com&#x2F;GnoyNa&#x2F;My-RPC-Frame.git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RPC框架搭建（一）">
+<meta property="og:url" content="http://anyong.work/2020/11/26/RPC%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
 <meta property="og:site_name" content="GnoyNa的博客">
-<meta property="og:description" content="A blog recording my life and study">
+<meta property="og:description" content="最近在补充项目经验的时候，突然想要设计一个自己真正能够做到的小项目，也算是在实践中学习，最后在各方面的考量之后完成了这个项目，一个小型RPC框架的基本实现，后续会不断的对这个项目进行优化和改动。 ​    项目完整地址：https:&#x2F;&#x2F;github.com&#x2F;GnoyNa&#x2F;My-RPC-Frame.git">
 <meta property="og:locale" content="ch">
+<meta property="article:published_time" content="2020-11-26T09:00:00.992Z">
+<meta property="article:modified_time" content="2020-12-02T10:11:49.786Z">
 <meta property="article:author" content="Gnoy Na">
+<meta property="article:tag" content="学到的一些">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="GnoyNa的博客" type="application/atom+xml">
@@ -172,425 +175,281 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-RPC框架搭建（一）" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      RPC框架搭建（一）
+    </h1>
+  
+
+        
+        
+	<!-- 不蒜子统计 -->
+	<span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+		  <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+
+<a href="/2020/11/26/RPC%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%EF%BC%88%E4%B8%80%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2020-11-26T09:00:00.992Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-26</time>
+</a>
+         <!-- 开始添加字数统计-->
+         
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1.9k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">7分</span>
+      </span>
+    </span>
+</div>
+          
+          <!-- 添加完成 -->
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近在补充项目经验的时候，突然想要设计一个自己真正能够做到的小项目，也算是在实践中学习，最后在各方面的考量之后完成了这个项目，一个小型RPC框架的基本实现，后续会不断的对这个项目进行优化和改动。</p>
+<p>​    项目完整地址：<a href="https://github.com/GnoyNa/My-RPC-Frame.git" target="_blank" rel="noopener">https://github.com/GnoyNa/My-RPC-Frame.git</a></p>
+<a id="more"></a>
+
+
+
+<h4 id="从原理出发"><a href="#从原理出发" class="headerlink" title="从原理出发"></a>从原理出发</h4><ul>
+<li><p>首先定义HTTP协议，HTTP协议是基于TCP协议而产生的</p>
+</li>
+<li><p>RESTful风格的API，即可以为HTTP+json的数据格式。REST翻译为表现层状态转化，即资源在网络中以某种表现形式进行状态转移</p>
+<ul>
+<li><p>RESTful架构：</p>
+<ol>
+<li><p>每一个URL代表一种资源</p>
+</li>
+<li><p>客户端和服务器之间，传递这种资源的某种表现层，比如JSON/XML等</p>
+</li>
+<li><p>客户端通过四个HTTP动词，对服务器端资源进行操作，实现“表现层状态转化”</p>
+<p>即：URL来定位资源，HTTP动词(GET/POST/PUT/DELETE/DETC)来描述操作，实现对资源的添加、修改、删除等操作</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>IPC，即进程间通信，指至少两个进程或线程间传送数据或信息的一些技术或方法。每个进程都有自己的一部分独立的系统资源，彼此之间是隔离的。为了能使不同的进程互相访问资源并进行协调工作，才有了进程间通信。进程间通信有两种类型：</p>
+<ul>
+<li>本地过程调用(LPC)LPC用在多任务操作系统中，使得同时运行的任务能互相会话,这些任务共享内存空间使任务同步和互相发送信息</li>
+<li>远程过程调用(RPC)RPC类似与LPC，但是只在网络中进行，即无法在一个进程内，甚至一个计算机内通过本地调用的方式完成的需求，比如不同系统和组织间的通讯。由于计算能力需要横向扩展，所以需要在多台机器组成的集群上部署应用</li>
+</ul>
+</li>
+<li><p>RPC的核心</p>
+<p>RPC的核心并不在于使用什么协议，RPC的目的是让你在本地调用远程的方法时，对调用者而言是透明的，即调用者并不知道调用的方法是部署在哪里。通过RPC可以解耦服务，才是RPC的真正目的。</p>
+<p>RPC的原理主要用到了动态代理模式。</p>
+<p>RPC 会隐藏底层的通讯细节（不需要直接处理Socket通讯或Http通讯）</p>
+<p>RPC 是一个请求响应模型。客户端发起请求，服务器返回响应（类似于Http的工作方式）</p>
+<p>RPC 在使用形式上像调用本地函数（或方法）一样去调用远程的函数（或方法）</p>
+</li>
+<li><p>RPC的角色</p>
+<ul>
+<li><p>Server: 暴露服务的服务提供方。</p>
+</li>
+<li><p>Client: 调用远程服务的服务消费方。</p>
+</li>
+<li><p>Registry: 服务注册与发现的注册中心。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="自己写一个RPC框架的原理实现"><a href="#自己写一个RPC框架的原理实现" class="headerlink" title="自己写一个RPC框架的原理实现"></a>自己写一个RPC框架的原理实现</h4><p>​    首先要定义一个客户端和服务端都可以访问到的通用的接口，且只有服务端有实现这个接口的实现类，客户端则是通过网络传输，告诉服务端我要调用这个接口，然后服务端收到请求后找到该接口的实现类，并且执行方法，将结果返回给客户端，作为客户端调用接口方法的返回值。</p>
+<p>​    在实现这个原理时，我们首先要让客户端能够知道服务端的地址，且客户端要能够告诉服务端自己需要的参数，要如何实现参数的传递。</p>
+<p>​    在假设客户端已经能够沟通到服务端，即客户端知道服务端地址，先省去服务注册和发现的布置，即在项目不添加Nacos时，做到一个基本的RPC实现。</p>
+<h4 id="基本实现"><a href="#基本实现" class="headerlink" title="基本实现"></a>基本实现</h4><ul>
+<li><p>通用接口</p>
+<p>先写一个需要调用的测试接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">HelloService</span> </span>&#123;</span><br><span class="line">    <span class="function">String <span class="title">hello</span><span class="params">(HelloObject object)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后给hello方法传递一个对象：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@AllargsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloObject</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String message;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意该对象需要实现<strong>Serializable</strong>接口，因为它需要在调用的过程中由客户端传递给服务端，所以需要进行序列化</p>
+</li>
+</ul>
+<p>  然后写接口的实现类，由于是测试，只需要返回字符串内容即可：</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloServiceImpl</span> <span class="keyword">implements</span> <span class="title">HelloService</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger logger  = LoggerFactory.getLogger(HelloServiceImpl<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">hello</span><span class="params">(HelloObject object)</span> </span>&#123;</span><br><span class="line">        logger.info(<span class="string">"接受到:&#123;&#125;"</span>,object.getMessage());</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"这是调用的返回值，id="</span> + object.getId();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="传输协议"><a href="#传输协议" class="headerlink" title="传输协议"></a>传输协议</h4><p>​    接下来的问题就是：服务端需要客户端提供哪些信息，才能够唯一确定需要调用的接口的方法。</p>
+<p>​    所以需要定义一个用于传输的请求传输对象，里面保存接口的名字、方法的名字以及避免方法重载，还需要这个方法中的所有参数与参数类型。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Builder</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RpcRequest</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 待调用接口名称</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String interfaceName;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 待调用方法名称</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String methodName;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 调用方法的参数</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Object[] parameters;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 调用方法的参数类型</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Class&lt;?&gt;[] paramTypes;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>服务器端调用方法之后也需要对客户端返回信息，如果成功的话，需要返回值，如果失败，则要提示失败，于是还需要一个RpcResponse的响应对象：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RpcResponse</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 响应状态码</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Integer statusCode;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 响应状态补充信息</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String message;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 响应数据</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> T data;</span><br><span class="line">  </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 快速生成成功与失败的响应对象的方法</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> data</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;T&gt;</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">RpcResponse&lt;T&gt; <span class="title">success</span><span class="params">(T data)</span> </span>&#123;</span><br><span class="line">        RpcResponse&lt;T&gt; response = <span class="keyword">new</span> RpcResponse&lt;&gt;();</span><br><span class="line">        response.setStatusCode(ResponseCode.SUCCESS.getCode());</span><br><span class="line">        response.setData(data);</span><br><span class="line">        <span class="keyword">return</span> response;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">RpcResponse&lt;T&gt; <span class="title">fail</span><span class="params">(ResponseCode code)</span> </span>&#123;</span><br><span class="line">        RpcResponse&lt;T&gt; response = <span class="keyword">new</span> RpcResponse&lt;&gt;();</span><br><span class="line">        response.setStatusCode(code.getCode());</span><br><span class="line">        response.setMessage(code.getMessage());</span><br><span class="line">        <span class="keyword">return</span> response;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="客户端的动态代理"><a href="#客户端的动态代理" class="headerlink" title="客户端的动态代理"></a>客户端的动态代理</h4><p>​    客户端因为没有接口的直接实现，就没法生成实例对象。我们可以通过动态代理的方式生成实例，传递host和port来指明服务端的位置，并且使用getProxy()方法来生成代理对象。</p>
+<p>​    同时，InvacationHandler接口需要实现invoke()方法，指明<strong>代理对象的方法被调用时的动作</strong>。我们在这里，需要的动作就是调用方法生成RpcRequest对象，向服务端发送过去，返回结果；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RpcClientProxy</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger logger = LoggerFactory.getLogger(RpcClientProxy<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">    <span class="keyword">private</span> String host;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> port;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RpcClientProxy</span><span class="params">(String host, <span class="keyword">int</span> port)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.host = host;</span><br><span class="line">        <span class="keyword">this</span>.port = port;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; <span class="function">T <span class="title">getProxy</span><span class="params">(Class&lt;T&gt; clazz)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (T) Proxy.newProxyInstance(clazz.getClassLoader(), <span class="keyword">new</span> Class&lt;?&gt;[]&#123;clazz&#125;, <span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        logger.info(<span class="string">"调用方法: &#123;&#125;#&#123;&#125;"</span>, method.getDeclaringClass().getName(), method.getName());</span><br><span class="line">        RpcRequest rpcRequest = RpcRequest.builder()</span><br><span class="line">                .interfaceName(method.getDeclaringClass().getName())</span><br><span class="line">                .methodName(method.getName())</span><br><span class="line">                .parameters(args)</span><br><span class="line">                .paramTypes(method.getParameterTypes())</span><br><span class="line">                .build();</span><br><span class="line">        RpcClient rpcClient = <span class="keyword">new</span> RpcClient();</span><br><span class="line">        <span class="keyword">return</span> ((RpcResponse) rpcClient.sendRequest(rpcRequest, host, port)).getData();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>​    生成RpcRequest对象的过程使用了Builder模式，发送的方法是定义了一个RpcClient对象将一个对象发送过去，并返回接受到的返回对象：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RpcClient</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger logger = LoggerFactory.getLogger(RpcClient<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">sendRequest</span><span class="params">(RpcRequest rpcRequest, String host, <span class="keyword">int</span> port)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> (Socket socket = <span class="keyword">new</span> Socket(host, port)) &#123;</span><br><span class="line">            ObjectOutputStream objectOutputStream = <span class="keyword">new</span> ObjectOutputStream(socket.getOutputStream());</span><br><span class="line">            ObjectInputStream objectInputStream = <span class="keyword">new</span> ObjectInputStream(socket.getInputStream());</span><br><span class="line">            objectOutputStream.writeObject(rpcRequest);</span><br><span class="line">            objectOutputStream.flush();</span><br><span class="line">            <span class="keyword">return</span> objectInputStream.readObject();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException | ClassNotFoundException e) &#123;</span><br><span class="line">            logger.error(<span class="string">"调用时有错误发生："</span>, e);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>​    RpcClient 对象是直接使用Java的序列化方法，通过Socket传输。创建一个Scoket，获取ObjectOutputStream对象，将需要发送的对象传进去，接收时获取ObjectInputStream对象，用readObject()方法得到返回对象。</p>
+<h4 id="服务端的反射调用"><a href="#服务端的反射调用" class="headerlink" title="服务端的反射调用"></a>服务端的反射调用</h4>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/05/23/%E5%85%B3%E4%BA%8EPost%E8%AF%B7%E6%B1%82%E5%B8%A6%E6%9D%A5%E7%9A%84Option/" class="archive-article-date">
-  	<time datetime="2020-05-23T05:32:32.359Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/23/%E5%85%B3%E4%BA%8EPost%E8%AF%B7%E6%B1%82%E5%B8%A6%E6%9D%A5%E7%9A%84Option/">关于Post请求带来的Option</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JavaWeb</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">学到的一些</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://anyong.work/2020/11/26/RPC%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%EF%BC%88%E4%B8%80%EF%BC%89/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
 
-<a href="/2020/05/22/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E5%9B%9B%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-05-22T13:48:55.480Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-22</time>
-</a>
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2020/10/06/npm%20install%E6%8A%A5%E9%94%99/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">npm install报错</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/22/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E5%9B%9B%EF%BC%89/">JavaSE语言基础（四）</a>
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/05/22/%E5%88%9B%E5%BB%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2020-05-22T13:25:49.321Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/22/%E5%88%9B%E5%BB%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%88%E4%BA%8C%EF%BC%89%E2%80%94%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">创建型设计模式（二）—抽象工厂模式</a>
-    </h1>
+  <div id="gitalk-container" style="padding: 0px 30px 0px 46px;"></div> 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="/./md5.min.js"></script>
+<script type="text/javascript">
+var gitalk = new Gitalk({
+        clientID:  '7747c4707986fe8c07e8', 
+        clientSecret: '39632b43f162659845e0893408aa2d4ad140b92f',
+        repo: 'blog-comment', 
+        owner: 'GnoyNa', 
+        admin: 'GnoyNa', 
+		id: md5(location.hash),
+        distractionFreeMode: 'true',
+     })
+gitalk.render('gitalk-container')
+</script>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/05/20/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%89%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-05-20T12:42:39.186Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/20/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%89%EF%BC%89/">JavaSE语言基础（三）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/05/18/%E5%AE%9E%E7%8E%B0%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2020-05-18T14:52:05.679Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/18/%E5%AE%9E%E7%8E%B0%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F/">实现多线程的四种方式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/05/15/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%8C%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-05-15T14:31:59.477Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/15/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%8C%EF%BC%89/">JavaSE语言基础（二）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/05/12/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-05-12T12:59:34.589Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/12/JavaSE%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%EF%BC%88%E4%B8%80%EF%BC%89/">JavaSE语言基础（一）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/05/02/%E8%B0%81%E8%B0%81%E7%9A%84%E5%8D%81%E5%85%AB%E5%B2%81/" class="archive-article-date">
-  	<time datetime="2020-05-02T14:53:27.079Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/02/%E8%B0%81%E8%B0%81%E7%9A%84%E5%8D%81%E5%85%AB%E5%B2%81/">谁谁的十八岁 —2020.05.05</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/03/26/%E9%98%BF%E9%87%8CJava%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C1.4.0(%E7%B2%BE%E9%80%89)/" class="archive-article-date">
-  	<time datetime="2020-03-26T14:55:30.764Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/26/%E9%98%BF%E9%87%8CJava%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C1.4.0(%E7%B2%BE%E9%80%89)/">阿里Java开发手册1.4.0(精选)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-
-<a href="/2020/03/03/Java%E5%8D%95%E4%BD%93%E5%BA%94%E7%94%A8%E2%80%94Spring%E6%A1%86%E6%9E%B6/" class="archive-article-date">
-  	<time datetime="2020-03-03T13:50:24.831Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/03/Java%E5%8D%95%E4%BD%93%E5%BA%94%E7%94%A8%E2%80%94Spring%E6%A1%86%E6%9E%B6/">Java单体应用—Spring框架</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2020/page/3/">« Prev</a><a class="page-number" href="/archives/2020/">1</a><a class="page-number" href="/archives/2020/page/2/">2</a><a class="page-number" href="/archives/2020/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/2020/page/5/">5</a><a class="page-number" href="/archives/2020/page/6/">6</a><a class="extend next" rel="next" href="/archives/2020/page/5/">Next »</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -626,8 +485,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
