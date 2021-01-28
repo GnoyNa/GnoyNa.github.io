@@ -16,7 +16,7 @@
 <meta property="og:description" content="​    最近开始实习之后，每天的时间都挺紧的，这接近两周的时间也让自己在软件测试和互联网开发模式上有了更深刻的理解，也改变了自己之前的一些观点和看法，在不断的学习当中。测试用例的设计方法是自己从第一周开始看的，自以为测试用例的设计影响着整个测试流程中的顺畅程度，更影响了测试工作的完整和项目的测试覆盖度，是作为一名软件测试工程师必须要学习的。">
 <meta property="og:locale" content="ch">
 <meta property="article:published_time" content="2021-01-14T09:20:21.938Z">
-<meta property="article:modified_time" content="2020-12-28T09:14:26.000Z">
+<meta property="article:modified_time" content="2021-01-28T12:21:37.964Z">
 <meta property="article:author" content="Gnoy Na">
 <meta property="article:tag" content="学到的一些">
 <meta property="article:tag" content="测试">
@@ -205,7 +205,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">837字</span>
+        <span class="post-count">1.4k字</span>
       </span>
     </span>
 
@@ -214,7 +214,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
+        <span class="post-count">4分</span>
       </span>
     </span>
 </div>
@@ -247,6 +247,9 @@
 <li>如果抽取到的数据在测试中发现了一个缺陷，那么代表该域中其他数据的测试也会捕获该缺陷</li>
 <li>如果抽取的数据无缺陷，则该域中所存在的数据都无缺陷</li>
 </ol>
+<ul>
+<li>自己的理解，等价类法是我们设计测试用例中避免重复测试，保证测试效率和有效性的最有效的方法。对等价性的测试项不做无用的测试工作，划分出明确的等价域，根据等价域来设计高效的测试用例也是自己需要去学习的地方</li>
+</ul>
 <h4 id="边界值法"><a href="#边界值法" class="headerlink" title="边界值法"></a>边界值法</h4><p>概述：</p>
 <ol>
 <li>找到测试数据的边界点，即试探有效等价域和无效等价域的边界值</li>
@@ -264,6 +267,9 @@
 <li>如果是规定了输入条件的个数，就应该找到最大个数以及最大个数两边的点和最小个数以及最小个数两边的点进行测试</li>
 <li>如果规定了输入域为有序的集合，那么可以选择第一个元素和最后一个元素作为测试用例</li>
 </ol>
+<ul>
+<li>边界值法也是很重要的一个测试用例的设计方法，自己在工作对这点也有运用，比如月龄计算的功能测试等，但还是需要对每个测试是否需要做边界值相关的测试有自己的考量，如果做不好的话是很耗费测试资源的，造成效率低下的问题。边界值法还要考量到使用时的付出和产出。</li>
+</ul>
 <h4 id="因果图法"><a href="#因果图法" class="headerlink" title="因果图法"></a>因果图法</h4><p>概述：</p>
 <ol>
 <li>在一个模块或一个界面中，有多个控件，这些控件存在一定的约束关系或组合关系，且输出依赖于输入条件，则可以使用因果图法</li>
@@ -284,6 +290,9 @@
 <li>每个控件的条件不宜过多，最好为2个</li>
 <li>控件过多或是控件的条件过多的时候，不宜使用因果图法</li>
 </ol>
+<ul>
+<li>因果图是很重要的一种测试用例的设计方法，如果要做理解的话，因果图法和思维导图的方式很相似，都是对测试的输入输出与条件组合做一个流程的梳理。对于复杂或是简单的需求都可以先设计和梳理出一个因果图或是思维导图，然后再由因果图推演成更加细致和执行度更高的表格式测试用例。</li>
+</ul>
 <h4 id="判定表法"><a href="#判定表法" class="headerlink" title="判定表法"></a>判定表法</h4><p>概述：</p>
 <ol>
 <li>判断表主要侧重于各个输入条件之间的逻辑关系</li>
@@ -291,9 +300,22 @@
 </ol>
 <p>步骤：</p>
 <ol>
-<li></li>
+<li>找出所有的输入条件</li>
+<li>找出所有的输出条件</li>
+<li>明确所有输入条件之间的制约关系以及组合关系</li>
+<li>明确所有输出条件之间的制约关系以及组合关系</li>
+<li>找出怎么样的输入条件组合会产生该种输出</li>
+<li>根据因果图写出判定表</li>
+<li>根据判定表写出测试用例</li>
 </ol>
-
+<p>注意点：</p>
+<ol>
+<li>条件与规则的排列顺序不影响执行哪些操作</li>
+</ol>
+<ul>
+<li>判定表是后置于因果图的一个步骤，算是从因果图到具体实现的测试用例的一个过渡，如果是需求比较复杂或是场景较多的话，还是要在设计测试用例之前做好因果图到判定表的梳理过程，确保测试用例的覆盖度</li>
+</ul>
+<h4 id="正交法"><a href="#正交法" class="headerlink" title="正交法"></a>正交法</h4>
       
 
       
