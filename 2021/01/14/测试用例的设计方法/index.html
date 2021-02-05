@@ -16,7 +16,7 @@
 <meta property="og:description" content="​    最近开始实习之后，每天的时间都挺紧的，这接近两周的时间也让自己在软件测试和互联网开发模式上有了更深刻的理解，也改变了自己之前的一些观点和看法，在不断的学习当中。测试用例的设计方法是自己从第一周开始看的，自以为测试用例的设计影响着整个测试流程中的顺畅程度，更影响了测试工作的完整和项目的测试覆盖度，是作为一名软件测试工程师必须要学习的。">
 <meta property="og:locale" content="ch">
 <meta property="article:published_time" content="2021-01-14T09:20:21.938Z">
-<meta property="article:modified_time" content="2021-01-28T12:21:37.964Z">
+<meta property="article:modified_time" content="2021-02-05T09:42:27.057Z">
 <meta property="article:author" content="Gnoy Na">
 <meta property="article:tag" content="学到的一些">
 <meta property="article:tag" content="测试">
@@ -205,7 +205,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.4k字</span>
+        <span class="post-count">2.1k字</span>
       </span>
     </span>
 
@@ -214,7 +214,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">4分</span>
+        <span class="post-count">7分</span>
       </span>
     </span>
 </div>
@@ -315,7 +315,64 @@
 <ul>
 <li>判定表是后置于因果图的一个步骤，算是从因果图到具体实现的测试用例的一个过渡，如果是需求比较复杂或是场景较多的话，还是要在设计测试用例之前做好因果图到判定表的梳理过程，确保测试用例的覆盖度</li>
 </ul>
-<h4 id="正交法"><a href="#正交法" class="headerlink" title="正交法"></a>正交法</h4>
+<h4 id="正交法"><a href="#正交法" class="headerlink" title="正交法"></a>正交法</h4><p>概述：</p>
+<ol>
+<li>能够使用最小的测试过程集合获得最大的测试覆盖率</li>
+</ol>
+<p>步骤：</p>
+<ol>
+<li>根据所测程序中空间的个数以及每个空间的取值个数，选取一个合适的正交排列表</li>
+<li>把控件以及取值列出来，并对取值进行编号</li>
+<li>把控件以及取值映射到正交排列表中</li>
+<li>根据映射好的正交排列表编写测试用例</li>
+</ol>
+<p>注意点：</p>
+<ol>
+<li>正交表以求使用最少的测试用例来覆盖最大的测试场景</li>
+<li>正交表的两大优越性：“均匀分散性，整体可比性”</li>
+</ol>
+<ul>
+<li>正交法通俗一点来讲，就是将每个因素的每个水平和另一个因素的不同水平各碰撞一次，即正交性。在面对控件和属性的组合测试，涉及到测试点过多时，采用正交法进行测试用例的设计是比较好的。</li>
+<li>allpairs工具可以帮助我们快速的生成符合正交法的测试用例</li>
+</ul>
+<h4 id="场景法"><a href="#场景法" class="headerlink" title="场景法"></a>场景法</h4><p>概述：</p>
+<ol>
+<li><p>场景法就是模拟用户操作软件时的场景，主要用于测试系统的业务流程</p>
+</li>
+<li><p>在冒烟测试时也主要采用场景法进行测试</p>
+<p>tips：冒烟测试：具体说，冒烟测试就是在每日build（构建版本）建立后，对系统的基本功能进行简单的测试。这种测试强调程序的主要功能进行的验证，而不会对具体功能进行更深入的测试。冒烟测试可以理解为一个开关，当它通过，可以继续后面的测试，不过的话就直接返工等待下一次的构建。</p>
+</li>
+</ol>
+<p>步骤：</p>
+<ol>
+<li>根据说明，描述出程序的基本流及各项备选流</li>
+<li>根据基本流和各项备选流生成不同的场景</li>
+<li>对每一个场景生成相应的测试用例</li>
+</ol>
+<p>注意点：</p>
+<ol>
+<li>基本流即按照正确的业务流程来实现一条操作路径；备选流即会导致程序出现错误的操作流程</li>
+</ol>
+<ul>
+<li>简单理解，场景法就是模拟用户的行为，进行正确和错误的操作路径</li>
+</ul>
+<h4 id="大纲法"><a href="#大纲法" class="headerlink" title="大纲法"></a>大纲法</h4><p>概述：</p>
+<ol>
+<li>在一个程序或者程序的某一个模块中，涉及到多个窗口，每个窗口中能够完成多个动作</li>
+<li>窗口之间相互联系，找出窗口与窗口之间的关系</li>
+</ol>
+<p>步骤：</p>
+<ol>
+<li>找出所有窗口以及每个窗口的输入动作</li>
+<li>找到窗口之间的关系，编写测试用例</li>
+</ol>
+<p>注意点：</p>
+<ul>
+<li>大纲法适用与多程序或是多窗口的动作测试，最简单的例子就是，对一个登录功能，当登录页面输入错误了，应该跳转错误提示页面，输入正确则进入下一步，对于比较复杂的窗口动作之间可以适用大纲法</li>
+</ul>
+<h4 id="状态转换图法"><a href="#状态转换图法" class="headerlink" title="状态转换图法"></a>状态转换图法</h4><p>概述：</p>
+<p>1. </p>
+
       
 
       
